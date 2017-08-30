@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	section p:only-child {
+    	color: blue;
+	}
+	section > p:first-of-type {
+	    color: red;
+	}
+	section > p:last-of-type {
+	    color: yellow;
+	}
+
+</style>
+</head>
+<body>
+<p>...</p>
+	<section>
+        <h2>...</h2>
+        <p>This paragraph should be in red</p>
+        <div>
+            <p>This paragraph should be in blue</p>
+        </div>
+        <p>This paragraph should be in yellow</p>
+    </section>
+ <!--    <script type="text/javascript">
+    	/*for (var i = 0; i < document.querySelectorAll("p").length; i++) {
+    		var x = document.querySelectorAll("p")[i].innerHTML;
+    		var y = x.match(/red/g) ? "red" : x.match(/blue/g) ? "blue" : x.match(/yellow/g) ? "yellow" : " ";
+    		document.querySelectorAll("p")[i].style.color = y;    		
+    	}*/
+    </script> -->
+</body>
+</html>

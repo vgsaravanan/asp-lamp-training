@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		a[href ^= "http:"] {
+			color:red;
+		}
+		a[href ^= "https:"] {
+			color:green;
+		}
+	</style>
+</head>
+<body>
+<a href="http://example.comabout-us">About Us</a>
+<a href="http://example.com/policy">Policy</a>
+<a href="http://example.com/disclaimer">Disclaimer</a>
+<a href="https://example.com/register">Register</a>
+<a href="https://example.com/login" >Login</a>
+
+<script type="text/javascript">
+/*
+for (var i = 0; i < document.querySelectorAll("a").length; i++) {
+	var x = document.querySelectorAll("a")[i].outerHTML;
+	var x = document.getElementsByTagName("a")[0].outerHTML;
+	var y = x.match(/http:/g) ? "unsecure" : x.match(/https:/g) ? "secure" : " ";
+	console.log(y);
+	console.log(x);
+	if (y == "unsecure") {
+		document.querySelectorAll("a")[i].style.color = "red";
+		document.getElementsByTagName("a")[i].style.color = "red"
+	} else {
+		document.querySelectorAll("a")[i].style.color = 'green';
+		document.getElementsByTagName("a")[i].style.color = "green"
+	}
+}*/
+</script>
+</body>
+</html>
