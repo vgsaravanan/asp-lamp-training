@@ -1,0 +1,9 @@
+img {
+	width: 40%;
+	height: 30%;
+	float: left;
+	padding: 10px;
+}
+#content {
+	margin: 10% 5%;
+}
