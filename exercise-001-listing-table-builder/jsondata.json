@@ -1,0 +1,27 @@
+[
+    {
+        "Name" : "Saravanan",
+        "Degree" : "B.Tech IT",
+        "years_of_Experience" : "0"
+    },
+    {
+        "Name" : "Srinivas",
+        "Degree" : "B.E EEE",
+        "years_of_Experience" : "1" 
+    },
+    {
+        "Name" : "Mohit",
+        "Degree" : "B.E ECE",
+        "years_of_Experience" : "1.5"
+    },
+    {
+        "Name" : "Mehul",
+        "Degree" : "B.E CSE",
+        "years_of_Experience" : "1"
+    },
+    {
+        "Name" : "Monish",
+        "Degree" : "B.E CSC",
+        "years_of_Experience" : "2"
+    }
+]
