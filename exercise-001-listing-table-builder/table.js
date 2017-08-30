@@ -7,48 +7,6 @@ table.setAttribute("id", "tableBuilder");
 message= document.createElement('span');
 message.setAttribute("id","dispaly");
 
-function getFile() 
-{
-    var file = document.getElementById('filename').value;
-    var filename = file.match("personal information") ? './jsondata.json' : file;
-    return filename;
-}
-
-function fetchJsonData()
-{
-    url = getFile();
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-        if (this.readyState === 4) {
-            if (this.status === 200) {
-                myInfo = JSON.parse(request.responseText);
-                console.log(request.responseText);
-            }
-        } else{
-            if (this.status === 404) {
-                console.log(this.statusText);
-            }
-        }
-    }
-    request.open('POST',url,true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send();
-}
-
-/**
-* Function to generate JsonRecord
-* 
-* @return {void}
-*/
-
-function generateColumn()
-{
-    cell = document.createElement('td');
-    text = document.createTextNode(value);
-    cell.appendChild(text);
-    row.appendChild(cell);
-}
-
 /**
 * Function to generate Table
 * 
@@ -73,6 +31,76 @@ function generateTable()
     table.setAttribute("border", "1");
     document.getElementById('addrecord').removeAttribute('disabled');
     document.getElementById('generatetable').setAttribute('disabled',"true");
+}
+
+/**
+* Function to generate JsonRecord
+* 
+* @return {void}
+*/
+
+function generateColumn()
+{
+    cell = document.createElement('td');
+    text = document.createTextNode(value);
+    cell.appendChild(text);
+    row.appendChild(cell);
+}
+
+
+/**
+* Function to get file name
+* 
+* @return {string}
+*/
+
+function getFile() 
+{
+    var file = document.getElementById('filename').value;
+    var filename = file.match("personal information") ? './jsondata.json' : file;
+    return filename;
+}
+
+/**
+* Function to fetch JsonRecord
+* 
+* @return {void}
+*/
+
+function fetchJsonData()
+{
+    url = getFile();
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                myInfo = JSON.parse(request.responseText);
+                console.log(request.responseText);
+            }
+        } else{
+            if (this.status === 404) {
+                console.log(this.statusText);
+            }
+        }
+    }
+    request.open('POST',url,true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send();
+}
+
+/**
+* Function to Add Extra fileds
+* 
+* @return {void}
+*/
+
+function addRecord() 
+{
+    row = document.createElement('tr');
+    insertFiled();
+    table.appendChild(row);
+    document.body.appendChild(table);
+    document.getElementById('saverecord').removeAttribute('disabled');
 }
 
 /**
@@ -111,20 +139,7 @@ function fieldType(type)
     return inputType;
 }
 
-/**
-* Function to Add Extra fileds
-* 
-* @return {void}
-*/
 
-function addRecord() 
-{
-    row = document.createElement('tr');
-    insertFiled();
-    table.appendChild(row);
-    document.body.appendChild(table);
-    document.getElementById('saverecord').removeAttribute('disabled');
-}
 
 /**
 * Function to Save Record
