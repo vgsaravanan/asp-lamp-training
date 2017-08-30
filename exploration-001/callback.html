@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+	function setter (details) {
+		if (typeof details === "object")
+	    {
+	        for (var item in details) {
+	        	for (var i in key) {
+	        		console.log(key[i] + ": " + details[item][key[i]]) ;
+	   			}
+	        }
+	    }
+	}
+
+	function getter(data, callBack)
+	{
+		if (typeof callBack === 'function') {
+			callBack(data);
+		}
+	}
+
+	var details = [
+		{
+			Name : 'Saravanan Venugopal',
+			Age : 22,
+			Technology : 'LAMP'
+		},
+		{
+			Name : 'Srinivas Baskar',
+			Age : 22,
+			Technology : '.NET'
+		},
+		{
+			Name : 'Prashanth Venkat',
+			Age : 22,
+			Technology : 'LAMP'
+		},
+		{
+			Name : 'karthikeyan Ramu',
+			Age : 22,
+			Technology : 'LAMP'
+		}
+	];
+	var key = ["Name", "Age", "Technology"];
+	getter(details, setter);
+
+</script>
+</body>
+</html>
