@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<p></p>
+<input type="text" id="email" name="email" placeholder="Email-Id" onfocusout=""><span id = 'emailhelp'></span></br>
+<input type="text" id="name" name="name" placeholder="Name"><span id = 'namehelp'></span></br>
+<input type="text" id="age" name="age" placeholder="Age"><span id = 'agehelp'></span>
+</br>
+<script type="text/javascript">
+function sample()
+{
+	var name = 'saravanan';
+	function outer()
+	{	
+
+		name = 'venugopal';
+	 	function inner()
+		{
+			console.log(name);
+		}
+		inner();
+	}
+	//var func = outer();
+	//func();
+	outer();
+}
+//sample();
+
+/*function show(help) {
+	console.log(help);
+		var id = help.match(/e-mail/g) ? 'emailhelp' : help.match(/name/g) ? 'namehelp' : help.match(/age/g) ?'agehelp' : '';
+		console.log(id);
+		var node = document.getElementById(id);
+		var span = document.createElement('span');
+		console.log(node.firstChild);
+		console.log(span);
+
+		span.setAttribute('id',id);
+		var text = document.createTextNode(help);
+		span.appendChild(text);
+		node.appendChild(span);
+		node.append(span, node.firstChild);
+		document.getElementById(id).innerHTML = help;
+		document.body.append(span);
+
+	}
+
+function callClosure(help) {
+	//console.log(help);
+	//console.log(id);
+	return function() {
+  	//console.log(help);
+  	show()
+	
+  };
+}
+
+function HelpText() {
+  var helpText = [
+      {'id': 'email', 'help': 'Your e-mail address'},
+      {'id': 'name', 'help': 'Your full name'},
+      {'id': 'age', 'help': 'Your age must be over 16)'}
+    ];
+  for (var i = 0; i < helpText.length; i++) {
+    let item = helpText[i];
+    document.getElementById(item.id).onfocus = callClosure(item.help);
+    }
+  }
+
+HelpText();*/
+
+
+/*function callClosure(help, id, returnFn) {
+	var elementId = help.match(/e-mail/g) ? 'emailhelp' : 
+		help.match(/name/g) ? 'namehelp' : 
+		help.match(/age/g) ?'agehelp' : '';
+
+	var  returnFn = document.getElementById(elementId);
+	//var errrorMessage = 'Invalid Email ID';
+
+	console.log(help);
+	console.log(id);
+	return returnFn;
+}
+*/
+
+function callClosure(help) {
+	var elementId = help.match(/e-mail/g) ? 'emailhelp' : 
+		help.match(/name/g) ? 'namehelp' : 
+		help.match(/age/g) ?'agehelp' : '';
+	var element = document.getElementById(elementId);
+		//console.log(returnFn);
+	var returnFn = function() {
+		element.innerHTML = help;
+	};
+
+
+	//returnFn.innerHTML = help;
+	//console.log(returnFn);	
+	/*return function() {
+		returnFn.innerHTML = help;
+		console.log(returnFn);
+	};*/
+
+	return returnFn;
+}
+
+function clear(help) {
+	var elementId = help.match(/e-mail/g) ? 'emailhelp' : 
+		help.match(/name/g) ? 'namehelp' : 
+		help.match(/age/g) ?'agehelp' : '';
+		//console.log(returnFn);
+	var returnFn = function() {
+		document.getElementById(elementId).innerHTML = '';
+	};
+	return returnFn;
+}
+
+
+function HelpText() {
+	  var helpText = [
+      {'id': 'email', 'help': 'Your e-mail address'},
+      {'id': 'name', 'help': 'Your full name'},
+      {'id': 'age', 'help': 'Your age must be over 16)'}
+    ];
+
+  	for (var i = 0; i < helpText.length; i++) {
+    	let item = helpText[i];
+    	document.getElementById(item.id).onfocus = callClosure(item.help);
+    	document.getElementById(item.id).onblur = clear(item.help);
+
+    	/*document.getElementById(item.id).onfocus = callClosure(item.help, item.id, function(err) {
+		console.log(err);
+		var node = document.getElementById(id);
+		var span = document.createElement('span');
+		console.log(node.firstChild);
+		console.log(span);
+
+		span.setAttribute('id',id);
+		var text = document.createTextNode(help);
+		span.appendChild(text);
+		node.appendChild(span);
+		node.append(span, node.firstChild);
+		document.getElementById(elementId).innerHTML = help;
+		document.body.append(span);
+	});  
+    	*/
+    }
+  }
+
+HelpText();
+
+</script>
+</body>
+</html>
