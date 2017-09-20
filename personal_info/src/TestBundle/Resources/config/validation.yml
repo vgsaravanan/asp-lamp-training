@@ -2,33 +2,29 @@ TestBundle\Entity\UserInfo:
   properties:
     first_name:
       - NotBlank: ~
-      - MaxLength: 50
+      # - MaxLength: 50
       # - Length:
-        # min: 5
-        # max: 30
-        # minMessage: 'first_name must be atleast {{limit}} character'
-        # maxMessage: 'first_name must be longer than {{limit}} character'
-      # - Regex: '/^[a-z A-Z]+/'  
+      #   min: 5
+      #   max: 30
+      #   minMessage: 'first_name must be atleast {{limit}} character'
+      #   maxMessage: 'first_name must be longer than {{limit}} character'
+      - Regex: '/^[a-z A-Z]+/'  
       # - Regex: 
       #    pattern: '[a-z]'
       #    match:   false
       #    message: Your name cannot contain a number
-
     last_name:
       - NotBlank: ~
-      - MaxLength: 50
+      # - MaxLength: 50
       # - Length:
-        # min: 5
-        # max: 30
-        # minMessage: 'last_name must be atleast {{limit}} character'
-        # maxMessage: 'last_name must be longer than {{limit}} character'
-
-      # - Regex: '/^[a-z A-Z]+/' 
-
+      #   min: 5
+      #   max: 30
+      #   minMessage: 'last_name must be atleast {{limit}} character'
+      #   maxMessage: 'last_name must be longer than {{limit}} character'
+      - Regex: '/^[a-z A-Z]+/' 
     dateofbirth:
       - NotBlank: ~
       - Type: \DateTime
-
     bloodgroup:
       - NotBlank: ~    
       

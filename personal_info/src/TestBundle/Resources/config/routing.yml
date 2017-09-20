@@ -10,3 +10,7 @@
 user:
   path: /new
   defaults: { _controller: TestBundle:User:user }
+
+user:
+  path: /success
+  defaults: { _controller: TestBundle:User:success }
