@@ -1,0 +1,43 @@
+
+{{ form_start(form) }} 
+
+
+	{{ form_errors(form) }}
+
+	<div>
+	    {{ form_label(form.first_name,'First Name') }}
+	    {{ form_errors(form.first_name) }}
+	    {{ form_widget(form.first_name, {'attr': {'class': 'name_field'}}) }}
+	    {#{ form.first_name.vars.full_name}#}
+	</div>
+
+	<div>
+	    {{ form_label(form.last_name, 'Last Name ') }}
+	    {{ form_errors(form.last_name) }}
+	    {{ form_widget(form.last_name) }}
+	    {#{form.last_name.vars.id}#}
+
+	</div>
+
+
+	<div>
+	    {{ form_label(form.dateofbirth, 'Date of Birth') }}
+	    {{ form_errors(form.dateofbirth) }}
+	    {{ form_widget(form.dateofbirth) }}
+	    {#{form.dateofbirth.vars.label}#}
+
+	</div>
+
+
+	<div>
+	    {{ form_label(form.bloodgroup, 'Blood Group') }}
+	    {{ form_errors(form.bloodgroup) }}
+	    {{ form_widget(form.bloodgroup) }}
+	</div>	
+
+	  <div>
+        {{ form_widget(form.Save) }}
+    </div>
+
+{{ form_end(form) }}
+

@@ -1,0 +1,12 @@
+# track_user:
+#   path: /user
+#   defaults: {_controller: TestBundle:User:new }
+
+
+# track_user:
+#   path: /user
+#   defaults: { _controller: TestBundle:User:user }
+
+user:
+  path: /new
+  defaults: { _controller: TestBundle:User:user }

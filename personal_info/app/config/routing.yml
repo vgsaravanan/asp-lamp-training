@@ -1,0 +1,32 @@
+test:
+    resource: "@TestBundle/Resources/config/routing.yml"
+    # type:     yml
+    prefix: /users
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+lucky:
+    path:     /lucky/number
+    defaults: { _controller: AppBundle:Lucky:number }
+
+random_number:
+    path:     /random/number
+    defaults: { _controller: TestBundle:Random:show }
+
+# user:
+#   path: /users
+#   defaults: {_controller: TestBundle:User:user }
+
+# lucky:
+#   path: /lucky/number
+#   default: {_controller: AppBundle:lucky:number }
+
+  # blog_list:
+  #   path:     /blog
+  #   defaults: { _controller: AppBundle:Blog:list }
+
+
+  # luckynumber:
+  #   path: /
+  #   defaults: { _controller: AppBundle:Lucky:show }
