@@ -1,1 +1,1 @@
-# asp-lamp-training
+# lamp-trainin
