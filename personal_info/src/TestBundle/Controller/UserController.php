@@ -49,7 +49,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $track = $form->getData();
-            return $this->redirectToRoute("TestBundle:User:success");
+            return $this->redirectToRoute("success");
         }
         
         return $this->render('TestBundle:Default:new.html.twig', array(
