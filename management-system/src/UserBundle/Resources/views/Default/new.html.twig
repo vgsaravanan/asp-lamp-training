@@ -1,0 +1,59 @@
+
+{{ form_start(form) }} 
+
+	{{ form_errors(form) }}
+
+	<div>
+	    {{ form_label(form.first_name,'First Name') }}
+	    {{ form_errors(form.first_name) }}
+	    {{ form_widget(form.first_name, {'attr': {'class': 'name_field'}}) }}
+	</div>
+
+	<div>
+	    {{ form_label(form.last_name, 'Last Name ') }}
+	    {{ form_errors(form.last_name) }}
+	    {{ form_widget(form.last_name) }}
+	</div>
+
+	{# {form_row(form.email_id)} #}
+
+
+	<div>
+		{{form_label(form.email_id,'Email Ids')}}
+		{{form_errors(form.email_id)}}
+		<ul id="email-fields-list"
+        data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
+		{% for emailField in form.email_id %}
+		    <li style = 'list-style-type:none'>
+		        {{ form_errors(emailField) }}
+		        {{ form_widget(emailField) }}
+		    </li>
+		{% endfor %}
+		</ul>
+
+    <a href="#" id="add-another-email">Add Email-Id</a>
+
+    </div>
+{{ form_end(form) }}
+
+ 
+ <script type="text/javascript" src={{ asset('js/jquery.collection.js') }} />
+
+    var emailCount = '{{ form.email_id|length }}';
+
+    jQuery(document).ready(function() {
+        jQuery('#add-another-email').click(function(e) {
+            e.preventDefault();
+
+            var emailList = jQuery('#email-fields-list');
+
+            var newWidget = emailList.attr('data-prototype');
+           
+            newWidget = newWidget.replace(/__name__/g, emailCount);
+            emailCount++;
+
+            var newLi = jQuery('<li></li>').html(newWidget);
+            newLi.appendTo(emailList);
+        });
+    })
+</script>

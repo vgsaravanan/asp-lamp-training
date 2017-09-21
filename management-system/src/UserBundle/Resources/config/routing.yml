@@ -1,0 +1,3 @@
+new_user:
+  path: /new
+  defaults: { _controller: UserBundle:User:new}
