@@ -5,7 +5,12 @@ class UserInfo
 {
 	protected $first_name;
 	protected $last_name;
-	public $email_id;
+	public $email_id ;
+	public $mobile_no;
+	protected $date_of_birth;
+	protected $bloodgroup;
+	protected $gender;
+
 
 	public function getfirstName()
 	{
@@ -38,14 +43,24 @@ class UserInfo
 		$this->email_id = $email_id;
 	}
 
-	/*public function getdateofbirth()
+	public function getMobileNumber()
 	{
-		return $this->dateofbirth;
+		return $this->mobile_no;
 	}
 
-	public function setdateofbirth(\DateTime $dateofbirth = null)
+	public function setMobileNumber($mobile_no) 
 	{
-		$this->dateofbirth = $dateofbirth;
+		$this->mobile_no = $mobile_no;
+	}
+
+	public function getdateofbirth()
+	{
+		return $this->date_of_birth;
+	}
+
+	public function setdateofbirth(\DateTime $date_of_birth = null)
+	{
+		$this->date_of_birth = $date_of_birth;
 	}
 
 	public function getBloodGroup()
@@ -56,5 +71,15 @@ class UserInfo
 	public function setBloodGroup($bloodgroup)
 	{
 		$this->bloodgroup = $bloodgroup;
-	}*/
+	}
+
+	public function getGender()
+	{
+		return $this->gender;
+	}
+
+	public function setGender($gender)
+	{
+		$this->gender = $gender;
+	}
 }

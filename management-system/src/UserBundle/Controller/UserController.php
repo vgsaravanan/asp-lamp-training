@@ -11,17 +11,47 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class UserController extends Controller
 {
     public function newAction(Request $request)
     {
     	$newUser = new UserInfo();
-    	$newUser->setEmail(array('dd@gmail.com','dsssd@gmail.com','ssdd@gmail.com'));
+    	// $newUser->setEmail(array('dd@gmail.com','dsssd@gmail.com','ssdd@gmail.com'));
 
     	$form = $this->createFormBuilder($newUser)
     	->add('first_name', TextType::class)
     	->add('last_name', TextType::class)
+    	->add('date_of_birth', DateType::class,array(
+    		'widget' => 'single_text',
+    		))
+
+        ->add('bloodgroup', ChoiceType::class,array(
+        	'choices'  => array(
+		       	'O+' => True,
+		        'A+' => True,
+		        'B+' => True,
+		        'AB+' => True,
+		        'AB-' => True,
+		        'B-' => True,
+		        'A-' => True,
+		        'O-' => True,
+		        'No' => True,
+        		 ),
+        	'required' => True))
+        ->add('gender',ChoiceType::class,array(
+        	'choices' => array(
+        		'Male' => 'Male' ,
+        		'Female' => "Female"
+        		 ),
+        	'multiple' => false,
+	        'expanded' => true,
+	        // 'required' => true,
+	        'data'     => 'Male'
+        	))
+
     	->add('email_id', CollectionType::class, array(
     		'entry_type' => EmailType::class,
     		'allow_add' => true,
@@ -32,17 +62,16 @@ class UserController extends Controller
     			'required' => false
     			),
     		))
-    	->add('email_id', CollectionType::class, array(
-    		'entry_type' => EmailType::class,
+    	->add('mobile_no', CollectionType::class, array(
+    		'entry_type' => TextType::class,
     		'allow_add' => true,
 			'allow_delete' => true,
 			'prototype' => true,
     		'entry_options' => array(
-    			'attr' => array('class' => 'email-box'),
+    			'attr' => array('class' => 'mobile-no-box'),
     			'required' => false
     			),
     		))
-    	// ->add('email_id', EmailType::class)
     	->getForm();
 
     	$form->handleRequest($request);
