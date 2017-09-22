@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
+
 class UserController extends Controller
 {
     public function newAction(Request $request)
@@ -22,10 +23,11 @@ class UserController extends Controller
     	// $newUser->setEmail(array('dd@gmail.com','dsssd@gmail.com','ssdd@gmail.com'));
 
     	$form = $this->createFormBuilder($newUser)
-    	->add('first_name', TextType::class)
-    	->add('last_name', TextType::class)
+    	->add('first_name', TextType::class,array('required' => false))
+    	->add('last_name', TextType::class,array('required' => false))
     	->add('date_of_birth', DateType::class,array(
     		'widget' => 'single_text',
+    		'required' => false
     		))
 
         ->add('bloodgroup', ChoiceType::class,array(
@@ -40,7 +42,7 @@ class UserController extends Controller
 		        'O-' => True,
 		        'No' => True,
         		 ),
-        	'required' => True))
+        	'required' => false))
 
         ->add('gender',ChoiceType::class,array(
         	'choices' => array(
@@ -49,8 +51,8 @@ class UserController extends Controller
         		 ),
         	'multiple' => false,
 	        'expanded' => true,
-	        // 'required' => true,
-	        'data'     => 'Male'
+	        'required' => false,
+	        
         	))
 
 
@@ -87,11 +89,9 @@ class UserController extends Controller
         		 ),
         	'multiple' => true,
 	        'expanded' => true,
-	        // 'required' => true,
-
+	        'required' => false,
         	))
-
-    		
+ 		->add('Save', SubmitType::class, array('label' => 'Submit'))
     	->getForm();
 
     	$form->handleRequest($request);

@@ -1,79 +1,91 @@
 {{ form_start(form) }} 
 
-	{{ form_errors(form) }}
+	
+	<table>
+	    <tr>
+	    <td>{{ form_label(form.first_name,'First Name') }} </td>
+	    <td>{{ form_widget(form.first_name) }}</td>
+	    <td>{{ form_errors(form.first_name) }}</td>
+	</tr>
+	
 
-	<div>
-	    {{ form_label(form.first_name,'First Name') }}
-	    {{ form_errors(form.first_name) }}
-	    {{ form_widget(form.first_name) }}
-	</div>
+	<tr>
+	    <td>{{ form_label(form.last_name, 'Last Name ') }}</td>
+	    <td>{{ form_widget(form.last_name) }}</td>
+	    <td>{{ form_errors(form.last_name) }}</td>
+	</tr>
 
-	<div>
-	    {{ form_label(form.last_name, 'Last Name ') }}
-	    {{ form_errors(form.last_name) }}
-	    {{ form_widget(form.last_name) }}
-	</div>
+	<tr>
+	   <td> {{ form_label(form.date_of_birth, 'Date of Birth') }}</td>
+	   <td> {{ form_widget(form.date_of_birth) }}</td>
+	   <td> {{ form_errors(form.date_of_birth) }}</td>
+	   <td>{#{form.date_of_birth.vars.label}#}</td>
+	</tr>
 
-	<div>
-	    {{ form_label(form.date_of_birth, 'Date of Birth') }}
-	    {{ form_errors(form.date_of_birth) }}
-	    {{ form_widget(form.date_of_birth) }}
-	    {#{form.date_of_birth.vars.label}#}
+	<tr>
+	   <td> {{ form_label(form.gender, 'Gender') }}</td>
+	   <td> {{ form_widget(form.gender) }}</td>
+	   <td> {{ form_errors(form.gender) }}</td>
+	   <td> {#{form.gender.vars.label}#}</td>
+	</tr>
 
-	</div>
+	<tr>
+		<td> {{ form_label(form.email_id,'Email Ids') }} </td>
+		<td>
+			<ul id="email-fields-list" data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
+			{% for emailField in form.email_id %}
+			    <li style = 'list-style-type:none'>
+			        {{ form_widget(emailField) }}
+			        {{ form_errors(emailField) }}
+			    </li>
+			{% endfor %}
+			</ul> 
+		</td>
+		<td>{{ form_errors(form.email_id) }}</td>
+	</tr>
+	<tr>
+		<td> 
+			<input type = "button" id = "add-another-email" value = "+" >
+			<input type = "button" id = "remove-another-email" value = "-" >	
+		</td>	
 
-	<div>
-	    {{ form_label(form.gender, 'Gender') }}
-	    {{ form_errors(form.gender) }}
-	    {{ form_widget(form.gender) }}
-	    {#{form.gender.vars.label}#}
-	</div>
+    </tr>
 
-	<div>
-		{{form_label(form.email_id,'Email Ids')}}
-		{{form_errors(form.email_id)}}
-		<ul id="email-fields-list" data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
+    <tr>
+		<td> {{ form_label(form.mobile_no,'Mobile Number') }} </td>
+		<td> 
+			<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.mobile_no.vars.prototype)|e }}">
 
-		{% for emailField in form.email_id %}
-		    <li style = 'list-style-type:none'>
-		        {{ form_errors(emailField) }}
-		        {{ form_widget(emailField) }}
-		    </li>
-		{% endfor %}
-		</ul>
-		<input type = "button" id = "add-another-email" value = "+" >
-		<input type = "button" id = "remove-another-email" value = "-" >		
-    </div>
+			{% for mobileField in form.mobile_no %}
+			    <li style = 'list-style-type:none'>
+			        {{ form_widget(mobileField) }}
+			        {{ form_errors(mobileField) }}
+			    </li>
+			{% endfor %}
+			</ul> 
+		</td>
+		<td> {{ form_errors(form.mobile_no) }} </td>
 
-    <div>
-		{{form_label(form.mobile_no,'Mobile Number')}}
-		{{form_errors(form.mobile_no)}}
-		<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.mobile_no.vars.prototype)|e }}">
+		<tr>
+		<td> 
+			<input type = "button" id = "add-another-mobile-no" value = "+" >
+			 <input type = "button" id = "remove-another-mobile-no" value = "-" >	
+		</td>	
+     <tr>
+	   <td> {{ form_label(form.area_of_interest,'Area of Interest') }} </td>
+	   <td> {{ form_widget(form.area_of_interest) }} </td>
+	   <td> </td>
+	   <td> {{ form_errors(form.area_of_interest) }} </td>
+	   <td> {#{ form.area_of_interest.vars.label }#} </td>
+	</tr>
 
-		{% for mobileField in form.mobile_no %}
-		    <li style = 'list-style-type:none'>
-		        {{ form_errors(mobileField) }}
-		        {{ form_widget(mobileField) }}
-		    </li>
-		{% endfor %}
-		</ul>
-		<input type = "button" id = "add-another-mobile-no" value = "+" >
-		<input type = "button" id = "remove-another-mobile-no" value = "-" >
-    </div>
-
-     <div>
-	    {{ form_label(form.area_of_interest,'Area of Interest') }}
-	    {{ form_errors(form.area_of_interest) }}
-	    {{ form_widget(form.area_of_interest) }}
-	    {#{form.area_of_interest.vars.label}#}
-	</div>
-
-    <div>
-	    {{ form_label(form.bloodgroup, 'Blood Group') }}
-	    {{ form_errors(form.bloodgroup) }}
-	    {{ form_widget(form.bloodgroup) }}
-	    {#{form.bloodgroup.vars.label}#}
-	</div>
+    <tr>
+	   <td> {{ form_label(form.bloodgroup, 'Blood Group') }}</td>
+	   <td> {{ form_widget(form.bloodgroup) }} </td>
+	   <td> {{ form_errors(form.bloodgroup) }} </td>
+	   <td> {#{form.bloodgroup.vars.label}#} </td>
+	</tr>
+	</table>
 
 {{ form_end(form) }}
 
