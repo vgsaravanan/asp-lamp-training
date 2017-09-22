@@ -61,6 +61,13 @@
 		<input type = "button" id = "remove-another-mobile-no" value = "-" >
     </div>
 
+     <div>
+	    {{ form_label(form.area_of_interest,'Area of Interest') }}
+	    {{ form_errors(form.area_of_interest) }}
+	    {{ form_widget(form.area_of_interest) }}
+	    {#{form.area_of_interest.vars.label}#}
+	</div>
+
     <div>
 	    {{ form_label(form.bloodgroup, 'Blood Group') }}
 	    {{ form_errors(form.bloodgroup) }}
@@ -68,8 +75,6 @@
 	    {#{form.bloodgroup.vars.label}#}
 	</div>
 
-
-	
 {{ form_end(form) }}
 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -78,6 +83,8 @@
 
     var emailCount = '{{ form.email_id|length }}';
     var mobileCount = '{{ form.mobile_no|length  }}';
+    var interestCount = '{{ form.area_of_interest|length  }}';
+
 
     $(document).ready(function() {
         $('#add-another-email').click(function(e) {
@@ -100,7 +107,6 @@
             newLi.appendTo(emailList);
         });
 
-
         $('#add-another-mobile-no').click(function(e) {
             e.preventDefault();
 
@@ -115,7 +121,6 @@
             var newLi = $('<li style= "list-style-type:none"></li>').html(newWidget);
             newLi.appendTo(mobileList);
         });
-
 
         $('#remove-another-mobile-no').click(function(e) {
             e.preventDefault();

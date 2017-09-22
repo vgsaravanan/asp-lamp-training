@@ -10,6 +10,7 @@ class UserInfo
 	protected $date_of_birth;
 	protected $bloodgroup;
 	protected $gender;
+	public $area_of_interest;
 
 
 	public function getfirstName()
@@ -41,6 +42,16 @@ class UserInfo
 	public function setEmail($email_id) 
 	{
 		$this->email_id = $email_id;
+	}
+
+	public function getInterest()
+	{
+		return $this->area_of_interest;
+	}
+
+	public function setInterest($area_of_interest) 
+	{
+		$this->area_of_interest = $area_of_interest;
 	}
 
 	public function getMobileNumber()

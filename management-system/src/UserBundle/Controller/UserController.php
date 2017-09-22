@@ -41,6 +41,7 @@ class UserController extends Controller
 		        'No' => True,
         		 ),
         	'required' => True))
+
         ->add('gender',ChoiceType::class,array(
         	'choices' => array(
         		'Male' => 'Male' ,
@@ -51,6 +52,7 @@ class UserController extends Controller
 	        // 'required' => true,
 	        'data'     => 'Male'
         	))
+
 
     	->add('email_id', CollectionType::class, array(
     		'entry_type' => EmailType::class,
@@ -72,6 +74,24 @@ class UserController extends Controller
     			'required' => false
     			),
     		))
+    	
+    	->add('area_of_interest',ChoiceType::class, array(
+        	'choices' => array(
+        		'Music' => 'Music' ,
+        		'Cricket' => "Cricket",
+        		'Internet Surfing' => 'Internet Surfing' ,
+        		'Chess' => 'Chess' ,
+        		'Numismatics' => 'Numismatics' ,
+        		'Biking' => 'Biking' ,
+        		'Crafting' => 'Crafting' ,
+        		 ),
+        	'multiple' => true,
+	        'expanded' => true,
+	        // 'required' => true,
+
+        	))
+
+    		
     	->getForm();
 
     	$form->handleRequest($request);
