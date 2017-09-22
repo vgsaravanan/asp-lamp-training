@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 
 class UserController extends Controller
@@ -20,7 +20,9 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
     	$newUser = new UserInfo();
-    	// $newUser->setEmail(array('dd@gmail.com','dsssd@gmail.com','ssdd@gmail.com'));
+    	$newUser->setEmail(array(''));
+    	$newUser->setMobileNumber(array(''));
+
 
     	$form = $this->createFormBuilder($newUser)
     	->add('first_name', TextType::class,array('required' => false))
@@ -52,9 +54,7 @@ class UserController extends Controller
         	'multiple' => false,
 	        'expanded' => true,
 	        'required' => false,
-	        
         	))
-
 
     	->add('email_id', CollectionType::class, array(
     		'entry_type' => EmailType::class,
@@ -89,6 +89,19 @@ class UserController extends Controller
         		 ),
         	'multiple' => true,
 	        'expanded' => true,
+	        'required' => false,
+        	))
+    	->add('graduation',ChoiceType::class, array(
+        	'choices' => array(
+        		'UG' => 'UG' ,
+        		'PG' => "PG",
+        		'Masters' => 'Masters' ,
+        		'SSLC' => 'SSLC' ,
+        		'HSC' => 'HSC' ,
+        		'Diplamo' => 'Diplamo',
+        		 ),
+        	'multiple' => false,
+	        'expanded' => false,
 	        'required' => false,
         	))
  		->add('Save', SubmitType::class, array('label' => 'Submit'))

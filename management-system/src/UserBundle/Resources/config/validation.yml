@@ -34,4 +34,6 @@ UserBundle\Entity\UserInfo:
     area_of_interest:
       - NotBlank: ~
     bloodgroup:
-      - NotBlank: ~    
+      - NotBlank: ~ 
+    graduation:
+      - NotBlank: ~   

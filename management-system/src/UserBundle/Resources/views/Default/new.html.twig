@@ -1,91 +1,145 @@
 {{ form_start(form) }} 
-
 	
-	<table>
-	    <tr>
-	    <td>{{ form_label(form.first_name,'First Name') }} </td>
-	    <td>{{ form_widget(form.first_name) }}</td>
-	    <td>{{ form_errors(form.first_name) }}</td>
-	</tr>
-	
-
+<table>
 	<tr>
-	    <td>{{ form_label(form.last_name, 'Last Name ') }}</td>
-	    <td>{{ form_widget(form.last_name) }}</td>
-	    <td>{{ form_errors(form.last_name) }}</td>
-	</tr>
-
-	<tr>
-	   <td> {{ form_label(form.date_of_birth, 'Date of Birth') }}</td>
-	   <td> {{ form_widget(form.date_of_birth) }}</td>
-	   <td> {{ form_errors(form.date_of_birth) }}</td>
-	   <td>{#{form.date_of_birth.vars.label}#}</td>
-	</tr>
-
-	<tr>
-	   <td> {{ form_label(form.gender, 'Gender') }}</td>
-	   <td> {{ form_widget(form.gender) }}</td>
-	   <td> {{ form_errors(form.gender) }}</td>
-	   <td> {#{form.gender.vars.label}#}</td>
-	</tr>
-
-	<tr>
-		<td> {{ form_label(form.email_id,'Email Ids') }} </td>
 		<td>
-			<ul id="email-fields-list" data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
-			{% for emailField in form.email_id %}
-			    <li style = 'list-style-type:none'>
-			        {{ form_widget(emailField) }}
-			        {{ form_errors(emailField) }}
-			    </li>
-			{% endfor %}
-			</ul> 
+			<b>{{ form_label(form.first_name,'First Name') }} </b>
 		</td>
-		<td>{{ form_errors(form.email_id) }}</td>
-	</tr>
-	<tr>
-		<td> 
-			<input type = "button" id = "add-another-email" value = "+" >
-			<input type = "button" id = "remove-another-email" value = "-" >	
-		</td>	
-
-    </tr>
-
-    <tr>
-		<td> {{ form_label(form.mobile_no,'Mobile Number') }} </td>
-		<td> 
-			<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.mobile_no.vars.prototype)|e }}">
-
-			{% for mobileField in form.mobile_no %}
-			    <li style = 'list-style-type:none'>
-			        {{ form_widget(mobileField) }}
-			        {{ form_errors(mobileField) }}
-			    </li>
-			{% endfor %}
-			</ul> 
+		<td>
+			{{ form_widget(form.first_name) }}
+			<span> 
+				<small>
+					{{ form_errors(form.first_name) }}					
+				</small>
+			</span>
 		</td>
-		<td> {{ form_errors(form.mobile_no) }} </td>
-
-		<tr>
-		<td> 
-			<input type = "button" id = "add-another-mobile-no" value = "+" >
-			 <input type = "button" id = "remove-another-mobile-no" value = "-" >	
-		</td>	
-     <tr>
-	   <td> {{ form_label(form.area_of_interest,'Area of Interest') }} </td>
-	   <td> {{ form_widget(form.area_of_interest) }} </td>
-	   <td> </td>
-	   <td> {{ form_errors(form.area_of_interest) }} </td>
-	   <td> {#{ form.area_of_interest.vars.label }#} </td>
 	</tr>
 
-    <tr>
-	   <td> {{ form_label(form.bloodgroup, 'Blood Group') }}</td>
-	   <td> {{ form_widget(form.bloodgroup) }} </td>
-	   <td> {{ form_errors(form.bloodgroup) }} </td>
-	   <td> {#{form.bloodgroup.vars.label}#} </td>
-	</tr>
-	</table>
+
+<tr>
+	<td>
+		<b>{{ form_label(form.last_name, 'Last Name ') }}</b>
+	</td>
+	<td>
+		{{ form_widget(form.last_name) }}
+		<small>
+			{{ form_errors(form.last_name) }} 
+		</small>
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.date_of_birth, 'Date of Birth') }}</b>
+	</td>
+	<td> 
+		{{ form_widget(form.date_of_birth) }}
+		<small> 
+			{{ form_errors(form.date_of_birth) }} 
+		</small> 
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.gender, 'Gender') }}</b>
+	</td>
+	<td> 
+		{{ form_widget(form.gender) }}
+		<small> 
+		 	{{ form_errors(form.gender) }} 
+		</small> 
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.email_id,'Email Ids') }} </b>
+	</td>
+	<td>
+		<ul id="email-fields-list" data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
+		{% for emailField in form.email_id %}
+			<li style = 'list-style-type:none'>
+				{{ form_widget(emailField) }}
+				<small>
+					{{ form_errors(emailField) }}
+				</small>
+			</li>
+		{% endfor %}
+		</ul> 
+	</td>
+
+</tr>
+
+<tr>
+	<td> 
+		<input type = "button" id = "add-another-email" value = "+" >
+		<input type = "button" id = "remove-another-email" value = "-" >	
+	</td>	
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.mobile_no,'Mobile Number') }} </b>
+	</td>
+	<td> 
+		<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.mobile_no.vars.prototype)|e }}">
+		{% for mobileField in form.mobile_no %}
+			<li style = 'list-style-type:none'>
+				{{ form_widget(mobileField) }}
+				<small> 
+					{{ form_errors(mobileField) }} 
+				</small>
+			</li>
+		{% endfor %}
+		</ul> 
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<input type = "button" id = "add-another-mobile-no" value = "+" >
+		<input type = "button" id = "remove-another-mobile-no" value = "-" >	
+	</td>	
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.area_of_interest,'Area of Interest') }} </b>
+	</td>
+	<td> 
+		{{ form_widget(form.area_of_interest) }} 
+		<small> 
+			{{ form_errors(form.area_of_interest) }} 
+		</small>
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.bloodgroup, 'Blood Group') }}</b>
+	</td>
+	<td> 
+		{{ form_widget(form.bloodgroup) }} 
+		<small> 
+			{{ form_errors(form.bloodgroup) }}
+		</small> 
+	</td>
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.graduation, 'Graduation') }}</b>
+	</td>
+	<td> 
+		{{ form_widget(form.graduation) }} 
+		<small> 
+			{{ form_errors(form.graduation) }}
+		</small> 
+	</td>
+</tr>
+
+</table>
 
 {{ form_end(form) }}
 
@@ -96,12 +150,11 @@
     var emailCount = '{{ form.email_id|length }}';
     var mobileCount = '{{ form.mobile_no|length  }}';
     var interestCount = '{{ form.area_of_interest|length  }}';
-
-
+   	var ss = document.getElementById('email-fields-list');
+   	
     $(document).ready(function() {
         $('#add-another-email').click(function(e) {
             e.preventDefault();
-
             var emailList = $('#email-fields-list');
             console.log(emailList);
 
@@ -119,36 +172,36 @@
             newLi.appendTo(emailList);
         });
 
-        $('#add-another-mobile-no').click(function(e) {
-            e.preventDefault();
+    $('#add-another-mobile-no').click(function(e) {
+        e.preventDefault();
 
-            var mobileList = $('#mobile-fields-list');
-            console.log(mobileList);
+        var mobileList = $('#mobile-fields-list');
+        console.log(mobileList);
 
-            var newWidget = mobileList.attr('data-prototype');
-           
-            newWidget = newWidget.replace(/__name__/g, mobileCount);
-            mobileCount++;
+        var newWidget = mobileList.attr('data-prototype');
+       
+        newWidget = newWidget.replace(/__name__/g, mobileCount);
+        mobileCount++;
 
-            var newLi = $('<li style= "list-style-type:none"></li>').html(newWidget);
-            newLi.appendTo(mobileList);
-        });
+        var newLi = $('<li style= "list-style-type:none"></li>').html(newWidget);
+        newLi.appendTo(mobileList);
+    });
 
-        $('#remove-another-mobile-no').click(function(e) {
-            e.preventDefault();
+    $('#remove-another-mobile-no').click(function(e) {
+        e.preventDefault();
 
-            var mobileList = $('#mobile-fields-list');
-           alert(mobileList.val());
-            var newWidget = mobileList.attr('data-prototype');
-            console.log(newWidget);
+        var mobileList = $('#mobile-fields-list');
+       alert(mobileList.val());
+        var newWidget = mobileList.attr('data-prototype');
+        console.log(newWidget);
 
-            newWidget = newWidget.replace(/__name__/g, mobileCount);
-            console.log(newWidget);
+        newWidget = newWidget.replace(/__name__/g, mobileCount);
+        console.log(newWidget);
 
-            mobileCount++;
-            console.log(mobileCount);
+        mobileCount++;
+        console.log(mobileCount);
 
-        });
+    });
 
     })
 </script>

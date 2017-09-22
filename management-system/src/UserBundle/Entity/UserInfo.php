@@ -11,7 +11,7 @@ class UserInfo
 	protected $bloodgroup;
 	protected $gender;
 	public $area_of_interest;
-
+	public $graduation;
 
 	public function getfirstName()
 	{
@@ -92,5 +92,15 @@ class UserInfo
 	public function setGender($gender)
 	{
 		$this->gender = $gender;
+	}
+
+	public function getGraduation()
+	{
+		return $this->graduation;
+	}
+
+	public function setGraduation($graduation)
+	{
+		$this->graduation = $graduation;
 	}
 }
