@@ -1,0 +1,35 @@
+AppBundle\Entity\GraduationDetail:
+    type: entity
+    table: Graduation_Detail
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        graduation_type:
+            columns:
+                - graduation_type
+    id:
+        graduationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: graduation_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        graduationType:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: graduation_type
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: user_id
+    lifecycleCallbacks: {  }

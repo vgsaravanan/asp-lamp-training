@@ -1,0 +1,30 @@
+AppBundle\Entity\AreaOfIntereset:
+    type: entity
+    table: Area_Of_Intereset
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        interestId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: interest_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        interest:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: user_id
+    lifecycleCallbacks: {  }

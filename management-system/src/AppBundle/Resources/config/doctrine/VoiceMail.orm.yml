@@ -1,0 +1,47 @@
+AppBundle\Entity\VoiceMail:
+    type: entity
+    table: Voice_Mail
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        user_id_2:
+            columns:
+                - user_id
+        user_id_3:
+            columns:
+                - user_id
+        user_id_4:
+            columns:
+                - user_id
+        user_id_5:
+            columns:
+                - user_id
+    uniqueConstraints:
+        email:
+            columns:
+                - email
+    id:
+        emailId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: email_Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: user_id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,91 @@
+AppBundle\Entity\User:
+    type: entity
+    table: User
+    indexes:
+        email_id:
+            columns:
+                - email_id
+        email_id_2:
+            columns:
+                - email_id
+        email_id_3:
+            columns:
+                - email_id
+        contact_id:
+            columns:
+                - contact_id
+                - graduation_id
+                - interest_id
+        graduation_id:
+            columns:
+                - graduation_id
+        interest_id:
+            columns:
+                - interest_id
+    id:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: last_name
+        dateOfBirth:
+            type: date
+            nullable: false
+            column: date_of_birth
+        bloodGroup:
+            type: string
+            nullable: false
+            length: 6
+            options:
+                fixed: false
+            column: blood_group
+        gender:
+            type: string
+            nullable: false
+            length: 6
+            options:
+                fixed: false
+        emailId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: email_id
+        contactId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: contact_id
+        graduationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: graduation_id
+        interestId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: interest_id
+    lifecycleCallbacks: {  }

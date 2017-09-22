@@ -1,0 +1,35 @@
+AppBundle\Entity\Contact:
+    type: entity
+    table: Contact
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    uniqueConstraints:
+        contact_number:
+            columns:
+                - contact_number
+    id:
+        contactId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: contact_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactNumber:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: contact_number
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            column: user_id
+    lifecycleCallbacks: {  }

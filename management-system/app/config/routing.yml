@@ -6,3 +6,13 @@ user:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+
+add:
+  path: /add/user
+  defaults: {_controller: AppBundle:Default:create}
+
+
+show_user:
+  path: /user/show
+  defaults: {_controller: AppBundle:Default:show}
