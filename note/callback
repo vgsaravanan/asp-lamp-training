@@ -1,0 +1,18 @@
+Call back  funtion :
+
+passing function as argument to another function 
+
+calling function within another function.
+
+synchronous callback - run before 
+
+array.forEach(function(){
+
+});
+console.log();
+
+Asynchronous callback - 
+
+setTimeout(function(){
+console.log("settimeout")},1000);
+console.log('first');

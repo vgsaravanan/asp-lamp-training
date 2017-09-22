@@ -1,0 +1,98 @@
+Optional: Install Support for Scripting
+
+The following commands install Apache support for server-side scripting in PHP, Ruby, Python, and Perl. Support for these languages is optional based on your server environment.
+
+To install:
+
+    Perl support:
+
+    sudo apt-get install libapache2-mod-perl2
+
+    Python support:
+
+    sudo apt-get install libapache2-mod-python
+
+    PHP support:
+
+    sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache
+
+
+
+Apache Mods and Scripting
+Install Apache Modules
+
+One of Apache’s strengths is its ability to be customized with modules. The default installation directory for Apache modules is the /etc/apache2/mods-available/ directory.
+
+    List available Apache modules:
+
+    sudo apt-cache search libapache2*
+
+    Install any desired modules:
+
+    	
+    sudo apt-get install [module-name]
+
+    All mods are located in the /etc/apache2/mods-avaiable directory. Edit the .conf file of any installed module if needed, then enable the module:
+
+     sudo a2enmod [module-name]
+
+    To disable a module that is currently enabled:
+
+
+    a2dismod [module-name]
+
+
+
+
+----------------------------------------------------------
+
+Configure Virtual Hosting
+
+Apache supports name-based virtual hosting, which allows you to host multiple domains on a single server with a single IP. Although there are different ways to set up virtual hosts, the method below is recommended.
+
+    Disable the default Apache virtual host:
+
+    sudo a2dissite 000-default.conf
+
+    Create an example.com.conf file in /etc/apache2/sites-available with your text editor, replacing instances of example.com with your own domain URL in both the configuration file and in the file name:
+
+    /etc/apache2/sites-available/example.com.conf
+
+	
+
+        <VirtualHost *:80>
+             ServerAdmin webmaster@example.com
+             ServerName example.com
+             ServerAlias www.example.com
+             DocumentRoot /var/www/example.com/public_html/
+             ErrorLog /var/www/example.com/logs/error.log
+             CustomLog /var/www/example.com/logs/access.log combined
+        </VirtualHost>
+
+    Repeat this process for any other domains you host.
+
+        If you would like to enable Perl support, add the following lines above the closing </VirtualHost> tag:
+
+        /etc/apache2/sites-available/example.com.conf
+   	
+
+            Options ExecCGI
+            AddHandler cgi-script .pl
+
+    Create directories for your websites and websites’ logs, replacing example.com with your own domain information:
+
+    sudo mkdir -p /var/www/example.com/public_html
+    sudo mkdir /var/www/example.com/logs
+
+    Enable the site:
+
+
+    sudo a2ensite example.com.conf
+
+    Restart Apache:
+	
+
+    sudo service apache2 restart
+
+---------------------------------------------------------------------------------------------
+

@@ -1,0 +1,52 @@
+Restarting Apache : 
+Debian and Ubuntu:
+
+sudo service apache2 restart
+
+Fedora and CentOS:
+
+sudo service httpd restart
+
+    You can use one of the following three commands instead, depending on your Linux distribution:
+
+
+    /etc/init.d/httpd restart
+
+    /etc/init.d/apache2 restart
+
+    /etc/rc.d/httpd restart
+
+
+Reloading Apache:
+
+Debian and Ubuntu:
+/etc/init.d/apache2 reload
+
+Fedora and CentOS:
+/etc/init.d/httpd reload
+
+Enabling Verbose Logs
+
+Sometimes it can be helpful to see extra information from Apache. You can increase the amount of detail shown in the logs by changing the log level.
+
+    Open your Apache configuration file for editing. The Fedora and CentOS configuration file should be located at /etc/httpd/httpd.conf. This example shows the location of the Debian and Ubuntu configuration file:
+
+    sudo nano /etc/apache2/apache2.conf
+
+    Locate the LogLevel variable, and update it from the default warn to info or debug. debug will produce the greatest amount of output.
+
+    /etc/apache2/apache2.conf
+
+        # LogLevel: Control the number of messages logged to the error_log.
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        # 
+        LogLevel debug
+
+    Restart Apache:
+
+    sudo service apache2 restart
+
+    Perform the operation that was giving you trouble, then check the logs for more detailed information and errors.
+
+

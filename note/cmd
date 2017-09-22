@@ -1,0 +1,305 @@
+ 1  ping 192.168.5.100
+    2  sudo chmod 777 /home/
+    3  sudo apt-get install vnc4server
+    4  sudo apt-get update
+    5  sudo apt-get upgrade
+    6  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+    7  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    8  sudo apt-get update
+    9  sudo apt-get install google-chrome-stable
+   10  sudo apt-get update
+   11  sudo apt-get upgrade firefox
+   12  sudo apt-get install firefox
+   13  java -version
+   14  sudo apt-get install default-jdk
+   15  java -version
+   16  sudo apt-get install apache2
+   17  ifconfig eth0 | grep inet | awk '{print $2}'
+   18  sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql
+   19  sudo mysql_install_db
+   20  sudo /usr/bin/mysql_secure_installation
+   21  sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+   22  sudo nano /etc/apache2/mods-enabled/dir.conf
+   23  apt-cache search php5-
+   24  sudo nano /var/www/info.php
+   25  sudo service apache2 restart
+   26  http://12.34.56.789/info.php
+   27  sudo /etc/init.d/apache2 restart
+   28  php -r 'echo "\n\nYour PHP installation is working fine.\n\n\n";'
+   29  chmod 777 /var/www/html/
+   30  sudo chmod 777 /var/www/html/
+   31  sudo chmod 777 /var/www/
+   32  sudo apt-get install phpmyadmin
+   33  sudo php5enmod mcrypt
+   34  sudo service apache2 restart
+   35  sudo ln -s /usr/share/phpmyadmin /var/www/html/
+   36  sudo vim /etc/apache2/apache2.conf
+   37  sudo nano /etc/apache2/apache2.conf
+   38  sudo -H gedit /etc/apache2/apache2.conf
+   39  sudo service apache2 restart
+   40  sudo nano /etc/apache2/conf-available/phpmyadmin.conf
+   41  cd /etc/apache2/conf-available/
+   42  ls
+   43  cd
+   44  sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+   45  sudo apt-get update 
+   46  sudo apt-get install -y sublime-text-installer
+   47  sudo apt-get install oracle-java8-installer
+   48  sudo apt-add-repository ppa:webupd8team/java
+   49  sudo apt-get install oracle-java8-installer
+   50  sudo apt-get update 
+   51  sudo apt-get install oracle-java8-installer
+   52  java -version
+   53  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+   54  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+   55  echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+   56  sudo apt update && sudo apt install sublime-text
+   57  sudo apt-get install vnc4server
+   58  cd Desktop/
+   59  sudo sh install.sh -i
+   60  rm -rf install.sh 
+   61  exit
+   62  sudo chmod 777 /etc/php5/apache2/php.ini
+   63  sudo chmod 777 /etc/php5/apache2/php.ini/
+   64  sudo chmod 777 /etc/php5/apache2/php.ini
+   65  sudo nano /etc/php5/apache2/php.ini
+   66  php -v
+   67  sudo apt-get install php5.6
+   68  sudo apt-get update
+   69  sudo apt-get install php5.6
+   70  php -v
+   71  sudo apt-get -y update
+   72  sudo add-apt-repository ppa:ondrej/php
+   73  sudo apt-get -y update
+   74  apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+   75  sudo chmod 755 -R /var/lib/dpkg
+   76  apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+   77  sudo chmod 755 -R /var/lib/dpkg/lock
+   78  apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+   79  chmod 777 /var/lib/dpkg/
+   80  sudo chmod 777 /var/lib/dpkg/
+   81  apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+   82  sudo chmod 777 /var/lib/dpkg/lock/
+   83  sudo chmod 777 /var/lib/dpkg/lock
+   84  apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+   85  sudo apt-get install openssh-server 
+   86  ping 172.24.125.167
+   87  ssh aspire@172.24.125.167
+   88  sudo service apahce2 restart
+   89  sudo service apache2 restart
+   90  nano /etc/resolv.conf 
+   91  sudo nano /etc/resolv.conf 
+   92  sudo service apache2 restart
+   93  sudo service apache2 restart 
+   94  sudo /etc/init.d/dns-clean restart
+   95  sudo service apache2 restart 
+   96  sudo service apache2 stop
+   97  sudo service apache2 restart 
+   98  sudo nano /etc/resolv.conf 
+   99  sudo service apache2 restart 
+  100  sudo add-apt-repository ppa:umang/indicator-stickynotes
+  101  sudo apt-get update
+  102  sudo apt-get install indicator-stickynotes
+  103  hostname
+  104  exit
+  105  sudo nano /etc/hosts
+  106  ifconfig/displaydns
+  107  ifconfig
+  108  nm-tool | grep DNS
+  109  nm-tool
+  110  nslookup
+  111  nmcli
+  112  nameserver 111.111.111.111
+  113  nameserver 127.0.0.1
+  114  nameserver 127.0.1.1
+  115  nameserver 172.24.144.150
+  116  nameserver 8.8.8.8
+  117  nslookup
+  118  nmcli dev show | grep DNS
+  119  sudo chmod 777 /var/www/html/
+  120  sudo chmod 777 /var/www/example.com/html/home.html 
+  121  sudo add-apt-repository ppa:ubuntu-mozilla-security/ppa
+  122  sudo apt-get update
+  123  sudo apt-get install thunderbird
+  124  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add 
+  125  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  126  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  127  sudo apt-get update
+  128  sudo apt-get install sublime-text
+  129  hostname
+  130  ping 192.168.5.100
+  131  ifconfig
+  132  sudo /etc/hosts
+  133  sudo nano /etc/hosts
+  134  sudo mkdir -p /var/www/example.com/html
+  135  sudo chown -r $USER:$USER /var/www/example.com/public_html
+  136  sudo chown -R $USER:$USER /var/www/example.com/public_html
+  137  sudo chown -R $USER:$USER /var/www/example.com/html
+  138  sudo chmod -R 755 /var/www
+  139  sudo nano /var/www/example.com/html/home.html
+  140  sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf
+  141  sudo nano /etc/apache2/sites-available/example.com.conf
+  142  sudo a2ensite example.com.conf
+  143  sudo service apache2 restart
+  144  sudo nano /etc/hosts
+  145  sudo nano /etc/apache2/sites-available/example.com.conf
+  146  sudo service apache2 restart
+  147  sudo a2ensite example.com.conf
+  148  sudo service apache2 restart
+  149  sudo apt-get update
+  150  sudo apt-get install sublime-text
+  151  sudo apt-get remove sublime-text && sudo apt-get autoremove
+  152  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  153  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  154  sudo apt-get update
+  155  sudo apt-get install sublime-text
+  156  sudo apt-add-repository -y ppa:webupd8team/sublime-text-3
+  157  sudo apt-get update
+  158  sudo apt-get install -y sublime-text-installer
+  159  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  160  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  161  echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  162  sudo apt-get update
+  163  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  164  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  165  echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  166  sudo apt-get update
+  167  sudo apt-get install -y sublime-text-installer
+  168  hostname
+  169  ifconfig
+  170  exit
+  171  echo "# asp-lamp-training" >> README.md
+  172  git init
+  173  git add README.md
+  174  git commit -m "first commit"
+  175  git config --global user.email "saravanan.venugopal@aspiresys.com"
+  176  git config --global user.name "vgsaravanan"
+  177  git commit -m "first commit"
+  178  git status
+  179  git commit -m 'first commit'
+  180  sudo apt-get update
+  181  sudo apt-get install git
+  182  git config --global user.name "vgsaravanan"
+  183  git config --global user.email "saravanan.venugopal@aspiresys.com"
+  184  git config --list
+  185  nano ~/.gitconfig
+  186  git commit --amend --reset-author
+  187  echo "# asp-lamp-training" >> README.md
+  188  git init
+  189  git add README.md
+  190  git commit -m "first commit"
+  191  git remote add origin https://github.com/vgsaravanan/asp-lamp-training.git
+  192  git push -u origin master
+  193  git commit -m "first commit"
+  194  git status
+  195  sudo apt install git
+  196  git config --global user.email "saravanan.venugopal@aspiresys.com"
+  197  git config --global user.name "vgsaravanan"
+  198  git clone username@hostname:/path/to/repository
+  199  cd /path/to/repository
+  200  git status
+  201  ls
+  202  mkdir asp-lamp-training
+  203  cd asp-lamp-training/
+  204  ls
+  205  cd ..
+  206  cd ~/.ssh
+  207  ssh-keygen -t rsa -C "saravanan.venugopal@aspiresys.com"
+  208  gedit id_rsa.pub
+  209  ssh-add
+  210  cd github
+  211  sudo apt-get install git
+  212  sudo chmod 777 /var/www/html/javascript/
+  213  cd /var/www/html
+  214  sudo chmod 777 /javascript/
+  215  sudo chmod 777 /javascript
+  216  ls
+  217  mkdir javascript
+  218  cd javascript/
+  219  sudo chmod 777 /javascript
+  220  cd ..
+  221  sudo chmod 777 /javascript/
+  222  mkdir JavaScript
+  223  cd /var/www/html/asp-lamp-training/
+  224  ls
+  225  cd exercise-001-listing-table-builder/
+  226  git status
+  227  git add .
+  228  git commit -m "function update"
+  229  git push origin "exercise-001-listing-table-builder/table
+  230  git push origin "exercise-001-listing-table-builder"
+  231  git add .
+  232  git commit -m "table-builder-rectified"
+  233  git push origin "exercise-001-listing-table-builder"
+  234  sudo apt-get install git-core git-gui git-doc 
+  235  git clone git@github.com:vgsaravanan/
+  236  history
+  237  cd /var/www/html
+  238  cd asp-lamp-training/
+  239  git init
+  240  git remote add origin https://github.com/vgsaravanan/asp-lamp-training.git
+  241  git status
+  242  git branch "exercise-001-
+  243  .git/hfh;
+  244  ;
+  245  git branch "exercise-001-
+  246  .git/hfh;
+  247  ;
+  248  git branch "exercise-001-listing-table-builder"
+  249  echo "# asp-lamp-training" >> README.md
+  250  git add README.md
+  251  git commit -m "first commit"
+  252  git push -u origin master
+  253  git branch "exercise-001-listing-table-builder"
+  254  git checkout "exercise-001-listing-table-builder"
+  255  git add .
+  256  git status
+  257  git commit -m "table-builder"
+  258  git push origin "exercise-001-listing-table-builder"
+  259  git push -f origin "exercise-001-listing-table-builder"
+  260  history
+  261  cd ..
+  262  ll
+  263  cd asp-lamp-training/
+  264  ll
+  265  history
+  266  git add .
+  267  git commit -m "commit"
+  268  git commit -m "table-builder"
+  269  git add .
+  270  git status
+  271  git commit -m "table-builder"
+  272  git push origin "exercise-001-listing-table-builder/
+  273  git push origin "exercise-001-listing-table-builder"
+  274  ;
+  275  git push origin "exercise-001-listing-table-builder"
+  276  git push -f origin "exercise-001-listing-table-builder"
+  277  git add .
+  278  git commit -m "update"
+  279  git push -f origin "exercise-001-listing-table-builder"
+  280  git add .
+  281  git status
+
+
+
+symfony cmds :
+ 1104  sudo  nano /etc/environment 
+ 1105  export http_proxy http://192.168.5.100:3128
+ 1106  export http_proxy="http://192.168.5.100:3128"
+ 1107  export https_proxy="http://192.168.5.100:3128"
+ 1108  export ftp_proxy="http://192.168.5.100:3128"
+ 1109  symfony new sample
+ 1110  wget https://get.symfony.com/symfony.version
+ 1111  php -v
+ 1112  php -a
+ 1113  curl https://get.symfony.com/symfony.version
+ 1114  php -v
+ 1115  nano usr/local/bin/symfony/vendor/guzzlehttp/ringphp/src/Client/StreamHandler.php
+ 1116  nano /usr/local/bin/symfony/vendor/guzzlehttp/ringphp/src/Client/StreamHandler.php
+ 1117  clear
+ 1118  symfony 
+ 1119  symfony demo
+ 1120  php -i
+ 1121  php -i | grep curl
+ 1122  sudo apt-get install php5-curl
+

@@ -1,0 +1,185 @@
+Adding HTTP Method Requirements¶
+
+// src/AppBundle/Controller/BlogApiController.php
+namespace AppBundle\Controller;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+// ...
+
+class BlogApiController extends Controller
+{
+    /**
+     * @Route("/api/posts/{id}")
+     * @Method({"GET","HEAD"})
+     */
+    public function showAction($id)
+    {
+        // ... return a JSON response with the post
+    }
+
+    /**
+     * @Route("/api/posts/{id}")
+     * @Method("PUT")
+     */
+    public function editAction($id)
+    {
+        // ... edit a post
+    }
+}
+
+# app/config/routing.yml
+api_post_show:
+    path:     /api/posts/{id}
+    defaults: { _controller: AppBundle:BlogApi:show }
+    methods:  [GET, HEAD]
+
+api_post_edit:
+    path:     /api/posts/{id}
+    defaults: { _controller: AppBundle:BlogApi:edit }
+    methods:  [PUT]
+
+
+
+CONTROLLER :
+ 
+This controller is pretty straightforward:
+
+    line 2: Symfony takes advantage of PHP's namespace functionality to namespace the entire controller class.
+    line 4: Symfony again takes advantage of PHP's namespace functionality: the use keyword imports the Response class, which the controller must return.
+    line 7: The class can technically be called anything - but should end in the word Controller (this isn't required, but some shortcuts rely on this).
+    line 12: Each action method in a controller class is suffixed with Action (again, this isn't required, but some shortcuts rely on this). This method is allowed to have a $max argument thanks to the {max} wildcard in the route.
+    line 16: The controller creates and returns a Response object.
+
+SESSION :
+
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
+public function indexAction(SessionInterface $session)
+{
+    // store an attribute for reuse during a later user request
+    $session->set('foo', 'bar');
+
+    // get the attribute set by another controller in another request
+    $foobar = $session->get('foobar');
+
+    // use a default value if the attribute doesn't exist
+    $filters = $session->get('filters', array());
+}
+
+
+
+JSON Helper
+
+To return JSON from a controller, use the json() helper method on the base controller. This returns a special JsonResponse object that encodes the data automatically:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+	
+
+// ...
+public function indexAction()
+{
+    // returns '{"username":"jane.doe"}' and sets the proper Content-Type header
+    return $this->json(array('username' => 'jane.doe'));
+
+    // the shortcut defines three optional arguments
+    // return $this->json($data, $status = 200, $headers = array(), $context = array());
+}
+
+If the serializer service is enabled in your application, contents passed to json() are encoded with it. Otherwise, the json_encode function is used.
+
+
+
+
+File helper¶
+
+New in version 3.2: The file() helper was introduced in Symfony 3.2.
+
+You can use the file() helper to serve a file from inside a controller:
+
+
+	
+
+public function fileAction()
+{
+    // send the file contents and force the browser to download it
+    return $this->file('/path/to/some_file.pdf');
+}
+
+The file() helper provides some arguments to configure its behavior:
+
+	
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
+public function fileAction()
+{
+    // load the file from the filesystem
+    $file = new File('/path/to/some_file.pdf');
+
+    return $this->file($file);
+
+    // rename the downloaded file
+    return $this->file($file, 'custom_name.pdf');
+
+    // display the file contents in the browser instead of downloading it
+    return $this->file('invoice_3241.pdf', 'my_invoice.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+}
+
+
+
+To link to the page, just use the path() Twig function and refer to the route:
+
+    Twig
+ 	
+    <a href="{{ path('welcome') }}">Home</a>
+
+    PHP
+	<a href="<?php echo $view['router']->path('welcome') ?>">Home</a>
+
+
+You can also generate an absolute URL by using the url() Twig function:
+
+    Twig
+    <a href="{{ url('welcome') }}">Home</a>
+
+PHP
+
+<a href="<?php echo $view['router']->url(
+    'welcome',
+    array()
+) ?>">Home</a
+
+Linking to Assets¶
+
+Templates also commonly refer to images, JavaScript, stylesheets and other assets. Of course you could hard-code the path to these assets (e.g. /images/logo.png), but Symfony provides a more dynamic option via the asset() Twig function:
+
+    PHP
+    <img src="<?php echo $view['assets']->getUrl('images/logo.png') ?>" alt="Symfony!" />
+
+    <link href="<?php echo $view['assets']->getUrl('css/blog.css') ?>" rel="stylesheet" />
+
+TWIg :
+
+	<img src="{{ asset('images/logo.png') }}" alt="Symfony!" />
+
+	<link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
+
+
+Create Bundle :
+ php bin/console generate:bundle --namespace=TestBundle
+
+composer dump-autoload 
+
+
+ php bin/console doctrine:mapping:import --force AppBundle yml
+
+

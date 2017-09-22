@@ -1,0 +1,54 @@
+Step 1: Install Apache
+
+sudo apt-get update
+sudo apt-get install apache2
+
+How to Find your Server’s IP address
+
+ifconfig eth0 | grep inet | awk '{ print $2 }'
+
+Step 2: Install MySQL
+
+sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql
+
+activate it with this command:
+
+sudo mysql_install_db
+
+Finish up by running the MySQL set up script:
+
+sudo /usr/bin/mysql_secure_installation
+
+Step 3: Install PHP
+
+sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+
+sudo nano /etc/apache2/mods-enabled/dir.conf
+
+Add index.php to the beginning of index files
+
+<IfModule mod_dir.c>
+
+          DirectoryIndex index.php index.html index.cgi index.pl index.php index.xhtml index.htm
+
+</IfModule>
+
+PHP Modules
+
+apt-cache search php5-
+
+sudo apt-get install name of the module
+
+Step 4: RESULTS — See PHP on your Server
+
+sudo nano /var/www/info.php
+
+Add in the following line:
+
+<?php
+phpinfo();
+?>
+
+Restart apache
+
+sudo service apache2 restart

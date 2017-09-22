@@ -1,0 +1,40 @@
+Lexical scope vs. dynamic scope
+
+A fundamental distinction in scoping is what "part of a program" means. In languages with lexical scope (also called static scope), name resolution depends on the location in the source code and the lexical context, which is defined by where the named variable or function is defined. In contrast, in languages with dynamic scope the name resolution depends upon the program state when the name is encountered which is determined by the execution context or calling context. In practice, with lexical scope a variable's definition is resolved by searching its containing block or function, then if that fails searching the outer containing block, and so on, whereas with dynamic scope the calling function is searched, then the function which called that calling function, and so on, progressing up the call stack.[4] Of course, in both rules, we first look for a local definition of a variable.
+
+Most modern languages use lexical scoping for variables and functions, though dynamic scoping is used in some languages, notably some dialects of Lisp, some "scripting" languages like Perl, and some template languages.[c] Even in lexically scoped languages, scope for closures can be confusing to the uninitiated, as these depend on the lexical context where the closure is defined, not where it is called.
+
+Lexical resolution can be determined at compile time, and is also known as early binding, while dynamic resolution can in general only be determined at run time, and thus is known as late binding.
+
+lexical scope:
+
+void fun()
+{
+    int x = 5;
+
+    void fun2()
+    {
+        printf("%d", x);
+    }
+}
+
+dynamic scope:
+
+void fun()
+{
+    printf("%d", x);
+}
+
+void dummy1()
+{
+    int x = 5;
+
+    fun();
+}
+
+void dummy2()
+{
+    int x = 10;
+
+    fun();
+}

@@ -1,0 +1,28 @@
+Normalization problem :
+
+Insertion 
+Deletion 
+Modification 
+
+Normalization process to remove redundancy.
+
+Relation table should represent single piece of information .
+
+Every table must contain different idea 
+
+process of eliminating redundancy from system.
+
+1 NF :
+-Every cell contain atomic value.
+
+2 NF :
+must be in 1 NF 
+partial dependency 
+
+identify candidate key 
+
+part of candidate key - prime attribute 
+not part of candidate key - non-prime attribute 
+
+
+	

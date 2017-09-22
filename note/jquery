@@ -1,0 +1,4 @@
+$( "h1" ).remove();
+
+$.fn namespace, or the "jQuery prototype," 
+

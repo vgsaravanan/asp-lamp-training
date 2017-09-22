@@ -1,0 +1,32 @@
+Insertion and removal of nodes:
+
+    From the parent:
+        parent.appendChild(node)
+        parent.insertBefore(node, nextSibling)
+        parent.removeChild(node)
+        parent.replaceChild(newElem, node)
+
+    All these methods return node.
+
+    Given a list of nodes and strings:
+        node.append(...nodes or strings) – insert into node, at the end,
+        node.prepend(...nodes or strings) – insert into node, at the beginning,
+        node.before(...nodes or strings) –- insert right before node,
+        node.after(...nodes or strings) –- insert right after node,
+        node.replaceWith(...nodes or strings) –- replace node.
+        node.remove() –- remove the node.
+
+    Text strings are inserted “as text”.
+
+    Given a piece of HTML: elem.insertAdjacentHTML(where, html), inserts depending on where:
+        "beforebegin" – insert html right before elem,
+        "afterbegin" – insert html into elem, at the beginning,
+        "beforeend" – insert html into elem, at the end,
+        "afterend" – insert html right after elem.
+
+    Also there are similar methods elem.insertAdjacentText and elem.insertAdjacentElement, they insert text strings and elements, but they are rarely used.
+
+    To append HTML to the page before it has finished loading:
+        document.write(html)
+
+    After the page is loaded such call erases the document. Mostly seen in old scripts.

@@ -1,0 +1,15 @@
+Install phpMyAdmin
+
+sudo apt-get update
+
+sudo apt-get install phpmyadmin
+
+The installation process actually adds the phpMyAdmin Apache configuration file into the /etc/apache2/conf-enabled/ directory, where it is automatically read.
+
+The only thing we need to do is explicitly enable the php5-mcrypt extension, which we can do by typing:
+
+sudo php5enmod mcrypt
+
+restart Apache
+
+sudo service apache2 restart

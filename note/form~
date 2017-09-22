@@ -1,0 +1,70 @@
+# src/AppBundle/Resources/config/validation.yml
+AppBundle\Entity\Author:
+    properties:
+        name:
+            - Regex:
+                pattern: '/^[a-z]+$/i'
+                htmlPattern: '^[a-zA-Z]+$'
+
+
+# src/AppBundle/Resources/config/validation.yml
+AppBundle\Entity\Author:
+    properties:
+        name:
+            - Regex:
+                pattern: '/^[a-z]+$/i'
+                htmlPattern: '^[a-zA-Z]+$'
+
+
+
+{{ form(form, {'method': 'GET'}) }}
+
+{{ form_start(form, {'method': 'GET'}) }}
+
+selectedchoice(selected_value)¶
+
+This test will check if the current choice is equal to the selected_value or if the current choice is in the array (when selected_value is an array).
+
+1
+---------
+	
+choice ;
+<option {% if choice is selectedchoice(value) %} selected="selected"{% endif %} ...>
+-------------
+Datepicket
+
+$builder->add('publishedAt', DateType::class, array(
+    'widget' => 'single_text',
+
+    // do not render as type="date", to avoid HTML5 date pickers
+    'html5' => false,
+
+    // add a class that can be selected in JavaScript
+    'attr' => ['class' => 'js-datepicker'],
+));
+
+  ->add('dateofbirth', DateType::class, array(
+                'placeholder' => array(
+        'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
+    )
+
+  ->add('dateofbirth', DateType::class, array(
+            'widget'=>'single_text',
+            'html5'=>true,
+            'attr' => ['class' => 'js-datepicker'],
+            'format' => 'yyyy-MM-dd',
+            ))
+
+<script>
+    $(document).ready(function() {
+        // configure the bootstrap datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
+
+
+
+
+322401502149 IFSC  ICIC0003224
