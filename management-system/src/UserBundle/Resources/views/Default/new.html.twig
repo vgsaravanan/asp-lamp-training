@@ -54,11 +54,11 @@
 
 <tr>
 	<td> 
-		<b>{{ form_label(form.email_id,'Email Ids') }} </b>
+		<b>{{ form_label(form.emailId,'Email Ids') }} </b>
 	</td>
 	<td>
-		<ul id="email-fields-list" data-prototype="{{ form_widget(form.email_id.vars.prototype)|e }}">
-		{% for emailField in form.email_id %}
+		<ul id="email-fields-list" data-prototype="{{ form_widget(form.emailId.vars.prototype)|e }}">
+		{% for emailField in form.emailId %}
 			<li style = 'list-style-type:none'>
 				{{ form_widget(emailField) }}
 				<small>
@@ -68,7 +68,6 @@
 		{% endfor %}
 		</ul> 
 	</td>
-
 </tr>
 
 <tr>
@@ -80,11 +79,11 @@
 
 <tr>
 	<td> 
-		<b>{{ form_label(form.mobile_no,'Mobile Number') }} </b>
+		<b>{{ form_label(form.contactNumber,'Mobile Number') }} </b>
 	</td>
 	<td> 
-		<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.mobile_no.vars.prototype)|e }}">
-		{% for mobileField in form.mobile_no %}
+		<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.contactNumber.vars.prototype)|e }}">
+		{% for mobileField in form.contactNumber %}
 			<li style = 'list-style-type:none'>
 				{{ form_widget(mobileField) }}
 				<small> 
@@ -103,105 +102,113 @@
 	</td>	
 </tr>
 
-<tr>
-	<td> 
-		<b>{{ form_label(form.area_of_interest,'Area of Interest') }} </b>
-	</td>
-	<td> 
-		{{ form_widget(form.area_of_interest) }} 
-		<small> 
-			{{ form_errors(form.area_of_interest) }} 
-		</small>
-	</td>
-</tr>
 
 <tr>
 	<td> 
-		<b>{{ form_label(form.bloodgroup, 'Blood Group') }}</b>
+		<b>{{ form_label(form.bloodGroup, 'Blood Group') }}</b>
 	</td>
 	<td> 
-		{{ form_widget(form.bloodgroup) }} 
+		{{ form_widget(form.bloodGroup) }} 
 		<small> 
-			{{ form_errors(form.bloodgroup) }}
+			{{ form_errors(form.bloodGroup) }}
 		</small> 
 	</td>
 </tr>
 
 <tr>
 	<td> 
-		<b>{{ form_label(form.graduation, 'Graduation') }}</b>
+		<b>{{ form_label(form.interest,'Area of Interest') }} </b>
 	</td>
 	<td> 
-		{{ form_widget(form.graduation) }} 
-		<small> 
-			{{ form_errors(form.graduation) }}
-		</small> 
+		{{ form_row(form.interest) }}
 	</td>
 </tr>
+
+
 
 </table>
 
 {{ form_end(form) }}
 
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
-    var emailCount = '{{ form.email_id|length }}';
-    var mobileCount = '{{ form.mobile_no|length  }}';
-    var interestCount = '{{ form.area_of_interest|length  }}';
-   	var ss = document.getElementById('email-fields-list');
-   	
-    $(document).ready(function() {
-        $('#add-another-email').click(function(e) {
-            e.preventDefault();
-            var emailList = $('#email-fields-list');
-            console.log(emailList);
+    var emailCount = '{{ form.emailId|length }}';
+    var mobileCount = '{{ form.contactNumber|length  }}';
+    var newLi;
 
-            var newWidget = emailList.attr('data-prototype');
-            console.log(newWidget);
-           
-            newWidget = newWidget.replace(/__name__/g, emailCount);
-            emailCount++;
-            console.log(newWidget);
-
-            var new_id = $("ul:last-child")
-            console.log(new_id);
-
-            var newLi = $('<li style= "list-style-type:none"></li>').html(newWidget);
-            newLi.appendTo(emailList);
-        });
-
-    $('#add-another-mobile-no').click(function(e) {
-        e.preventDefault();
-
-        var mobileList = $('#mobile-fields-list');
-        console.log(mobileList);
-
-        var newWidget = mobileList.attr('data-prototype');
-       
-        newWidget = newWidget.replace(/__name__/g, mobileCount);
-        mobileCount++;
-
-        var newLi = $('<li style= "list-style-type:none"></li>').html(newWidget);
-        newLi.appendTo(mobileList);
-    });
-
-    $('#remove-another-mobile-no').click(function(e) {
-        e.preventDefault();
-
-        var mobileList = $('#mobile-fields-list');
-       alert(mobileList.val());
-        var newWidget = mobileList.attr('data-prototype');
+    function createField()
+    {
+    	newLi = document.createElement('li');
+        newLi.setAttribute('style','list-style-type:none');
+    }
+   
+   	function addEmail() 
+   	{
+   		
+   		var emailList = document.getElementById('email-fields-list');
+   		
+   		var newWidget = emailList.getAttribute('data-prototype');
+   		
+   		newWidget = newWidget.replace(/__name__/g, emailCount);
         console.log(newWidget);
+        emailCount++;
+        createField();
+        newLi.innerHTML = newWidget;
+        emailList.appendChild(newLi);
+   	}
 
-        newWidget = newWidget.replace(/__name__/g, mobileCount);
+   	function removeEmail() 
+   	{
+ 
+   		var emailList = document.getElementById('email-fields-list');
+   		console.log(emailList);
+   		
+        emailCount--;
+
+       	var item = emailList.lastChild;
+       	console.log(item);
+       	emailList.removeChild(item);
+   	}
+
+   	function addMobileNO() 
+   	{
+   		
+   		var mobileList = document.getElementById('mobile-fields-list');
+   		
+   		var newWidget = mobileList.getAttribute('data-prototype');
+   		
+   		newWidget = newWidget.replace(/__name__/g, mobileCount);
         console.log(newWidget);
-
         mobileCount++;
-        console.log(mobileCount);
+        createField();
+      
+        newLi.innerHTML = newWidget;
+        mobileList.appendChild(newLi);
+   	}
 
-    });
+   	function removeMobileNO() 
+   	{
+ 
+   		var mobileList = document.getElementById('mobile-fields-list');
+   		console.log(mobileList);
+   		
+        mobileCount--;
 
-    })
+       	var item = mobileList.lastChild;
+       	console.log(item);
+       	mobileList.removeChild(item);
+   	}
+
+	document.getElementById("add-another-email").addEventListener("click",addEmail);
+	document.getElementById("remove-another-email").addEventListener("click",removeEmail);
+
+	document.getElementById("add-another-mobile-no").addEventListener("click",addMobileNO);
+	document.getElementById("remove-another-mobile-no").addEventListener("click",removeMobileNO);
+
+
+   
 </script>
+ 

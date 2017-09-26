@@ -2,10 +2,15 @@
 
 namespace UserBundle\Controller;
 
-use UserBundle\Entity\UserInfo;
+use UserBundle\Entity\User;
+// use UserBundle\Entity\BloodGroup;
+// use UserBundle\Entity\Gender;
+// use UserBundle\Entity\UserEmail;
+use UserBundle\Form\NewUser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -19,95 +24,33 @@ class UserController extends Controller
 {
     public function newAction(Request $request)
     {
-    	$newUser = new UserInfo();
-    	$newUser->setEmail(array(''));
-    	$newUser->setMobileNumber(array(''));
+    	$newUser = new User();
+        // $blood = new BloodGroup();
+        // $gender = new Gender();
+    //    $graduation = new Graduation();
+        // $newUser->setBloodGroup($blood);
+        // $newUser->setGender($gender);
+
+    	// $newUser->setEmail(array(''));
+    	// $newUser->setMobileNumber(array(''));
 
 
-    	$form = $this->createFormBuilder($newUser)
-    	->add('first_name', TextType::class,array('required' => false))
-    	->add('last_name', TextType::class,array('required' => false))
-    	->add('date_of_birth', DateType::class,array(
-    		'widget' => 'single_text',
-    		'required' => false
-    		))
-
-        ->add('bloodgroup', ChoiceType::class,array(
-        	'choices'  => array(
-		       	'O+' => True,
-		        'A+' => True,
-		        'B+' => True,
-		        'AB+' => True,
-		        'AB-' => True,
-		        'B-' => True,
-		        'A-' => True,
-		        'O-' => True,
-		        'No' => True,
-        		 ),
-        	'required' => false))
-
-        ->add('gender',ChoiceType::class,array(
-        	'choices' => array(
-        		'Male' => 'Male' ,
-        		'Female' => "Female"
-        		 ),
-        	'multiple' => false,
-	        'expanded' => true,
-	        'required' => false,
-        	))
-
-    	->add('email_id', CollectionType::class, array(
-    		'entry_type' => EmailType::class,
-    		'allow_add' => true,
-			'allow_delete' => true,
-			'prototype' => true,
-    		'entry_options' => array(
-    			'attr' => array('class' => 'email-box'),
-    			'required' => false
-    			),
-    		))
-    	->add('mobile_no', CollectionType::class, array(
-    		'entry_type' => TextType::class,
-    		'allow_add' => true,
-			'allow_delete' => true,
-			'prototype' => true,
-    		'entry_options' => array(
-    			'attr' => array('class' => 'mobile-no-box'),
-    			'required' => false
-    			),
-    		))
+    	$form = $this->createForm(NewUser::class,$newUser);
     	
-    	->add('area_of_interest',ChoiceType::class, array(
-        	'choices' => array(
-        		'Music' => 'Music' ,
-        		'Cricket' => "Cricket",
-        		'Internet Surfing' => 'Internet Surfing' ,
-        		'Chess' => 'Chess' ,
-        		'Numismatics' => 'Numismatics' ,
-        		'Biking' => 'Biking' ,
-        		'Crafting' => 'Crafting' ,
-        		 ),
-        	'multiple' => true,
-	        'expanded' => true,
-	        'required' => false,
-        	))
-    	->add('graduation',ChoiceType::class, array(
-        	'choices' => array(
-        		'UG' => 'UG' ,
-        		'PG' => "PG",
-        		'Masters' => 'Masters' ,
-        		'SSLC' => 'SSLC' ,
-        		'HSC' => 'HSC' ,
-        		'Diplamo' => 'Diplamo',
-        		 ),
-        	'multiple' => false,
-	        'expanded' => false,
-	        'required' => false,
-        	))
- 		->add('Save', SubmitType::class, array('label' => 'Submit'))
-    	->getForm();
-
     	$form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $task = $form->getData();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newUser);
+            $em->flush();
+            return new Response($newUser->getId());
+        }
 
         
         return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),

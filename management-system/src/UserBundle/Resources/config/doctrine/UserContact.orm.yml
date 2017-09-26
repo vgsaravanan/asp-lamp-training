@@ -1,0 +1,39 @@
+UserBundle\Entity\UserContact:
+    type: entity
+    table: user_contact
+    indexes:
+        fk_user_contact_id_idx:
+            columns:
+                - user_id
+    uniqueConstraints:
+        contact_number_UNIQUE:
+            columns:
+                - contact_number
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactNumber:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: contact_number
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: ["persist"]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: contactNumber
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
