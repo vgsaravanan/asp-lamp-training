@@ -1,7 +1,7 @@
 <?php
 namespace UserBundle\Form;
 
-use UserBundle\Entity\GraduationType;
+use UserBundle\Entity\GraduationDetail;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,9 +16,10 @@ class Graduation extends AbstractType
         	->add('type',EntityType::class,array(
 				'class' => "UserBundle:GraduationType",
 				'choice_label' => "type",
-				'multiple' => false,
+                'label' => false,
+				/*'multiple' => false,
 			    'expanded' => true,
-			    'required' => false,
+			    'required' => false,*/
 				))
         ;
 
@@ -27,7 +28,7 @@ class Graduation extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => GraduationType::class,
+            'data_class' => GraduationDetail::class,
         ));
     }
 }

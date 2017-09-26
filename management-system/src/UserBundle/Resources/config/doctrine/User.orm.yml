@@ -85,25 +85,34 @@ UserBundle\Entity\User:
             #     contactNumber:
             #         referencedColumnName: id
             orphanRemoval: false
-        
         interest:
-            targetEntity: AreaOfInterest
+            targetEntity: InterestType
             cascade: ["persist"]
             fetch: LAZY
             mappedBy: user
-            joinTable:
-                name: interest_type
-                joinColumns:
-                    user: 
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    interest: 
-                        referencedColumnName: id
-                        unique: true 
+            # joinTable:
+            #     name: interest_type
+            #     joinColumns:
+            #         user: 
+            #             referencedColumnName: id
+            #     inverseJoinColumns:
+            #         interest: 
+            #             referencedColumnName: id
+            #             unique: true 
 
             # inversedBy: null
             # joinColumns:
             #     interest_id:
+            #         referencedColumnName: id
+            orphanRemoval: false
+        graduationType:
+            targetEntity: GraduationDetail
+            cascade: ["persist"]
+            fetch: LAZY
+            mappedBy: user
+            inversedBy: null
+            # joinColumns:
+            #     emailId:
             #         referencedColumnName: id
             orphanRemoval: false
 

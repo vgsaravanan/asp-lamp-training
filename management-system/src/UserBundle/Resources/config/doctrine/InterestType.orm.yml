@@ -20,7 +20,7 @@ UserBundle\Entity\InterestType:
     manyToOne:
         interest:
             targetEntity: AreaOfInterest
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -30,7 +30,7 @@ UserBundle\Entity\InterestType:
             orphanRemoval: false
         user:
             targetEntity: User
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

@@ -1,7 +1,7 @@
 <?php
 namespace UserBundle\Form;
 
-use UserBundle\Entity\AreaOfInterest;
+use UserBundle\Entity\InterestType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,15 +13,15 @@ class InterestTypeSet extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
-        $interest = new AreaOfInterest();
         
         $builder
             ->add('interest',EntityType::class,array(
                 'class' => "UserBundle:AreaOfInterest",
                 'choice_label' => "interest",
-                'multiple' => false,
+                'label' => false
+              /*  'multiple' => true,
                 'expanded' => true,
-                'required' => false,
+                'required' => false,*/
                 ))
         ;
 
@@ -30,7 +30,7 @@ class InterestTypeSet extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => AreaOfInterest::class,
+            'data_class' => InterestType::class,
         ));
     }
 }

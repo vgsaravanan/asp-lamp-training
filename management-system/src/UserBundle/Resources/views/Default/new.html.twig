@@ -71,9 +71,9 @@
 </tr>
 
 <tr>
-	<td> 
-		<input type = "button" id = "add-another-email" value = "+" >
-		<input type = "button" id = "remove-another-email" value = "-" >	
+	<td colspan = 2>  
+		<input type = "button" id = "add-email-field" value = "+" onclick = "addField('email-fields-list', 'add-email-field' )" >
+	
 	</td>	
 </tr>
 
@@ -96,9 +96,9 @@
 </tr>
 
 <tr>
-	<td> 
-		<input type = "button" id = "add-another-mobile-no" value = "+" >
-		<input type = "button" id = "remove-another-mobile-no" value = "-" >	
+	<td colspan = 2> 
+		<input type = "button" id = "add-mobileno-field" value = "+" onclick = "addField('mobile-fields-list', 'add-mobileno-field' )">
+		
 	</td>	
 </tr>
 
@@ -120,8 +120,51 @@
 		<b>{{ form_label(form.interest,'Area of Interest') }} </b>
 	</td>
 	<td> 
-		{{ form_row(form.interest) }}
+		<ul id="interest-fields-list" data-prototype="{{ form_widget(form.interest.vars.prototype)|e }}">
+		{% for interestField in form.interest %}
+			<li style = 'list-style-type:none'>
+				{{ form_widget(interestField) }}
+				<small> 
+					{{ form_errors(interestField) }} 
+				</small>
+			</li>
+		{% endfor %}
+		</ul> 
 	</td>
+</tr>
+
+
+<tr>
+	<td colspan = 2> 
+		<input type = "button" id = "add-interest-field" value = "+" onclick = "addField('interest-fields-list', 'add-interest-field' )" >
+	
+	</td>	
+</tr>
+
+<tr>
+	<td> 
+		<b>{{ form_label(form.graduationType,'Graduation') }} </b>
+	</td>
+	<td> 
+		<ul id="graduation-fields-list" data-prototype="{{ form_widget(form.graduationType.vars.prototype)|e }}">
+		{% for graduationField in form.graduationType %}
+			<li style = 'list-style-type:none'>
+				{{ form_widget(graduationField) }}
+				<small> 
+					{{ form_errors(graduationField) }} 
+				</small>
+			</li>
+		{% endfor %}
+		</ul> 
+	</td>
+</tr>
+
+
+<tr>
+	<td colspan = 2> 
+		<input type = "button" id = "add-graduation-field" value = "+" onclick = "addField('graduation-fields-list', 'add-graduation-field' )" >
+	
+	</td>	
 </tr>
 
 
@@ -134,81 +177,60 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    
+    var newLi, input, newWidget,fieldName,fieldId, fieldList, fieldCount ;
 
-    var emailCount = '{{ form.emailId|length }}';
-    var mobileCount = '{{ form.contactNumber|length  }}';
-    var newLi;
 
     function createField()
     {
     	newLi = document.createElement('li');
         newLi.setAttribute('style','list-style-type:none');
     }
-   
-   	function addEmail() 
-   	{
-   		
-   		var emailList = document.getElementById('email-fields-list');
-   		
-   		var newWidget = emailList.getAttribute('data-prototype');
-   		
-   		newWidget = newWidget.replace(/__name__/g, emailCount);
-        console.log(newWidget);
-        emailCount++;
+
+    function inputField()
+    {	
+    	input = document.createElement("input");
+    	input.setAttribute("type", "button");
+		input.setAttribute("value", "-");
+		input.setAttribute("style", "display:inline");
+    }
+ 	
+ 	function addField(name, id)
+ 	{
+ 		fieldName = name;
+ 		fieldId = id;
+ 		newLi = input = newWidget = '';
+   		fieldList = document.getElementById(fieldName);
+   		fieldCount = fieldList.children.length;
+   		newWidget = fieldList.getAttribute('data-prototype');
+   		newWidget = newWidget.replace(/__name__/g, fieldCount);
+   		console.log(newWidget);
+   		fieldId = fieldId.replace("add","remove");
+        console.log(fieldCount);
         createField();
-        newLi.innerHTML = newWidget;
-        emailList.appendChild(newLi);
-   	}
+	    newLi.innerHTML = newWidget;
+        if(fieldCount) {
+  	        inputField();
+			input.setAttribute("id", fieldId);
+			input.setAttribute("onclick", "removeField(fieldName, fieldId)");
+			newLi.appendChild(input);
+        }
+        fieldCount++;
+        fieldList.appendChild(newLi);
 
-   	function removeEmail() 
-   	{
- 
-   		var emailList = document.getElementById('email-fields-list');
-   		console.log(emailList);
-   		
-        emailCount--;
-
-       	var item = emailList.lastChild;
-       	console.log(item);
-       	emailList.removeChild(item);
-   	}
-
-   	function addMobileNO() 
-   	{
-   		
-   		var mobileList = document.getElementById('mobile-fields-list');
-   		
-   		var newWidget = mobileList.getAttribute('data-prototype');
-   		
-   		newWidget = newWidget.replace(/__name__/g, mobileCount);
+ 	}
+ 	function removeField(fieldName, fieldId)
+ 	{
+ 		fieldList = document.getElementById(fieldName); 
+ 		fieldCount = fieldList.children.length;		
+        fieldCount--;
         console.log(newWidget);
-        mobileCount++;
-        createField();
-      
-        newLi.innerHTML = newWidget;
-        mobileList.appendChild(newLi);
-   	}
+        console.log(fieldCount);
+       	var item = fieldList.lastChild;
+       	fieldList.removeChild(item);
+ 	}
+   	
 
-   	function removeMobileNO() 
-   	{
- 
-   		var mobileList = document.getElementById('mobile-fields-list');
-   		console.log(mobileList);
-   		
-        mobileCount--;
-
-       	var item = mobileList.lastChild;
-       	console.log(item);
-       	mobileList.removeChild(item);
-   	}
-
-	document.getElementById("add-another-email").addEventListener("click",addEmail);
-	document.getElementById("remove-another-email").addEventListener("click",removeEmail);
-
-	document.getElementById("add-another-mobile-no").addEventListener("click",addMobileNO);
-	document.getElementById("remove-another-mobile-no").addEventListener("click",removeMobileNO);
-
-
-   
+	
 </script>
  

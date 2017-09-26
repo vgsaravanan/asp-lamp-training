@@ -2,11 +2,11 @@
 namespace UserBundle\Form;
 
 use UserBundle\Entity\User;
-use UserBundle\Entity\BloodGroup;
-use UserBundle\Entity\Gender;
-use UserBundle\Form\EmailSet;
-use UserBundle\Form\MobileNumberSet;
-use UserBundle\Form\InterestTypeSet;
+// use UserBundle\Entity\BloodGroup;
+// use UserBundle\Entity\Gender;
+// use UserBundle\Form\EmailSet;
+// use UserBundle\Form\MobileNumberSet;
+// use UserBundle\Form\InterestTypeSet;
 
 // use UserBundle\Form\BloodGroupType;
 // use UserBundle\Form\GenderType;
@@ -49,9 +49,7 @@ class NewUser extends AbstractType
 				'class' => "UserBundle:Gender",
 				'choice_label' => "gender",
 				'multiple' => false,
-			    'expanded' => true,
-			    'required' => false,
-			   
+			    'expanded' => true,			   
 				))
 			->add('bloodGroup', EntityType::class, array(
 				'class' => 'UserBundle:BloodGroup',
@@ -72,7 +70,8 @@ class NewUser extends AbstractType
 				'prototype' => true,
 				'entry_options' => array(
 					'attr' => array('class' => 'email-box'),
-					'required' => false
+					'required' => false,
+					'empty_data' => null
 					),
 				))
 
@@ -83,21 +82,40 @@ class NewUser extends AbstractType
 				'prototype' => true,
 				'entry_options' => array(
 					'attr' => array('class' => 'mobile-no-box'),
-					'required' => false
+					'required' => false,
+					'empty_data' => null
 					),
 				))
 
 			->add('interest',CollectionType::class, array(
 				'entry_type' => InterestTypeSet::class,
-				/*'allow_add' => true,
+				'allow_add' => true,
 				'allow_delete' => true,
-				'prototype' => true,*/
+				'prototype' => true,
 				'entry_options' => array(
 					'attr' => array('class' => 'interest-box'),
-					'required' => false
+					'required' => false,
+					'trim' => true
+					// 'empty_data' => "new $data_class()",
+
+					// 'data' => 'adaa'
 					)
 				))
-			
+
+			->add('graduationType',CollectionType::class, array(
+				'entry_type' => Graduation::class,
+				'allow_add' => true,
+				'allow_delete' => true,
+				'prototype' => true,
+				'entry_options' => array(
+					'attr' => array('class' => 'graduation-box'),
+					'required' => false,
+					'trim' => true
+					// 'empty_data' => "new $data_class()",
+
+					// 'data' => 'adaa'
+					)
+				))
 			
 
 			/*->add('gender',ChoiceType::class,array(

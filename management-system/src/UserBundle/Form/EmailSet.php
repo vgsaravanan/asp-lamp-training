@@ -13,7 +13,8 @@ class EmailSet extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
         $builder
-            ->add('emailId', EmailType::class)
+            ->add('emailId', EmailType::class , array(
+                'label' => false, ))
         ;
 
     }

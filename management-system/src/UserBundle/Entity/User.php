@@ -43,6 +43,11 @@ class User
     private $interest;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $graduationType;
+
+    /**
      * @var \UserBundle\Entity\BloodGroup
      */
     private $bloodGroup;
@@ -60,6 +65,7 @@ class User
         $this->emailId = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contactNumber = new \Doctrine\Common\Collections\ArrayCollection();
         $this->interest = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->graduationType = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -215,11 +221,11 @@ class User
     /**
      * Add interest
      *
-     * @param \UserBundle\Entity\AreaOfInterest $interest
+     * @param \UserBundle\Entity\InterestType $interest
      *
      * @return User
      */
-    public function addInterest(\UserBundle\Entity\AreaOfInterest $interest)
+    public function addInterest(\UserBundle\Entity\InterestType $interest)
     {
         $this->interest[] = $interest;
 
@@ -229,9 +235,9 @@ class User
     /**
      * Remove interest
      *
-     * @param \UserBundle\Entity\AreaOfInterest $interest
+     * @param \UserBundle\Entity\InterestType $interest
      */
-    public function removeInterest(\UserBundle\Entity\AreaOfInterest $interest)
+    public function removeInterest(\UserBundle\Entity\InterestType $interest)
     {
         $this->interest->removeElement($interest);
     }
@@ -244,6 +250,40 @@ class User
     public function getInterest()
     {
         return $this->interest;
+    }
+
+    /**
+     * Add graduationType
+     *
+     * @param \UserBundle\Entity\GraduationDetail $graduationType
+     *
+     * @return User
+     */
+    public function addGraduationType(\UserBundle\Entity\GraduationDetail $graduationType)
+    {
+        $this->graduationType[] = $graduationType;
+
+        return $this;
+    }
+
+    /**
+     * Remove graduationType
+     *
+     * @param \UserBundle\Entity\GraduationDetail $graduationType
+     */
+    public function removeGraduationType(\UserBundle\Entity\GraduationDetail $graduationType)
+    {
+        $this->graduationType->removeElement($graduationType);
+    }
+
+    /**
+     * Get graduationType
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGraduationType()
+    {
+        return $this->graduationType;
     }
 
     /**
@@ -294,3 +334,4 @@ class User
         return $this->gender;
     }
 }
+
