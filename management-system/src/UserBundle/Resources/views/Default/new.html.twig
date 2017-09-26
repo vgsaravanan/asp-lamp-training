@@ -72,7 +72,7 @@
 
 <tr>
 	<td colspan = 2>  
-		<input type = "button" id = "add-email-field" value = "+" onclick = "addField('email-fields-list', 'add-email-field' )" >
+		<input type = "button" id = "add-email-field" value = "+" onclick = "addField('email-fields-list')" >
 	
 	</td>	
 </tr>
@@ -97,7 +97,7 @@
 
 <tr>
 	<td colspan = 2> 
-		<input type = "button" id = "add-mobileno-field" value = "+" onclick = "addField('mobile-fields-list', 'add-mobileno-field' )">
+		<input type = "button" id = "add-mobileno-field" value = "+" onclick = "addField('mobile-fields-list')">
 		
 	</td>	
 </tr>
@@ -136,7 +136,7 @@
 
 <tr>
 	<td colspan = 2> 
-		<input type = "button" id = "add-interest-field" value = "+" onclick = "addField('interest-fields-list', 'add-interest-field' )" >
+		<input type = "button" id = "add-interest-field" value = "+" onclick = "addField('interest-fields-list')" >
 	
 	</td>	
 </tr>
@@ -162,7 +162,7 @@
 
 <tr>
 	<td colspan = 2> 
-		<input type = "button" id = "add-graduation-field" value = "+" onclick = "addField('graduation-fields-list', 'add-graduation-field' )" >
+		<input type = "button" id = "add-graduation-field" value = "+" onclick = "addField('graduation-fields-list' )" >
 	
 	</td>	
 </tr>
@@ -195,39 +195,31 @@
 		input.setAttribute("style", "display:inline");
     }
  	
- 	function addField(name, id)
+ 	function addField(fieldName)
  	{
- 		fieldName = name;
- 		fieldId = id;
  		newLi = input = newWidget = '';
    		fieldList = document.getElementById(fieldName);
    		fieldCount = fieldList.children.length;
    		newWidget = fieldList.getAttribute('data-prototype');
    		newWidget = newWidget.replace(/__name__/g, fieldCount);
    		console.log(newWidget);
-   		fieldId = fieldId.replace("add","remove");
         console.log(fieldCount);
         createField();
 	    newLi.innerHTML = newWidget;
         if(fieldCount) {
   	        inputField();
 			input.setAttribute("id", fieldId);
-			input.setAttribute("onclick", "removeField(fieldName, fieldId)");
+			input.setAttribute("onclick", "removeField(this)");
 			newLi.appendChild(input);
         }
         fieldCount++;
         fieldList.appendChild(newLi);
 
  	}
- 	function removeField(fieldName, fieldId)
+ 	function removeField(fieldName)
  	{
- 		fieldList = document.getElementById(fieldName); 
- 		fieldCount = fieldList.children.length;		
-        fieldCount--;
-        console.log(newWidget);
-        console.log(fieldCount);
-       	var item = fieldList.lastChild;
-       	fieldList.removeChild(item);
+ 		fieldCount--;
+       	fieldName.parentElement.remove();
  	}
    	
 
