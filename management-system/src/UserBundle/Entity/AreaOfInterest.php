@@ -17,6 +17,10 @@ class AreaOfInterest
      */
     private $interest;
 
+    public function __toString()
+    {
+        return $this->interest;
+    }
 
     /**
      * Get id

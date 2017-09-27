@@ -22,7 +22,6 @@ class InterestType
      */
     private $user;
 
-
     /**
      * Get id
      *

@@ -7,6 +7,7 @@ use UserBundle\Entity\User;
 // use UserBundle\Entity\Gender;
 // use UserBundle\Entity\UserEmail;
 use UserBundle\Form\NewUser;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,7 @@ class UserController extends Controller
     	$newUser = new User();
         // $blood = new BloodGroup();
         // $gender = new Gender();
-    //    $graduation = new Graduation();
+        // $graduation = new Graduation();
         // $newUser->setBloodGroup($blood);
         // $newUser->setGender($gender);
 
@@ -56,4 +57,28 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),
         	));
     }
+
+    public function listAction(Request $request , $page = 1)
+    {
+        
+            // $listUser = new User();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $user = $repository->findAll();
+      /*          ->setFirstResult(0)
+                ->setMaxResults(100);
+        $paginator = new Paginator($user, $fetchJoinCOllection = true);
+
+        *//*$c = count($paginator);
+        foreach ($paginator as $post) {
+            echo $post->getHeadline() . "\n";
+        }*/
+        /*foreach ($user as $listUser) {
+           echo $listUser->getId();
+           echo $listUser->getFirstName();
+        }*/
+
+        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
+    }
+
+
 }

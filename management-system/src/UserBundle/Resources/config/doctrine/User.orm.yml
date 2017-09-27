@@ -49,7 +49,7 @@ UserBundle\Entity\User:
             cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: bloodGroupType
             joinColumns:
                 blood_group_id:
                     referencedColumnName: id
@@ -59,7 +59,7 @@ UserBundle\Entity\User:
             cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: gender
             joinColumns:
                 gender_id:
                     referencedColumnName: id

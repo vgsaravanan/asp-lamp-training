@@ -17,6 +17,10 @@ class BloodGroup
      */
     private $bloodGroupType;
 
+    public function __toString()
+    {
+        return $this->bloodGroupType;
+    }
 
     /**
      * Get id

@@ -72,6 +72,10 @@ class User
         $this->addGraduationType(new GraduationDetail());
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
     
     /**
      * Get id
@@ -184,7 +188,7 @@ class User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEmailId()
+    public function getEmailId() 
     {
         return $this->emailId;
     }

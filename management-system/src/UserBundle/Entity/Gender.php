@@ -16,7 +16,11 @@ class Gender
      * @var string
      */
     private $gender;
-
+    
+    public function __toString()
+    {
+        return $this->gender;
+    }
 
     /**
      * Get id
