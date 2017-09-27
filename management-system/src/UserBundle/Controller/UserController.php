@@ -58,7 +58,7 @@ class UserController extends Controller
         	));
     }
 
-    public function listAction(Request $request , $page = 1)
+    public function listAction(Request $request)
     {
         
             // $listUser = new User();
@@ -80,5 +80,48 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
     }
 
+    public function editAction(Request $request)
+    {
+        $editUser = new User();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $user = $repository->find('3');
 
+        $editUser->setFirstName($user->getFirstName());
+        $editUser->setLastName($user->getLastName());
+        $editUser->setDateOfBirth($user->getDateOfBirth());
+        $editUser->setBloodGroup($user->getBloodGroup());
+        $editUser->setGender($user->getGender());
+
+
+        $editUser->setEmailId($user->getEmailId());
+/*        $editUser->addInterest($user->getInterest(), UserContact::class);
+        $editUser->addGraduationType($user->getGraduationType(), InterestType::class);*/
+
+        $form = $this->createForm(NewUser::class,$editUser);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $task = $form->getData();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($editUser);
+            $em->flush();
+            return new Response($editUser->getId());
+        }
+      
+        return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),
+            ));
+    }
+
+    public function addEmailId(\UserBundle\Entity\UserEmail $emailId)
+    {
+        // $emailId->setEmailId($this);
+        $this->emailId[] = $emailId;
+        return $this;
+    }
 }

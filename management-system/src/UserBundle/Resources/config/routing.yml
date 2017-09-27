@@ -3,5 +3,9 @@ new_user:
   defaults: { _controller: UserBundle:User:new}
 
 list_user:
-  path: /list
+  path: /
   defaults: { _controller: UserBundle:User:list}
+
+edit_user:
+  path: /edit
+  defaults: { _controller: UserBundle:User:edit}

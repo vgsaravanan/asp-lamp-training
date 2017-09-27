@@ -192,13 +192,14 @@ class User
     {
         return $this->emailId;
     }
-/*
-    public function setEmailId(\UserBundle\Entity\UserEmail $emailId)
-    {
-        $this->emailId = $emailId;
+    
+     public function setEmailId($emailId)
+        {
+            $this->emailId = $emailId;
 
-        return $this;
-    }*/
+            return $this;
+        }
+
     /**
      * Add contactNumber
      *

@@ -80,10 +80,10 @@
 	
 
 	<td>
-		<input type = "button" class = "view_user" id = "view_list" value = "View" onclick = "location.href = '/user/new?id='+{{ item.getId }}">
+		<input type = "button" class = "view_user" id = "view_list" value = "View" onclick = "location.href = '/users/new?id='+{{ item.getId }}">
 	</td>
 	<td>
-		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '/user/new?id='+{{ item.getId }}">
+		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '/users/new?id='+{{ item.getId }}">
 	</td>
 </tr>
 {% endfor %}
