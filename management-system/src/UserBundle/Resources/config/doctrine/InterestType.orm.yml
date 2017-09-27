@@ -33,7 +33,7 @@ UserBundle\Entity\InterestType:
             cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: interest
             joinColumns:
                 user_id:
                     referencedColumnName: id

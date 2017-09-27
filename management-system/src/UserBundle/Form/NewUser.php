@@ -33,7 +33,11 @@ class NewUser extends AbstractType
             ->add('first_name', TextType::class,array('required' => false))
 			->add('last_name', TextType::class,array('required' => false))
 			->add('date_of_birth', DateType::class,array(
-				'widget' => 'single_text',
+				'widget' => "single_text",
+			/*	'placeholder' => array( 'year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+			*/	'attr'=> ['class' => 'js-datepicker'],
+				
+				'html5' => false,
 				'required' => false
 				))
 			/*->add('blood_group_id', EntityType::class, array(
@@ -51,6 +55,7 @@ class NewUser extends AbstractType
 				'multiple' => false,
 			    'expanded' => true,			   
 				))
+
 			->add('bloodGroup', EntityType::class, array(
 				'class' => 'UserBundle:BloodGroup',
 				'choice_label' => 'bloodGroupType',
@@ -68,10 +73,12 @@ class NewUser extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'prototype' => true,
+
 				'entry_options' => array(
 					'attr' => array('class' => 'email-box'),
+					'by_reference' => false,
 					'required' => false,
-					'empty_data' => null
+					'trim' => true
 					),
 				))
 
@@ -80,10 +87,12 @@ class NewUser extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'prototype' => true,
+
 				'entry_options' => array(
 					'attr' => array('class' => 'mobile-no-box'),
+					'by_reference' => false,
 					'required' => false,
-					'empty_data' => null
+					'trim' => true
 					),
 				))
 
@@ -92,9 +101,11 @@ class NewUser extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'prototype' => true,
+
 				'entry_options' => array(
 					'attr' => array('class' => 'interest-box'),
 					'required' => false,
+					'by_reference' => false,
 					'trim' => true
 					// 'empty_data' => "new $data_class()",
 
@@ -110,6 +121,7 @@ class NewUser extends AbstractType
 				'entry_options' => array(
 					'attr' => array('class' => 'graduation-box'),
 					'required' => false,
+					'by_reference' => false,
 					'trim' => true
 					// 'empty_data' => "new $data_class()",
 

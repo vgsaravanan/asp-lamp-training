@@ -27,10 +27,10 @@ UserBundle\Entity\UserEmail:
             targetEntity: User
             cascade: ["persist"]
             fetch: LAZY
-            mappedBy: null
+            # mappedBy: null
             inversedBy: emailId
-            joinColumns:
-                user_id:
-                    referencedColumnName: id
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

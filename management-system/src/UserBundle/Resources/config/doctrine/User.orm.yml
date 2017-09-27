@@ -71,9 +71,9 @@ UserBundle\Entity\User:
             fetch: LAZY
             mappedBy: user
             inversedBy: null
-            # joinColumns:
-            #     emailId:
-            #         referencedColumnName: id
+            joinColumns:
+                emailId:
+                    referencedColumnName: id
             orphanRemoval: false
         contactNumber:
             targetEntity: UserContact
@@ -81,9 +81,9 @@ UserBundle\Entity\User:
             fetch: LAZY
             mappedBy: user
             inversedBy: null
-            # joinColumns:
-            #     contactNumber:
-            #         referencedColumnName: id
+            joinColumns:
+                contactNumber:
+                    referencedColumnName: id
             orphanRemoval: false
         interest:
             targetEntity: InterestType
@@ -111,10 +111,8 @@ UserBundle\Entity\User:
             fetch: LAZY
             mappedBy: user
             inversedBy: null
-            # joinColumns:
-            #     emailId:
-            #         referencedColumnName: id
+            joinColumns:
+                graduation:
+                    referencedColumnName: id
             orphanRemoval: false
-
-  
     lifecycleCallbacks: {  }
