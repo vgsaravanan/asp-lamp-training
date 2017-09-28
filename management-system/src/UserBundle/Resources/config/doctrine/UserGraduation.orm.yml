@@ -1,8 +1,11 @@
-UserBundle\Entity\UserEmail:
+UserBundle\Entity\UserGraduation:
     type: entity
-    table: user_email
+    table: user_graduation
     indexes:
-        fk_user_email_id_idx:
+        fk_graduation_id_idx:
+            columns:
+                - graduation_id
+        fk_user_graduation_Id_idx:
             columns:
                 - user_id
     id:
@@ -14,23 +17,25 @@ UserBundle\Entity\UserEmail:
             id: true
             generator:
                 strategy: IDENTITY
-    fields:
-        emailId:
-            type: string
-            nullable: false
-            length: 255
-            options:
-                fixed: false
-            column: email_id
     manyToOne:
         user:
             targetEntity: UserDetail
-            cascade: ["all"]
+            cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: emailId
+            inversedBy: graduationType
             joinColumns:
                 user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        graduation:
+            targetEntity: GraduationType
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                graduation_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

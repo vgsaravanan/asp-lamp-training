@@ -1,7 +1,7 @@
 <?php
 namespace UserBundle\Form;
 
-use UserBundle\Entity\GraduationDetail;
+use UserBundle\Entity\UserGraduation;
 use UserBundle\Entity\GraduationType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +29,7 @@ class Graduation extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => GraduationDetail::class,
+            'data_class' => UserGraduation::class,
         ));
     }
 }

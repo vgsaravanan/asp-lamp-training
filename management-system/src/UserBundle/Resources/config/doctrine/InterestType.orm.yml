@@ -18,24 +18,24 @@ UserBundle\Entity\InterestType:
             generator:
                 strategy: IDENTITY
     manyToOne:
-        interest:
-            targetEntity: AreaOfInterest
-            cascade: ["persist"]
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                interest_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         user:
-            targetEntity: User
-            cascade: ["persist"]
+            targetEntity: UserDetail
+            cascade: {  }
             fetch: LAZY
             mappedBy: null
             inversedBy: interest
             joinColumns:
                 user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        interest:
+            targetEntity: AreaOfInterest
+            cascade: ["all"]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                interest_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

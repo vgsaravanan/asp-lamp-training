@@ -27,8 +27,8 @@ UserBundle\Entity\UserContact:
             column: contact_number
     manyToOne:
         user:
-            targetEntity: User
-            cascade: ["persist"]
+            targetEntity: UserDetail
+            cascade: ["persist", "remove", "merge", "detach", "refresh" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: contactNumber

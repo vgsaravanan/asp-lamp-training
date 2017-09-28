@@ -5,12 +5,12 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * InterestType
+ * UserGraduation
  *
- * @ORM\Table(name="interest_type", indexes={@ORM\Index(name="fk_interest_type_id_idx", columns={"interest_id"}), @ORM\Index(name="fk_user_interest_id_idx", columns={"user_id"})})
+ * @ORM\Table(name="user_graduation", indexes={@ORM\Index(name="fk_graduation_id_idx", columns={"graduation_id"}), @ORM\Index(name="fk_user_graduation_Id_idx", columns={"user_id"})})
  * @ORM\Entity
  */
-class InterestType
+class UserGraduation
 {
     /**
      * @var integer
@@ -32,14 +32,14 @@ class InterestType
     private $user;
 
     /**
-     * @var \AreaOfInterest
+     * @var \GraduationType
      *
-     * @ORM\ManyToOne(targetEntity="AreaOfInterest")
+     * @ORM\ManyToOne(targetEntity="GraduationType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="interest_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="graduation_id", referencedColumnName="id")
      * })
      */
-    private $interest;
+    private $graduation;
 
 
 
@@ -58,7 +58,7 @@ class InterestType
      *
      * @param \UserBundle\Entity\UserDetail $user
      *
-     * @return InterestType
+     * @return UserGraduation
      */
     public function setUser(\UserBundle\Entity\UserDetail $user = null)
     {
@@ -78,28 +78,26 @@ class InterestType
     }
 
     /**
-     * Set interest
+     * Set graduation
      *
-     * @param \UserBundle\Entity\AreaOfInterest $interest
+     * @param \UserBundle\Entity\GraduationType $graduation
      *
-     * @return InterestType
+     * @return UserGraduation
      */
-    public function setInterest(\UserBundle\Entity\AreaOfInterest $interest = null)
+    public function setGraduation(\UserBundle\Entity\GraduationType $graduation = null)
     {
-        $this->interest = $interest;
+        $this->graduation = $graduation;
 
         return $this;
     }
 
     /**
-     * Get interest
+     * Get graduation
      *
-     * @return \UserBundle\Entity\AreaOfInterest
+     * @return \UserBundle\Entity\GraduationType
      */
-    public function getInterest()
+    public function getGraduation()
     {
-        return $this->interest;
+        return $this->graduation;
     }
-
-
 }

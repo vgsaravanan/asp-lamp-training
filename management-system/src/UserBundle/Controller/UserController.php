@@ -2,10 +2,10 @@
 
 namespace UserBundle\Controller;
 
-use UserBundle\Entity\User;
+use UserBundle\Entity\UserDetail;
 // use UserBundle\Entity\BloodGroup;
 // use UserBundle\Entity\Gender;
-// use UserBundle\Entity\UserEmail;
+use UserBundle\Entity\UserEmail;
 use UserBundle\Form\NewUser;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,9 +23,13 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserController extends Controller
 {
+
+     
+
     public function newAction(Request $request)
     {
-    	$newUser = new User();
+    	$newUser = new UserDetail();
+        $newUser->addEmailId(new UserEmail());
         // $blood = new BloodGroup();
         // $gender = new Gender();
         // $graduation = new Graduation();
@@ -49,7 +53,9 @@ class UserController extends Controller
             // for example, if Task is a Doctrine entity, save it!
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);
+            // dump($newUser); die();
             $em->flush();
+            dump($newUser); die();
             return new Response($newUser->getId());
         }
 
@@ -61,7 +67,7 @@ class UserController extends Controller
     public function listAction(Request $request)
     {
             // $listUser = new User();
-        $repository = $this->getDoctrine()->getRepository(User::class);
+        $repository = $this->getDoctrine()->getRepository(UserDetail::class);
         $user = $repository->findAll();
       /*          ->setFirstResult(0)
                 ->setMaxResults(100);
@@ -81,9 +87,9 @@ class UserController extends Controller
 
     public function viewAction($id, Request $request)
     {
-        // $user_id = $_GET['id'];
-            // $listUser = new User();
-        $repository = $this->getDoctrine()->getRepository(User::class);
+        // $user_id = $_GET['idUserDetail
+            // $listUser = new UserDetail();
+        $repository = $this->getDoctrine()->getRepository(UserDetail::class);
         $user = $repository->find($id);
       /*          ->setFirstResult(0)
                 ->setMaxResults(100);
@@ -103,41 +109,29 @@ class UserController extends Controller
 
     public function editAction($id, Request $request)
     {
-        // $editUser = new User();
-        /*$user_id = $_GET['id'];*/
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $user = $repository->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository("UserBundle:UserDetail");
+        $fetch = $repository->find($id);
 
-       /* $editUser->setFirstName($user->getFirstName());
-        $editUser->setLastName($user->getLastName());
-        $editUser->setDateOfBirth($user->getDateOfBirth());
-        $editUser->setBloodGroup($user->getBloodGroup());
-        $editUser->setGender($user->getGender());
-
-
-        $editUser->setEmailId($user->getEmailId());*/
-      /*  $editUser->setContactNumber($user->getContactNumber());
-        $editUser->setInterest($user->getInterest());
-        $editUser->setGraduation($user->getGraduationType());
-*/
-        $form = $this->createForm(NewUser::class,$user);
-        
+        if (!$fetch) {
+            throw $this->createNotFoundException("Unable to fetch Details");
+        }
+        $form = $this->createForm(NewUser::class, $fetch);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $task = $form->getData();
-
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            $em = $this->getDoctrine()->getManager();
-            // $em->persist($editUser);
-            $em->flush();
-            // return new Response($editUser->getId());
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $entityManager->getRepository("UserBundle:UserDetail");
+            $fetch = $form->getData();
+            // $entityManager->persist($fetch);
+            // dump($fetch); die();
+            $entityManager->flush();
+            return new Response($fetch->getFirstName());
         }
-      
-        return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),
+
+        return $this->render("UserBundle:Default:new.html.twig", array('form'=> $form->createView(),
             ));
+
     }
+    
 }

@@ -1,7 +1,7 @@
 <?php
 namespace UserBundle\Form;
 
-use UserBundle\Entity\User;
+use UserBundle\Entity\UserDetail;
 // use UserBundle\Entity\BloodGroup;
 // use UserBundle\Entity\Gender;
 // use UserBundle\Form\EmailSet;
@@ -36,7 +36,7 @@ class NewUser extends AbstractType
 				'widget' => "single_text",
 			/*	'placeholder' => array( 'year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 			*/	'attr'=> ['class' => 'js-datepicker'],
-				
+
 				'html5' => false,
 				'required' => false
 				))
@@ -87,13 +87,14 @@ class NewUser extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'prototype' => true,
+				'by_reference' => false,
 
-				'entry_options' => array(
-					'attr' => array('class' => 'mobile-no-box'),
-					'by_reference' => false,
-					'required' => false,
-					'trim' => true
-					),
+				// 'entry_options' => array(
+				// 	'attr' => array('class' => 'mobile-no-box'),
+				// 	'by_reference' => false,
+				// 	'required' => false,
+				// 	'trim' => true
+				// 	),
 				))
 
 			->add('interest',CollectionType::class, array(
@@ -163,7 +164,7 @@ class NewUser extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            'data_class' => UserDetail::class,
         ));
     }
 }

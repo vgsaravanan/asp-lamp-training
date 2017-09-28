@@ -2,30 +2,66 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * User
+ * UserDetail
+ *
+ * @ORM\Table(name="user_detail", indexes={@ORM\Index(name="fk_user_gender_idx", columns={"gender_id"}), @ORM\Index(name="fk_user_blood_group_idx", columns={"blood_group_id"})})
+ * @ORM\Entity
  */
-class User
+class UserDetail
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_of_birth", type="date", nullable=false)
      */
     private $dateOfBirth;
+
+    /**
+     * @var \Gender
+     *
+     * @ORM\ManyToOne(targetEntity="Gender")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gender_id", referencedColumnName="id")
+     * })
+     */
+    private $gender;
+
+    /**
+     * @var \BloodGroup
+     *
+     * @ORM\ManyToOne(targetEntity="BloodGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="blood_group_id", referencedColumnName="id")
+     * })
+     */
+    private $bloodGroup;
+
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -48,30 +84,16 @@ class User
     private $graduationType;
 
     /**
-     * @var \UserBundle\Entity\BloodGroup
-     */
-    private $bloodGroup;
-
-    /**
-     * @var \UserBundle\Entity\Gender
-     */
-    private $gender;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->emailId = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addEmailId(\UserBundle\Entity\UserEmail);
         $this->contactNumber = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addContactNumber(new UserContact());
         $this->interest = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addInterest(new InterestType());
         $this->graduationType = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addGraduationType(new GraduationDetail());
     }
-    
+
     /**
      * Get id
      *
@@ -87,7 +109,7 @@ class User
      *
      * @param string $firstName
      *
-     * @return User
+     * @return UserDetail
      */
     public function setFirstName($firstName)
     {
@@ -111,7 +133,7 @@ class User
      *
      * @param string $lastName
      *
-     * @return User
+     * @return UserDetail
      */
     public function setLastName($lastName)
     {
@@ -135,7 +157,7 @@ class User
      *
      * @param \DateTime $dateOfBirth
      *
-     * @return User
+     * @return UserDetail
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -159,13 +181,12 @@ class User
      *
      * @param \UserBundle\Entity\UserEmail $emailId
      *
-     * @return User
+     * @return UserDetail
      */
     public function addEmailId(\UserBundle\Entity\UserEmail $emailId)
     {
-        // $emailId->setEmailId($this);
         $this->emailId[] = $emailId;
-        
+        // dump($this);
         return $this;
     }
 
@@ -184,24 +205,17 @@ class User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEmailId() 
+    public function getEmailId()
     {
         return $this->emailId;
     }
-
-     public function setEmailId($emailId)
-        {
-            $this->emailId = $emailId;
-
-            return $this;
-        }
 
     /**
      * Add contactNumber
      *
      * @param \UserBundle\Entity\UserContact $contactNumber
      *
-     * @return User
+     * @return UserDetail
      */
     public function addContactNumber(\UserBundle\Entity\UserContact $contactNumber)
     {
@@ -235,7 +249,7 @@ class User
      *
      * @param \UserBundle\Entity\InterestType $interest
      *
-     * @return User
+     * @return UserDetail
      */
     public function addInterest(\UserBundle\Entity\InterestType $interest)
     {
@@ -267,11 +281,11 @@ class User
     /**
      * Add graduationType
      *
-     * @param \UserBundle\Entity\GraduationDetail $graduationType
+     * @param \UserBundle\Entity\UserGraduation $graduationType
      *
-     * @return User
+     * @return UserDetail
      */
-    public function addGraduationType(\UserBundle\Entity\GraduationDetail $graduationType)
+    public function addGraduationType(\UserBundle\Entity\UserGraduation $graduationType)
     {
         $this->graduationType[] = $graduationType;
 
@@ -281,9 +295,9 @@ class User
     /**
      * Remove graduationType
      *
-     * @param \UserBundle\Entity\GraduationDetail $graduationType
+     * @param \UserBundle\Entity\UserGraduation $graduationType
      */
-    public function removeGraduationType(\UserBundle\Entity\GraduationDetail $graduationType)
+    public function removeGraduationType(\UserBundle\Entity\UserGraduation $graduationType)
     {
         $this->graduationType->removeElement($graduationType);
     }
@@ -299,35 +313,11 @@ class User
     }
 
     /**
-     * Set bloodGroup
-     *
-     * @param \UserBundle\Entity\BloodGroup $bloodGroup
-     *
-     * @return User
-     */
-    public function setBloodGroup(\UserBundle\Entity\BloodGroup $bloodGroup = null)
-    {
-        $this->bloodGroup = $bloodGroup;
-
-        return $this;
-    }
-
-    /**
-     * Get bloodGroup
-     *
-     * @return \UserBundle\Entity\BloodGroup
-     */
-    public function getBloodGroup()
-    {
-        return $this->bloodGroup;
-    }
-
-    /**
      * Set gender
      *
      * @param \UserBundle\Entity\Gender $gender
      *
-     * @return User
+     * @return UserDetail
      */
     public function setGender(\UserBundle\Entity\Gender $gender = null)
     {
@@ -346,4 +336,27 @@ class User
         return $this->gender;
     }
 
+    /**
+     * Set bloodGroup
+     *
+     * @param \UserBundle\Entity\BloodGroup $bloodGroup
+     *
+     * @return UserDetail
+     */
+    public function setBloodGroup(\UserBundle\Entity\BloodGroup $bloodGroup = null)
+    {
+        $this->bloodGroup = $bloodGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get bloodGroup
+     *
+     * @return \UserBundle\Entity\BloodGroup
+     */
+    public function getBloodGroup()
+    {
+        return $this->bloodGroup;
+    }
 }
