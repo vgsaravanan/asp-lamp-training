@@ -1,5 +1,4 @@
 <table class = "user_list_table" align='center' border = '1'>
-
 <tr>
 	<th>
 		S.NO
@@ -25,29 +24,28 @@
 	<th>
 		GRADUATION DETAILS
 	</th>
-
 </tr>
-{% for item in results %}
+{% if results|length == 1 %}
 <tr>
 	<td>
-		{{ item.getId }}
+		{{ results.id }}
 		
 	</td>
 	<td>
-		{{ item.getFirstName }}
+		{{ results.getFirstName }}
 	</td>
 
 	<td>
-		{{ item.getBloodGroup }}
+		{{ results.getBloodGroup }}
 	</td>
 	
 	<td>
-		{{ item.getGender }}
+		{{ results.getGender }}
 	</td>
 
 	
 	<td>
-		{% for items in item.getEmailId %}
+		{% for items in results.getEmailId %}
 			<ul style = "list-style-type:none">
 				<li style = "display:block"> {{ items.getEmailId }} </li>
 			</ul>
@@ -55,7 +53,7 @@
 	</td>
 
 	<td>
-		{% for items in item.getContactNumber %}
+		{% for items in results.getContactNumber %}
 			<ul style = "list-style-type:none">
 				<li style = "display:block"> {{ items.getContactNumber }} </li>
 			</ul>
@@ -63,7 +61,7 @@
 	</td>
 
 	<td>
-		{% for items in item.getInterest %}
+		{% for items in results.getInterest %}
 			<ul style = "list-style-type:none">
 				<li style = "display:block"> {{ items.getInterest }} </li>
 			</ul>
@@ -71,21 +69,78 @@
 	</td>
 
 	<td>
-		{% for items in item.getGraduationType %}
+		{% for items in results.getGraduationType %}
 			<ul style = "list-style-type:none">
 				<li style = "display:block"> {{ items.getGraduation }} </li>
 			</ul>
 		{% endfor %}
 	</td>
-	
-
 	<td>
-		<input type = "button" class = "view_user" id = "view_list" value = "View" onclick = "location.href = '/users/new?id='+{{ item.getId }}">
-	</td>
-	<td>
-		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '/users/new?id='+{{ item.getId }}">
+		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = 'edit/{{ results.getId }}'">
 	</td>
 </tr>
-{% endfor %}
 
+{% else %}
+
+	{% for item in results %}
+	<tr>
+		<td>
+			{{ item.id }}
+			
+		</td>
+		<td>
+			{{ item.getFirstName }}
+		</td>
+
+		<td>
+			{{ item.getBloodGroup }}
+		</td>
+		
+		<td>
+			{{ item.getGender }}
+		</td>
+
+		
+		<td>
+			{% for items in item.getEmailId %}
+				<ul style = "list-style-type:none">
+					<li style = "display:block"> {{ items.getEmailId }} </li>
+				</ul>
+			{% endfor %}
+		</td>
+
+		<td>
+			{% for items in item.getContactNumber %}
+				<ul style = "list-style-type:none">
+					<li style = "display:block"> {{ items.getContactNumber }} </li>
+				</ul>
+			{% endfor %}
+		</td>
+
+		<td>
+			{% for items in item.getInterest %}
+				<ul style = "list-style-type:none">
+					<li style = "display:block"> {{ items.getInterest }} </li>
+				</ul>
+			{% endfor %}
+		</td>
+
+		<td>
+			{% for items in item.getGraduationType %}
+				<ul style = "list-style-type:none">
+					<li style = "display:block"> {{ items.getGraduation }} </li>
+				</ul>
+			{% endfor %}
+		</td>
+		
+
+		<td>
+			<input type = "button" class = "view_user" id = "view_list" value = "View" onclick = "location.href = '{{ item.getId }}'">
+		</td>
+		<td>
+			<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = 'edit/{{ item.getId }}'">
+		</td>
+	</tr>
+	{% endfor %}
+{% endif %}
 </table>

@@ -60,7 +60,6 @@ class UserController extends Controller
 
     public function listAction(Request $request)
     {
-        
             // $listUser = new User();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $user = $repository->findAll();
@@ -80,24 +79,48 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
     }
 
-    public function editAction(Request $request)
+    public function viewAction($id, Request $request)
     {
-        $editUser = new User();
+        // $user_id = $_GET['id'];
+            // $listUser = new User();
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $user = $repository->find('3');
+        $user = $repository->find($id);
+      /*          ->setFirstResult(0)
+                ->setMaxResults(100);
+        $paginator = new Paginator($user, $fetchJoinCOllection = true);
 
-        $editUser->setFirstName($user->getFirstName());
+        *//*$c = count($paginator);
+        foreach ($paginator as $post) {
+            echo $post->getHeadline() . "\n";
+        }*/
+        /*foreach ($user as $listUser) {
+           echo $listUser->getId();
+           echo $listUser->getFirstName();
+        }*/
+
+        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
+    }
+
+    public function editAction($id, Request $request)
+    {
+        // $editUser = new User();
+        /*$user_id = $_GET['id'];*/
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $user = $repository->find($id);
+
+       /* $editUser->setFirstName($user->getFirstName());
         $editUser->setLastName($user->getLastName());
         $editUser->setDateOfBirth($user->getDateOfBirth());
         $editUser->setBloodGroup($user->getBloodGroup());
         $editUser->setGender($user->getGender());
 
 
-        $editUser->setEmailId($user->getEmailId());
-/*        $editUser->addInterest($user->getInterest(), UserContact::class);
-        $editUser->addGraduationType($user->getGraduationType(), InterestType::class);*/
-
-        $form = $this->createForm(NewUser::class,$editUser);
+        $editUser->setEmailId($user->getEmailId());*/
+      /*  $editUser->setContactNumber($user->getContactNumber());
+        $editUser->setInterest($user->getInterest());
+        $editUser->setGraduation($user->getGraduationType());
+*/
+        $form = $this->createForm(NewUser::class,$user);
         
         $form->handleRequest($request);
 
@@ -109,19 +132,12 @@ class UserController extends Controller
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!
             $em = $this->getDoctrine()->getManager();
-            $em->persist($editUser);
+            // $em->persist($editUser);
             $em->flush();
-            return new Response($editUser->getId());
+            // return new Response($editUser->getId());
         }
       
         return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),
             ));
-    }
-
-    public function addEmailId(\UserBundle\Entity\UserEmail $emailId)
-    {
-        // $emailId->setEmailId($this);
-        $this->emailId[] = $emailId;
-        return $this;
     }
 }

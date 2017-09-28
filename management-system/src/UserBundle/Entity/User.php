@@ -71,11 +71,6 @@ class User
         $this->graduationType = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addGraduationType(new GraduationDetail());
     }
-
-    public function __toString()
-    {
-        return $this->title;
-    }
     
     /**
      * Get id
@@ -192,7 +187,7 @@ class User
     {
         return $this->emailId;
     }
-    
+
      public function setEmailId($emailId)
         {
             $this->emailId = $emailId;
