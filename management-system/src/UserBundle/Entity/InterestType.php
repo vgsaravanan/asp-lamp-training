@@ -2,45 +2,25 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * InterestType
- *
- * @ORM\Table(name="interest_type", indexes={@ORM\Index(name="fk_interest_type_id_idx", columns={"interest_id"}), @ORM\Index(name="fk_user_interest_id_idx", columns={"user_id"})})
- * @ORM\Entity
  */
 class InterestType
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var \UserDetail
-     *
-     * @ORM\ManyToOne(targetEntity="UserDetail")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @var \UserBundle\Entity\UserDetail
      */
     private $user;
 
     /**
-     * @var \AreaOfInterest
-     *
-     * @ORM\ManyToOne(targetEntity="AreaOfInterest")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="interest_id", referencedColumnName="id")
-     * })
+     * @var \UserBundle\Entity\AreaOfInterest
      */
     private $interest;
-
 
 
     /**
@@ -100,6 +80,4 @@ class InterestType
     {
         return $this->interest;
     }
-
-
 }

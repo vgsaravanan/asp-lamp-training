@@ -2,45 +2,25 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * UserGraduation
- *
- * @ORM\Table(name="user_graduation", indexes={@ORM\Index(name="fk_graduation_id_idx", columns={"graduation_id"}), @ORM\Index(name="fk_user_graduation_Id_idx", columns={"user_id"})})
- * @ORM\Entity
  */
 class UserGraduation
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var \UserDetail
-     *
-     * @ORM\ManyToOne(targetEntity="UserDetail")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @var \UserBundle\Entity\UserDetail
      */
     private $user;
 
     /**
-     * @var \GraduationType
-     *
-     * @ORM\ManyToOne(targetEntity="GraduationType")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="graduation_id", referencedColumnName="id")
-     * })
+     * @var \UserBundle\Entity\GraduationType
      */
     private $graduation;
-
 
 
     /**

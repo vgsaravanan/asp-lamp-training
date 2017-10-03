@@ -3,9 +3,11 @@ new_user:
   defaults: { _controller: UserBundle:User:new}
 
 list_user:
-  path: /
+  path: /{page}
   defaults: { _controller: UserBundle:User:list}
-
+  requirements:
+    page: '[0-9]+'
+    
 edit_user:
   path: /edit/{id}
   defaults: { _controller: UserBundle:User:edit}

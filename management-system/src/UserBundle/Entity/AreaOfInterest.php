@@ -2,32 +2,20 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * AreaOfInterest
- *
- * @ORM\Table(name="area_of_interest", uniqueConstraints={@ORM\UniqueConstraint(name="interest_UNIQUE", columns={"interest"})})
- * @ORM\Entity
  */
 class AreaOfInterest
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="interest", type="string", length=255, nullable=true)
      */
     private $interest;
-
 
 
     /**
@@ -63,7 +51,6 @@ class AreaOfInterest
     {
         return $this->interest;
     }
-
     public function __toString()
     {
         return $this->getInterest();

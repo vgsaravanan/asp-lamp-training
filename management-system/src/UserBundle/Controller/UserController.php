@@ -6,6 +6,11 @@ use UserBundle\Entity\UserDetail;
 // use UserBundle\Entity\BloodGroup;
 // use UserBundle\Entity\Gender;
 use UserBundle\Entity\UserEmail;
+use UserBundle\Entity\UserContact;
+use UserBundle\Entity\UserGraduation;
+use UserBundle\Entity\InterestType;
+
+
 use UserBundle\Form\NewUser;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,6 +35,10 @@ class UserController extends Controller
     {
     	$newUser = new UserDetail();
         $newUser->addEmailId(new UserEmail());
+
+        $newUser->addContactNumber(new UserContact());
+        $newUser->addInterest(new InterestType());
+        $newUser->addGraduationType(new UserGraduation());
         // $blood = new BloodGroup();
         // $gender = new Gender();
         // $graduation = new Graduation();
@@ -45,17 +54,15 @@ class UserController extends Controller
     	$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
+            
             $task = $form->getData();
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);
             // dump($newUser); die();
             $em->flush();
-            dump($newUser); die();
+            // dump($newUser); die();
             return new Response($newUser->getId());
         }
 
@@ -64,11 +71,27 @@ class UserController extends Controller
         	));
     }
 
-    public function listAction(Request $request)
+    public function listAction($page = 1,Request $request)
     {
-            // $listUser = new User();
-        $repository = $this->getDoctrine()->getRepository(UserDetail::class);
-        $user = $repository->findAll();
+        // $listUser = new User();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository("UserBundle:UserDetail");
+        // $user = $repository->findAll();
+
+        $list = $repository->getAllPosts($page);
+
+        $returnedItem = $list->getIterator()->count();
+
+        $totalItem = $list->count();
+ 
+        $iterator = $list->getIterator();
+
+        $limit = 5;
+        $max = ceil($list->count() / $limit);
+        $thisPage = $page;
+
+
+        // $user = $repository->findAll();
       /*          ->setFirstResult(0)
                 ->setMaxResults(100);
         $paginator = new Paginator($user, $fetchJoinCOllection = true);
@@ -82,7 +105,9 @@ class UserController extends Controller
            echo $listUser->getFirstName();
         }*/
 
-        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
+        // return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
+
+        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $list,'max' => $max, "current" =>$thisPage));
     }
 
     public function viewAction($id, Request $request)

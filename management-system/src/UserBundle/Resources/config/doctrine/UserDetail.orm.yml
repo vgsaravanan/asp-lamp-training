@@ -1,6 +1,7 @@
 UserBundle\Entity\UserDetail:
     type: entity
     table: user_detail
+    repositoryClass: UserBundle\Repository\UserRepository
     indexes:
         fk_user_gender_idx:
             columns:

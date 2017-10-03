@@ -2,42 +2,25 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * UserEmail
- *
- * @ORM\Table(name="user_email", indexes={@ORM\Index(name="fk_user_email_id_idx", columns={"user_id"})})
- * @ORM\Entity
  */
 class UserEmail
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="email_id", type="string", length=255, nullable=false)
      */
     private $emailId;
 
     /**
-     * @var \UserDetail
-     *
-     * @ORM\ManyToOne(targetEntity="UserDetail")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @var \UserBundle\Entity\UserDetail
      */
     private $user;
-
 
 
     /**

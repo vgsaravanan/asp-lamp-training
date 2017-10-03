@@ -13,28 +13,20 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	public function getAllPosts($currentPage = 1)
+public function getAllPosts($currentPage)
 {
-    // Create our query
-    $query = $this->createQueryBuilder('p')
-        ->orderBy('p.created', 'DESC')
-        ->getQuery();
-
-    // No need to manually get get the result ($query->getResult())
-
+    $em = $this->getEntityManager();
+    $query = $em->createQuery("select u from UserBundle\Entity\UserDetail u");
     $paginator = $this->paginate($query, $currentPage);
 
     return $paginator;
 }
 
-public function paginate($dql, $page = 1, $limit = 5)
+public function paginate($dql, $page, $limit = 5)
 {
     $paginator = new Paginator($dql);
 
-    $paginator->getQuery()
-        ->setFirstResult($limit * ($page - 1)) // Offset
-        ->setMaxResults($limit); // Limit
-
+    $paginator->getQuery()->setFirstResult($limit * ($page - 1))->setMaxResults($limit); 
     return $paginator;
 }
 

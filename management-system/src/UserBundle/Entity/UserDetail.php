@@ -2,66 +2,30 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * UserDetail
- *
- * @ORM\Table(name="user_detail", indexes={@ORM\Index(name="fk_user_gender_idx", columns={"gender_id"}), @ORM\Index(name="fk_user_blood_group_idx", columns={"blood_group_id"})})
- * @ORM\Entity
  */
 class UserDetail
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date_of_birth", type="date", nullable=false)
      */
     private $dateOfBirth;
-
-    /**
-     * @var \Gender
-     *
-     * @ORM\ManyToOne(targetEntity="Gender")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gender_id", referencedColumnName="id")
-     * })
-     */
-    private $gender;
-
-    /**
-     * @var \BloodGroup
-     *
-     * @ORM\ManyToOne(targetEntity="BloodGroup")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="blood_group_id", referencedColumnName="id")
-     * })
-     */
-    private $bloodGroup;
-
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -82,6 +46,16 @@ class UserDetail
      * @var \Doctrine\Common\Collections\Collection
      */
     private $graduationType;
+
+    /**
+     * @var \UserBundle\Entity\Gender
+     */
+    private $gender;
+
+    /**
+     * @var \UserBundle\Entity\BloodGroup
+     */
+    private $bloodGroup;
 
     /**
      * Constructor
@@ -186,7 +160,7 @@ class UserDetail
     public function addEmailId(\UserBundle\Entity\UserEmail $emailId)
     {
         $this->emailId[] = $emailId;
-        // dump($this);
+        $emailId->setUser($this);
         return $this;
     }
 
@@ -220,6 +194,7 @@ class UserDetail
     public function addContactNumber(\UserBundle\Entity\UserContact $contactNumber)
     {
         $this->contactNumber[] = $contactNumber;
+        $contactNumber->setUser($this);
 
         return $this;
     }
@@ -254,7 +229,7 @@ class UserDetail
     public function addInterest(\UserBundle\Entity\InterestType $interest)
     {
         $this->interest[] = $interest;
-
+        $interest->setUser($this);
         return $this;
     }
 
@@ -288,7 +263,7 @@ class UserDetail
     public function addGraduationType(\UserBundle\Entity\UserGraduation $graduationType)
     {
         $this->graduationType[] = $graduationType;
-
+        $graduationType->setUser($this);
         return $this;
     }
 

@@ -53,7 +53,8 @@ class NewUser extends AbstractType
 				'class' => "UserBundle:Gender",
 				'choice_label' => "gender",
 				'multiple' => false,
-			    'expanded' => true,			   
+			    'expanded' => true,		
+			    	   
 				))
 
 			->add('bloodGroup', EntityType::class, array(
@@ -72,12 +73,13 @@ class NewUser extends AbstractType
 				'entry_type' => EmailSet::class,
 				'allow_add' => true,
 				'allow_delete' => true,
+				'by_reference' => false,
 				'prototype' => true,
+				'required' => false,
 
 				'entry_options' => array(
 					'attr' => array('class' => 'email-box'),
-					'by_reference' => false,
-					'required' => false,
+					// 'required' => false,
 					'trim' => true
 					),
 				))
@@ -88,6 +90,7 @@ class NewUser extends AbstractType
 				'allow_delete' => true,
 				'prototype' => true,
 				'by_reference' => false,
+				'required' => false,
 
 				// 'entry_options' => array(
 				// 	'attr' => array('class' => 'mobile-no-box'),
@@ -102,12 +105,13 @@ class NewUser extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'prototype' => true,
+				'by_reference' => false,
 
 				'entry_options' => array(
 					'attr' => array('class' => 'interest-box'),
 					'required' => false,
-					'by_reference' => false,
-					'trim' => true
+				/*	'by_reference' => false,
+					'trim' => true*/
 					// 'empty_data' => "new $data_class()",
 
 					// 'data' => 'adaa'
@@ -118,12 +122,13 @@ class NewUser extends AbstractType
 				'entry_type' => Graduation::class,
 				'allow_add' => true,
 				'allow_delete' => true,
+				'by_reference' => false,
 				'prototype' => true,
 				'entry_options' => array(
 					'attr' => array('class' => 'graduation-box'),
 					'required' => false,
-					'by_reference' => false,
-					'trim' => true
+				/*	'by_reference' => false,
+					'trim' => true*/
 					// 'empty_data' => "new $data_class()",
 
 					// 'data' => 'adaa'

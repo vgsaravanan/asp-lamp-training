@@ -63,15 +63,11 @@ class User
     public function __construct()
     {
         $this->emailId = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addEmailId(\UserBundle\Entity\UserEmail);
         $this->contactNumber = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addContactNumber(new UserContact());
         $this->interest = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addInterest(new InterestType());
         $this->graduationType = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->addGraduationType(new GraduationDetail());
     }
-    
+
     /**
      * Get id
      *
@@ -163,9 +159,8 @@ class User
      */
     public function addEmailId(\UserBundle\Entity\UserEmail $emailId)
     {
-        // $emailId->setEmailId($this);
         $this->emailId[] = $emailId;
-        
+
         return $this;
     }
 
@@ -184,17 +179,10 @@ class User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEmailId() 
+    public function getEmailId()
     {
         return $this->emailId;
     }
-
-     public function setEmailId($emailId)
-        {
-            $this->emailId = $emailId;
-
-            return $this;
-        }
 
     /**
      * Add contactNumber
@@ -345,5 +333,4 @@ class User
     {
         return $this->gender;
     }
-
 }
