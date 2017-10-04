@@ -1,0 +1,17 @@
+{% if max > 1 %}
+
+	<span {{ current == 1 }}>
+	    <a href="{{ path('list_user', {page: current-1 < 1 ? 1 : current-1}) }}">«</a>
+	</span>
+	{% for i in 1..max %}
+	<span {{ current == i }}>
+	<a onclick="changePagination('{{ i }}')" href="javascript:void(0)">{{ i }}</a>
+	{# <a href="{{ path('list_user', {page: i}) }}">{{ i }}</a> #}
+	</span>
+	{% endfor %}
+
+	<span {{ current == max }}>
+	    <a href="{{ path('list_user', {page: current+1 <= max ? current+1 : current}) }}">»</a>
+	</span>
+
+{% endif %}

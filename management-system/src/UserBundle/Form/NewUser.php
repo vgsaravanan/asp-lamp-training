@@ -30,9 +30,9 @@ class NewUser extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
         $builder
-            ->add('first_name', TextType::class,array('required' => false))
-			->add('last_name', TextType::class,array('required' => false))
-			->add('date_of_birth', DateType::class,array(
+            ->add('firstName', TextType::class,array('required' => false))
+			->add('lastName', TextType::class,array('required' => false))
+			->add('dateOfBirth', DateType::class,array(
 				'widget' => "single_text",
 			/*	'placeholder' => array( 'year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 			*/	'attr'=> ['class' => 'js-datepicker'],

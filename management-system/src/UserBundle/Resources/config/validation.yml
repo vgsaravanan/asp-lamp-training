@@ -1,4 +1,69 @@
-UserBundle\Entity\UserInfo:
+UserBundle\Entity\UserDetail:
   properties:
-    first_name:
-      - NotBlank: ~
+    firstName:
+      - NotBlank: {message: "Please provide your name"}
+      - Length:
+          min: 5
+          max: 30
+      - Regex:
+          pattern: '/\d/'
+          match: false
+          message: Your Name cannot contain a number  
+    lastName:
+      - NotBlank: {message: "Please provide your name"}
+      - Length:
+          min: 5
+          max: 30
+      - Regex:
+          pattern: '/\d/'
+          match: false
+          message: Your Name cannot contain a number
+    dateOfBirth:
+      - NotBlank: {message: "Please provide your date Of Birth"}
+      - Date: ~
+    gender:
+      - NotBlank: {message: "Please select the field"}
+      # - Choice: { callback: getGender() }
+    emailId:
+      - valid: ~
+    contactNumber:
+      - valid: ~
+    interest:
+      - valid: ~
+      # - NotBlank: {message: "Please select the field"}
+      # - Choice: { callback: [UserBundle\Entity\UserDetail, getInterest] }
+    bloodGroup:
+      - NotBlank: {message: "Please select the field"}
+    graduationType:
+      - NotBlank: {message: "Please provide your graduation detail"}
+
+UserBundle\Entity\UserEmail:
+  constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: emailId
+  properties:
+    emailId:
+      - NotBlank: {message: "Please provide your Email Id"}
+      - Email:
+          message: The email "{{ value }}" is not a valid email.
+
+UserBundle\Entity\UserContact:
+  constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: contactNumber
+  properties:
+    contactNumber:
+      - NotBlank: {message: "Please provide your contact number"}
+      - Regex:
+          pattern: '/\d+/'
+          message: Please Provide valid number
+      - Length:
+          max: 13
+
+# UserBundle\Entity\InterestType:
+#   properties:
+#     interest:
+#       # - NotBlank: {message: "Please provide your contact number"}
+#       - Choice: { callback: getInterest }
+
+
+
+

@@ -1,0 +1,85 @@
+
+<table class = "user_list_table" align='center' border = '1'>
+<tr>
+	<th>
+		S.NO
+	</th>
+	<th>
+		NAME
+	</th>
+	<th>
+		BLOOD GROUP
+	</th>
+	<th>
+		GENDER
+	</th>
+	<th>
+		EMAIL
+	</th>
+	<th>
+		CONTACT NUMBER
+	</th>
+	<th>
+		AREA OF INTEREST
+	</th>
+	<th>
+		GRADUATION DETAILS
+	</th>
+</tr>
+
+<tr>
+	<td>
+		{{ results.id }}	
+	</td>
+	<td>
+		{{ results.getFirstName }}
+	</td>
+
+	<td>
+		{{ results.getLastName }}
+	</td>
+
+	<td>
+		{{ results.getBloodGroup }}
+	</td>
+	
+	<td>
+		{{ results.getGender }}
+	</td>
+
+	
+	<td>
+		{% for items in results.getEmailId %}
+			<ul style = "list-style-type:none">
+				<li style = "display:block"> {{ items.getEmailId }} </li>
+			</ul>
+		{% endfor %}
+	</td>
+
+	<td>
+		{% for items in results.getContactNumber %}
+			<ul style = "list-style-type:none">
+				<li style = "display:block"> {{ items.getContactNumber }} </li>
+			</ul>
+		{% endfor %}
+	</td>
+
+	<td>
+		{% for items in results.getInterest %}
+			<ul style = "list-style-type:none">
+				<li style = "display:block"> {{ items.getInterest }} </li>
+			</ul>
+		{% endfor %}
+	</td>
+
+	<td>
+		{% for items in results.getGraduationType %}
+			<ul style = "list-style-type:none">
+				<li style = "display:block"> {{ items.getGraduation }} </li>
+			</ul>
+		{% endfor %}
+	</td>
+	<td>
+		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '{{ path('edit_user', { 'id': results.getId }) }}'">
+	</td>
+</tr>

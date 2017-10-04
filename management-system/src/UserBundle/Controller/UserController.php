@@ -23,8 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
-
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserController extends Controller
 {
@@ -54,7 +53,7 @@ class UserController extends Controller
     	$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            // dump($form->isValid()); die();
             $task = $form->getData();
 
             
@@ -71,23 +70,30 @@ class UserController extends Controller
         	));
     }
 
-    public function listAction($page = 1,Request $request)
+    public function listAction($page,Request $request)
     {
         // $listUser = new User();
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
-        // $user = $repository->findAll();
-
-        $list = $repository->getAllPosts($page);
-
-        $returnedItem = $list->getIterator()->count();
-
-        $totalItem = $list->count();
- 
-        $iterator = $list->getIterator();
-
+        $user = $repository->findAll();
         $limit = 5;
-        $max = ceil($list->count() / $limit);
+        $offset = ($page-1)*$limit;
+        $userlist = $repository->findBy(array(),array(), $limit, $offset);
+        $total_page = ceil(count($user)/$limit);
+        // $url = $this->generateUrl('list_user', array('page' => $page ), UrlGeneratorInterface::ABSOLUTE_URL);
+        // dump($url); die();
+        // $list = $repository->getAllPosts($page);
+        // dump($list); die();
+
+       /* $returnedItem = $list->getIterator()->count();
+        dump($returnedItem); 
+        $totalItem = $list->count();
+        dump($totalItem); 
+        $iterator = $list->getIterator();
+        dump($iterator); */
+        
+        // $max = ceil($list->count() / $limit);
+        // dump($max); die();
         $thisPage = $page;
 
 
@@ -107,7 +113,7 @@ class UserController extends Controller
 
         // return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
 
-        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $list,'max' => $max, "current" =>$thisPage));
+        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $userlist,'max' => $total_page, "current" => $thisPage));
     }
 
     public function viewAction($id, Request $request)
@@ -129,7 +135,7 @@ class UserController extends Controller
            echo $listUser->getFirstName();
         }*/
 
-        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
+        return $this->render('UserBundle:Default:viewuser.html.twig', array('results' => $user));
     }
 
     public function editAction($id, Request $request)

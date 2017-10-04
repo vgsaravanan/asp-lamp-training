@@ -3,19 +3,19 @@ new_user:
   defaults: { _controller: UserBundle:User:new}
 
 list_user:
-  path: /{page}
-  defaults: { _controller: UserBundle:User:list}
+  path: /list/{page}
+  defaults: { _controller: UserBundle:User:list, page: 1}
   requirements:
-    page: '[0-9]+'
+    page: '\d+'
     
 edit_user:
   path: /edit/{id}
   defaults: { _controller: UserBundle:User:edit}
   requirements:
-    id: '[0-9]+'
+    id: '\d+'
 
 view_user:
   path: /{id}
   defaults: { _controller: UserBundle:User:view}
   requirements:
-    id: '[0-9]+'
+    id: '\d+'
