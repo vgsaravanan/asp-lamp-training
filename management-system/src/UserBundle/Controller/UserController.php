@@ -70,14 +70,17 @@ class UserController extends Controller
         	));
     }
 
-    public function listAction($page,Request $request)
+    public function listAction(Request $request)
     {
         // $listUser = new User();
+        $page = $request->get('page');
+        dump($page);
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
         $user = $repository->findAll();
         $limit = 5;
         $offset = ($page-1)*$limit;
+        dump($offset);
         $userlist = $repository->findBy(array(),array(), $limit, $offset);
         $total_page = ceil(count($user)/$limit);
         // $url = $this->generateUrl('list_user', array('page' => $page ), UrlGeneratorInterface::ABSOLUTE_URL);
@@ -113,13 +116,14 @@ class UserController extends Controller
 
         // return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $user));
 
-        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $userlist,'max' => $total_page, "current" => $thisPage));
+        return $this->render('UserBundle:Default:listuser.html.twig', array('results' => $userlist,'max' => $total_page, "current" => $page));
     }
 
-    public function viewAction($id, Request $request)
+    public function viewAction(Request $request)
     {
         // $user_id = $_GET['idUserDetail
             // $listUser = new UserDetail();
+        $id = $request->get('id');
         $repository = $this->getDoctrine()->getRepository(UserDetail::class);
         $user = $repository->find($id);
       /*          ->setFirstResult(0)
@@ -138,8 +142,9 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:viewuser.html.twig', array('results' => $user));
     }
 
-    public function editAction($id, Request $request)
+    public function editAction(Request $request)
     {
+        $id = $request->get('id');
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
         $fetch = $repository->find($id);

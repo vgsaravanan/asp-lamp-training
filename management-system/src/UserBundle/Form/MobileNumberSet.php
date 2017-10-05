@@ -14,7 +14,9 @@ class MobileNumberSet extends AbstractType
     {	
         $builder
             ->add('contactNumber', NumberType::class, array(
-                'label' => false, ))
+                'label' => false,
+                'attr' => array("class" => 'mobile-no-box')
+                 ))
         ;
 
     }

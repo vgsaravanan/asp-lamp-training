@@ -1,178 +1,294 @@
-{{ form_start(form) }} 
-<table>
-<tr>
-	<td>
-		<b>{{ form_label(form.firstName,'First Name') }} </b>
-	</td>
-	<td>
-		{{ form_widget(form.firstName) }}
-		<span> 
-			<span style = "list-style-type: none; display: inline-block;">
-				{{ form_errors(form.firstName) }}					
-			</span>
-		</span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<b>{{ form_label(form.lastName, 'Last Name ') }}</b>
-	</td>
-	<td>
-		{{ form_widget(form.lastName) }}
-		<span style = "list-style-type: none; display: inline-block;">
-			{{ form_errors(form.lastName) }} 
-		</span>
-	</td>
-</tr>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Management System</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"> </script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js">
+		</script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<style>
+			.error {
+				color: navy;
+			}
+			.tablesytle table {
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+			.tablesytle th, td {
+			    padding: 8px;
+			    line-height: 2em;
+			}
+			.tablesytle tr:hover{
+			    background-color:#f5f5f5
+			}
 
-<tr>
-	<td> 
-		<b>{{ form_label(form.dateOfBirth, 'Date of Birth') }}</b>
-	</td>
-	<td> 
-		{{ form_widget(form.dateOfBirth) }}
-		<span style = "display: inline-block;"> 
-			{{ form_errors(form.dateOfBirth) }} 
-		</span> 
-	</td>
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.gender, 'Gender') }}</b>
-	</td>
-	<td> 
-		{{ form_widget(form.gender) }}
-		<span style = "display: inline-block;"> 
-		 	{{ form_errors(form.gender) }} 
-		</span> 
-	</td>
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.emailId,'Email Ids') }} </b>
-	</td>
-	<td>
-		<ul id="email-fields-list" data-prototype="{{ form_widget(form.emailId.vars.prototype)|e }}">
-		{% for emailField in form.emailId %}
-			<li style = 'list-style-type:none'>
-				{{ form_widget(emailField) }}
-			</li>
-			<span style = "display: inline-block;">
-					{{ form_errors(emailField) }}
-			</span>
-		{% endfor %}
-		</ul> 
-	</td>
-</tr>
-<tr>
-	<td colspan = 2>  
-		<input type = "button" id = "add-email-field" value = "+" onclick = "addField('email-fields-list')" >
-	
-	</td>	
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.contactNumber,'Mobile Number') }} </b>
-	</td>
-	<td> 
-		<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.contactNumber.vars.prototype)|e }}">
-		{% for mobileField in form.contactNumber %}
-			<li style = 'list-style-type:none'>
-				{{ form_widget(mobileField) }}
-				<span style = "list-style-type: none; display: inline-block;"> 
-					{{ form_errors(mobileField) }} 
-				</span>
-			</li>
-		{% endfor %}
-		</ul> 
-	</td>
-</tr>
-<tr>
-	<td colspan = 2> 
-		<input type = "button" id = "add-mobileno-field" value = "+" onclick = "addField('mobile-fields-list')">
-		
-	</td>	
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.bloodGroup, 'Blood Group') }}</b>
-	</td>
-	<td> 
-		{{ form_widget(form.bloodGroup) }} 
-		<span style = "list-style-type: none; display: inline-block;"> 
-			{{ form_errors(form.bloodGroup) }}
-		</span> 
-	</td>
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.interest,'Area of Interest') }} </b>
-	</td>
-	<td> 
-		<ul id="interest-fields-list" data-prototype="{{ form_widget(form.interest.vars.prototype)|e }}">
-		{% for interestField in form.interest %}
-			<li style = 'list-style-type:none'>
-				{{ form_widget(interestField) }}
-				<span style = "list-style-type: none; display: inline-block;"> 
-					{{ form_errors(interestField) }} 
-				</span>
-			</li>
-		{% endfor %}
-		</ul> 
-	</td>
-</tr>
-<tr>
-	<td colspan = 2> 
-		<input type = "button" id = "add-interest-field" value = "+" onclick = "addField('interest-fields-list')" >
-	
-	</td>	
-</tr>
-<tr>
-	<td> 
-		<b>{{ form_label(form.graduationType,'Graduation') }} </b>
-	</td>
-	<td> 
-		<ul id="graduation-fields-list" data-prototype="{{ form_widget(form.graduationType.vars.prototype)|e }}">
-		{% for graduationField in form.graduationType %}
-			<li style = 'list-style-type:none'>
-				{{ form_widget(graduationField) }}
-				<span style = "list-style-type: none; display: inline-block;"> 
-					{{ form_errors(graduationField) }} 
-				</span>
-			</li>
-		{% endfor %}
-		</ul> 
-	</td>
-</tr>
-<tr>
-	<td colspan = 2> 
-		<input type = "button" id = "add-graduation-field" value = "+" onclick = "addField('graduation-fields-list' )" >
-	
-	</td>	
-</tr>
-</table>
-{{ form_end(form) }}
+			input[type=email], input[type=text], input[type=date] {
+			   
+			    padding: 7px 30px;
+			    border: solid 1px;
+			    border-radius: 4px; 
+			    box-sizing: border-box;
+			}
+
+			
+		</style
+    </head>
+    <body>
+		{{ form_start(form, {'attr': {'id': 'form_new_user'}},{'method': 'POST'}) }}
+			<table class="tablesytle" align= "center">
+			<tr>
+				<td>
+					<b>{{ form_label(form.firstName,'First Name') }} </b>
+				</td>
+				<td>
+					{{ form_widget(form.firstName) }}
+					<span> 
+						<span style = "list-style-type: none; display: inline-block;">
+						{{ form_errors(form.firstName) }}						
+						</span>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>{{ form_label(form.lastName, 'Last Name ') }}</b>
+				</td>
+				<td>
+					{{ form_widget(form.lastName) }}
+					<span style = "list-style-type: none; display: inline-block;">
+						{{ form_errors(form.lastName) }} 
+					</span>
+				</td>
+			</tr>
+
+			<tr>
+				<td> 
+					<b>{{ form_label(form.dateOfBirth, 'Date of Birth') }}</b>
+				</td>
+				<td> 
+					{{ form_widget(form.dateOfBirth) }}
+					<span style = "display: inline-block;"> 
+						{{ form_errors(form.dateOfBirth) }} 
+					</span> 
+				</td>
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.gender, 'Gender') }}</b>
+				</td>
+				<td> 
+					{{ form_widget(form.gender) }} 
+				</td>
+				<td>
+					<span style = "display: inline-block;"> 
+						{{ form_errors(form.gender) }} 
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.emailId,'Email Ids') }} </b>
+				</td>
+				<td>
+					<ul id="email-fields-list" data-prototype="{{ form_widget(form.emailId.vars.prototype)|e }}" >
+						{% for emailField in form.emailId %}
+							<li style = 'list-style-type:none'>
+								{{ form_widget(emailField) }}
+							</li>
+							<span style = "display: inline-block;">
+									{{ form_errors(emailField) }}
+							</span>
+						{% endfor %}
+					</ul> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 2>  
+					<input type = "button" name = "email-field" id = "add-email-field" value = "+" onclick = "addField('email-fields-list')" >
+				
+				</td>	
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.contactNumber,'Mobile Number') }} </b>
+				</td>
+				<td> 
+					<ul id="mobile-fields-list" data-prototype="{{ form_widget(form.contactNumber.vars.prototype)|e }}">
+					{% for mobileField in form.contactNumber %}
+						<li style = 'list-style-type:none'>
+							{{ form_widget(mobileField) }}
+							<span style = "list-style-type: none; display: inline-block;"> 
+								{{ form_errors(mobileField) }} 
+							</span>
+						</li>
+					{% endfor %}
+					</ul> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 2> 
+					<input type = "button" name = "mobile-field" id = "add-mobileno-field" value = "+" onclick = "addField('mobile-fields-list')">
+				</td>	
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.bloodGroup, 'Blood Group') }}</b>
+				</td>
+				<td> 
+					{{ form_widget(form.bloodGroup) }} 
+					<span style = "list-style-type: none; display: inline-block;"> 
+						{{ form_errors(form.bloodGroup) }}
+					</span> 
+				</td>
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.interest,'Area of Interest') }} </b>
+				</td>
+				<td> 
+					<ul id="interest-fields-list" data-prototype="{{ form_widget(form.interest.vars.prototype)|e }}">
+					{% for interestField in form.interest %}
+						<li style = 'list-style-type:none'>
+							{{ form_widget(interestField) }}
+							<span style = "list-style-type: none; display: inline-block;"> 
+								{{ form_errors(interestField) }} 
+							</span>
+						</li>
+					{% endfor %}
+					</ul> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 2> 
+					<input type = "button" name = "interest-field" id = "add-interest-field" value = "+" onclick = "addField('interest-fields-list')" >
+				
+				</td>	
+			</tr>
+			<tr>
+				<td> 
+					<b>{{ form_label(form.graduationType,'Graduation') }} </b>
+				</td>
+				<td> 
+					<ul id="graduation-fields-list" data-prototype="{{ form_widget(form.graduationType.vars.prototype)|e }}">
+					{% for graduationField in form.graduationType %}
+						<li style = 'list-style-type:none'>
+							{{ form_widget(graduationField) }}
+							<span style = "list-style-type: none; display: inline-block;"> 
+								{{ form_errors(graduationField) }} 
+							</span>
+						</li>
+					{% endfor %}
+					</ul> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 2> 
+					<input type = "button" name = "graduation-field" id = "add-graduation-field" value = "+" onclick = "addField('graduation-fields-list' )" >
+				</td>	
+			</tr>
+			<tr>
+				<td colspan = 2>
+					{{ form_widget(form.save, {'label': 'Save'}) }}
+				</td>
+			</tr>
+			</table>
+
+		{{ form_end(form) }}
+
+		{% block javascripts %}
+			{% javascripts'@UserBundle/Resources/public/js/newuser.js' %}
+				<script src="{{ asset_url }}"> </script>
+			{% endjavascripts %}
+		{% endblock %}
+
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+
+				$('.js-datepicker').datepicker({
+						dateFormat: "yy/mm/dd",
+					changeMonth: true,
+					changeYear: true,
+					yearRange: "-50:+10"
+
+				});
+
+				$("#form_new_user").validate({
+				 debug: true,
+					rules: {
+						'{{ form.firstName.vars.full_name }}': {
+							required: true,
+							maxlength: 20,
+							regex: /^[a-z A-Z]+$/ 
+						},
+						'{{ form.lastName.vars.full_name }}': {
+							required: true,
+							maxlength: 20,
+							regex: /^[a-z A-Z]+$/ 
+						},
+						'{{ form.gender.vars.full_name}}': {
+							required: true,
+						},
+						'{{ form.dateOfBirth.vars.full_name}}': {
+							required: true,
+						},
+						'{{ form.bloodGroup.vars.full_name}}': {
+							required: true,
+							maxlength: 12,
+						}
+					},
+					messages: {
+
+						'{{ form.firstName.vars.full_name }}': {
+							required: " FirstName should not be empty",
+							maxlength: " Name must not exceed 20 charachters"
+						},
+						'{{ form.lastName.vars.full_name }}': {
+							required: " LastName should not be empty",
+							maxlength: " Name must not exceed 20 charachters"
+						},
+						'{{ form.gender.vars.full_name}}': {
+							required: " Please select gender",
+						},
+						'{{ form.dateOfBirth.vars.full_name}}': {
+							required: " Please provide date of birth",
+						},
+						'{{ form.bloodGroup.vars.full_name}}': {
+							required : " Please select bloodgroup"
+						}
+					},	
+
+				});
+
+				$.validator.addMethod("regex",function(value, element, regexpr){
+					return regexpr.test(value);
+				}, " provide valid details ");
 
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+				$.validator.addClassRules({
+					"mobile-no-box": {
+						required: true,
+						pattern: /^[0-9]+$/,
+					},
+					"email-box": {
+						required: true,
+						email: true,
+						regex: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,
+					},
+					"interest-type": {
+						required: true,
+					},
+					"graduation-type": {
+						required: true,
+					},
 
-{% block javascripts %}
-	{% javascripts'@UserBundle/Resources/public/js/newuser.js' %}
-		<script src="{{ asset_url }}"> </script>
-	{% endjavascripts %}
-{% endblock %}
+				});
 
+		});
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('.js-datepicker').datepicker({
-			dateFormat: "yy/mm/dd",
-		changeMonth: true,
-		changeYear: true,
-		yearRange: "-50:+10"
-
-	});
-});
-</script>
+		</script>
+	</body>
+</html>

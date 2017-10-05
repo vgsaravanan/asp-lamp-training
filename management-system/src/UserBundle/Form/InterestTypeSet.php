@@ -18,10 +18,9 @@ class InterestTypeSet extends AbstractType
             ->add('interest',EntityType::class,array(
                 'class' => "UserBundle:AreaOfInterest",
                 'choice_label' => "interest",
-                'label' => false
-              /*  'multiple' => true,
-                'expanded' => true,
-                'required' => false,*/
+                'label' => false,
+                'required'=> false,
+                'attr'=> array("class"=>"interest-type")
                 ))
         ;
 

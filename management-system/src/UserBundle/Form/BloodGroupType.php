@@ -15,9 +15,6 @@ class bloodGroupType extends AbstractType
 			->add('bloodGroupType', EntityType::class, array(
 				'class' => 'UserBundle:BloodGroup',
 				'choice_label' => 'bloodGroupType',
-				// 'expanded' => false,
-				// 'multiple' => false,
-				// 'required' => false 
 				)
 			)
 		;

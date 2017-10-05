@@ -14,7 +14,8 @@ class EmailSet extends AbstractType
     {	
         $builder
             ->add('emailId', EmailType::class , array(
-                'label' => false, ))
+                'label' => false,
+                'attr' => array("class" => 'email-box') ))
         ;
 
     }

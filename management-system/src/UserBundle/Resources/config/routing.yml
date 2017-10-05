@@ -5,6 +5,7 @@ new_user:
 list_user:
   path: /list/{page}
   defaults: { _controller: UserBundle:User:list, page: 1}
+  methods:   [GET]
   requirements:
     page: '\d+'
     

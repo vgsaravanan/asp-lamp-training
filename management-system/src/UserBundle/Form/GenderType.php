@@ -16,11 +16,7 @@ class GenderType extends AbstractType
         	->add('gender',EntityType::class,array(
 				'class' => "UserBundle:Gender",
 				'choice_label' => "gender",
-				'multiple' => false,
-			    'expanded' => true,
-			    'required' => false,
 				))
-        	->add('')
         ;
 
     }

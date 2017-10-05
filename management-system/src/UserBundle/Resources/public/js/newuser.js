@@ -9,10 +9,11 @@
     {	
     	input = document.createElement("input");
     	input.setAttribute("type", "button");
+      input.setAttribute("name","remove")
     	input.setAttribute("value", "-");
     	input.setAttribute("style", "display:inline");
     }
- 	
+
  	function addField(fieldName)
  	{
     newLi = input = newWidget = '';
@@ -38,3 +39,4 @@
     fieldName.parentElement.remove();
  	}
    	
+

@@ -18,9 +18,8 @@ class Graduation extends AbstractType
 				'class' => "UserBundle:GraduationType",
 				'choice_label' => "type",
                 'label' => false,
-				/*'multiple' => false,
-			    'expanded' => true,
-			    'required' => false,*/
+                'attr'=> array("class"=>"graduation-type"),
+                'required' => false,
 				))
         ;
 
