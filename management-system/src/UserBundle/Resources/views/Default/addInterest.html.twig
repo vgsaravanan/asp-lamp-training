@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<table border="2">
+    <tr>
+        <th>Interests</th>
+        <th>Add New</th>
+        <th>Action</th>                
+    <tr>
+        <td>
+    {% for interest in interests %}
+        {{ interest.interest }}<br/>
+    {% endfor %}
+
+        {{ form_start(form) }}
+            <td> {{ form_row(form.interest) }} </td>
+            <td>{{ form_row(form.save) }}</td>
+        {{ form_end(form) }}
+    </tr>
+</table>
+{% endblock %}

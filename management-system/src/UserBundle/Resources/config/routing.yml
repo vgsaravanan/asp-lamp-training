@@ -1,7 +1,12 @@
 new_user:
   path: /new
   defaults: { _controller: UserBundle:User:new}
-
+admin:
+  path: /admin
+  defaults: { _controller: UserBundle:User:admin}
+interest:
+  path: /admin/interest
+  defaults: { _controller: UserBundle:User:addInterest}
 list_user:
   path: /
   defaults: { _controller: UserBundle:User:list}

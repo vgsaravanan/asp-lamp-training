@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<table border="2">
+    <tr>
+        <th>Education Types</th>
+        <th>Add New</th>
+        <th>Action</th>                
+    <tr>
+        <td>
+    {% for education in educationtypes %}
+        {{ education.type }}<br/>
+    {% endfor %}
+
+        {{ form_start(form) }}
+            <td> {{ form_row(form.type) }} </td>
+            <td>{{ form_row(form.save) }}</td>
+        {{ form_end(form) }}
+    </tr>
+</table>
+{% endblock %}

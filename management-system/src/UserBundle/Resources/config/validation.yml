@@ -22,8 +22,8 @@ UserBundle\Entity\UserDetail:
       - NotBlank: {message: "Please provide your date Of Birth"}
       - Date: ~
     gender:
-      - NotBlank: ~
-      # - Choice: { callback: getGender() }
+      # - NotBlank: ~
+      # - Choice: { callback: getGender }
     emailId:
       - valid: ~
     contactNumber:
@@ -31,9 +31,10 @@ UserBundle\Entity\UserDetail:
     interest:
       - valid: ~
       # - NotBlank: {message: "Please select the field"}
-      # - Choice: { callback: [UserBundle\Entity\UserDetail, getInterest] }
+      # - Choice: { callback: getInterest }
     bloodGroup:
       - NotBlank: {message: "Please select the field"}
+      # - Choice: { callback: getBloodGroup }
     graduationType:
       - NotBlank: {message: "Please provide your graduation detail"}
 

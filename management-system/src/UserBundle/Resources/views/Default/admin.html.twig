@@ -1,0 +1,45 @@
+
+
+{% block body %}
+{{ form_start(form, { 'attr' : { 'novalidate' : 'novalidate' }}) }}
+<table>
+    <tr>
+        <th>Type</th>
+        <th>List</th>
+        <th>Action</th>
+    </tr>
+
+    <tr>
+        <td>
+            {{ form_label(form.interest) }}
+        </td>
+        <td>
+{#            {{ form_widget(form.interest, { 'label' : '' }) }}#}
+             {% for interestfield in form.interest %}
+                    {{ form_widget(interestfield.interest) }}
+            {% endfor %}
+        </td>
+        <td>
+            <input type="button" value="Add"
+                   onclick="location.href='{{ path('list_user') }}'"
+{#            <input type="button" value="Remove">#}
+{#                   onclick="location.href='/users/edit/{{user.id}}';" >#}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ form_label(form.graduationType) }}
+        </td>
+        <td>
+             {% for list in form.graduationType %}
+                    {{ form_widget(list.graduation) }}
+            {% endfor %}
+        </td>
+        <td>
+            <input type="button" value="Add"
+                   onclick="location.href='{{ path('list_user') }}'">                   
+        </td>
+    </tr>
+</table>
+{{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
