@@ -18,7 +18,6 @@ class MobileNumberSet extends AbstractType
                 'attr' => array("class" => 'mobile-no-box')
                  ))
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -3,11 +3,15 @@ new_user:
   defaults: { _controller: UserBundle:User:new}
 
 list_user:
-  path: /list/{page}
-  defaults: { _controller: UserBundle:User:list, page: 1}
-  methods:   [GET]
+  path: /
+  defaults: { _controller: UserBundle:User:list}
+  
+display_user:
+  path: /display/{page}
+  defaults: { _controller: UserBundle:User:display, page: 1}
   requirements:
     page: '\d+'
+
     
 edit_user:
   path: /edit/{id}

@@ -1,42 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>User Management System</title>
-		<style>
-			.tablesytle table {
-			    border-collapse: collapse;
-			    width: 100%;
-			}
-			.tablesytle th, td {
-			    padding: 8px;
-			    line-height: 2em;
-			}
-			.tablesytle tr:hover{
-			    background-color:#f5f5f5
-			}
+{% extends 'UserBundle:Default:index.html.twig' %}
+{% block body %}
 
-			button[type = "submit"], input[type = "button"], {
-			    background-color: ghostwhite;
-			    color: darkcyan;
-			    padding: 14px 20px;
-			    margin: 8px 0;
-			    border-radius: 4px; 
-			    border: none;
-			    cursor: pointer;
-			}
-			button[type="submit"]:hover, input[type = "button"]:hover {
-			    background-color:black ;
-			}			
-		</style
-    </head>
-    <body>
+<div class="display_form">
 <table class = "tablestyle" align='center'>
 <tr>
 	<th>
-		S.NO
+		First Name
 	</th>
 	<th>
-		NAME
+		Last NAME
 	</th>
 	<th>
 		BLOOD GROUP
@@ -59,9 +31,7 @@
 </tr>
 
 <tr>
-	<td>
-		{{ results.id }}	
-	</td>
+
 	<td>
 		{{ results.getFirstName }}
 	</td>
@@ -114,5 +84,6 @@
 		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '{{ path('edit_user', { 'id': results.getId }) }}'">
 	</td>
 </tr>
-</body>
-</html>
+</table>
+</div>
+{% endblock %}

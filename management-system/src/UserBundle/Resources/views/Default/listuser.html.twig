@@ -1,84 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>User Management System</title>
-		<style>
-			.tablesytle table {
-			    border-collapse: collapse;
-			    width: 100%;
-			}
-			.tablesytle th, td {
-			    padding: 8px;
-			    line-height: 2em;
-			}
-			.tablesytle tr:hover{
-			    background-color:#f5f5f5
-			}
+    {% extends 'UserBundle:Default:index.html.twig' %}
+    {% block body %}
 
-			button[type = "submit"], input[type = "button"] {
-			    background-color: ghostwhite;
-			    color: darkcyan;
-			    padding: 14px 20px;
-			    margin: 8px 0;
-			    border-radius: 4px; 
-			    border: none;
-			    cursor: pointer;
-			}
-			button[type="submit"]:hover, input[type = "button"]:hover {
-			    background-color:black ;
-			}			
-		</style
-    </head>
-    <body>
-<form action="{{ path('list_user',{'page': current} )}}" method="post">
-
-<table class="tablesytle" align= "center">
-<tr>
-	<th>
-		S.NO
-	</th>
-	<th>
-		NAME
-	</th>
-	<th>
-		BLOOD GROUP
-	</th>
-	<th>
-		GENDER
-	</th>
-	<th>
-		EMAIL
-	</th>
-	<th>
-		CONTACT NUMBER
-	</th>
-	<th>
-		AREA OF INTEREST
-	</th>
-	<th>
-		GRADUATION DETAILS
-	</th>
-</tr>
-
-	{% for item in results %}
-	<tr>
+    <div id = "page_content">
+    	<table class="tablesytle" align= "center">
+		<tr>
+		<th>
+		</th>
+		<th>
+			NAME
+		</th>
+		<!-- <th>
+			BLOOD GROUP
+		</th>
+		<th>
+			GENDER
+		</th>
+		<th>
+			EMAIL
+		</th>
+		<th>
+			CONTACT NUMBER
+		</th>
+		<th>
+			AREA OF INTEREST
+		</th>
+		<th>
+			GRADUATION DETAILS
+		</th> -->
+		</tr>
+		{% for item in results %}
+		<tr>
 		<td>
-			{{ item.id }}
+			<input type="checkbox">
 			
 		</td>
 		<td>
-			{{ item.getFirstName }}
+			{{ item.getFirstName }} {{ item.getLastName}}
 		</td>
-
-		<td>
+		<!-- <td>
 			{{ item.getBloodGroup }}
 		</td>
-		
+
 		<td>
 			{{ item.getGender }}
 		</td>
 
-		
 		<td>
 			{% for items in item.getEmailId %}
 				<ul style = "list-style-type:none">
@@ -86,7 +52,6 @@
 				</ul>
 			{% endfor %}
 		</td>
-
 		<td>
 			{% for items in item.getContactNumber %}
 				<ul style = "list-style-type:none">
@@ -94,7 +59,6 @@
 				</ul>
 			{% endfor %}
 		</td>
-
 		<td>
 			{% for items in item.getInterest %}
 				<ul style = "list-style-type:none">
@@ -102,15 +66,13 @@
 				</ul>
 			{% endfor %}
 		</td>
-
 		<td>
 			{% for items in item.getGraduationType %}
 				<ul style = "list-style-type:none">
 					<li style = "display:block"> {{ items.getGraduation }} </li>
 				</ul>
 			{% endfor %}
-		</td>
-		
+		</td> -->
 
 		<td>
 			<input type = "button" class = "view_user" id = "view_list" value = "View" onclick = "location.href = '{{ path('view_user', { 'id': item.getId }) }} '">  
@@ -118,56 +80,44 @@
 		<td>
 			<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '{{ path('edit_user', { 'id': item.getId }) }}'">
 		</td>
-	</tr>
-	{% endfor %}
-	
-</table>
-{% if max > 1 %}
-  <div style="text-align:center;">
-    <div class="menu">
-      <a      {% if current > 1 %}
-        href="{{ path('list_user', {'page': (current - 1)}) }}"
-      {% endif %}>
-        &lt;
-      </a>
-
-      {% for i in 1..max %}
-        <a href="{{ path('list_user', {'page': i}) }}">
-            {{  i }}
-        </a>
-      {% endfor %}
-			
-      <a 
-		  {% if current < max %}
-		    href="{{ path('list_user', {'page': (current + 1)}) }}"
-		  {% endif %}>
-        &gt;
-      </a>
-    </div>
-  </div>
-  {% endif %}
+		</tr>
+		{% endfor %}
+		</table>
+	</div>
+		<div id="page">
+			{% if max > 1 %}
+				<div style="text-align:center;">
+					<div class="menu">
+						<input type = "button" class = "ajax_pagination" id = "first" value = "&lt" onclick = "changePagination('1')">
+						{% for i in 1..max %}
+						<input type = "button" class = "ajax_pagination" id = "paging" value = "{{ i }}" onclick = "changePagination('{{ i }}')">
+						{% endfor %}
+						<input type = "button" class = "ajax_pagination" id = "last" value = "&gt" onclick = "changePagination('{{ max }}')">
+					</div>
+				</div>
+			{% endif %}
+		</div>
 
 
-</form>
+    
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
+		function changePagination(page_no){
+			var url = "{{ path('display_user') }}"+ '/'+ page_no;  
+		    $.ajax({
+		        type: "POST",
+		        url:url,
+		        data: { page : page_no },
+		        success: function(response){
 
-function changePagination(page){
-    $.ajax({
-        type: "POST",
-        url: Routing.generate("list_user"),
-        data: { "page" : page },
-        cache: false,
-        success: function(result){
-        	console.log(result);
-            var elem =  document.getElementById('displayResults');
-            elem.innerHTML = "";
-            elem.innerHTML = result;
-        }
-    });
-}
+		            var elem =  document.getElementById('page_content');
 
-</script>
-</body>
-</html>
+		           document.getElementById('page_content').innerHTML = "";
+		           document.getElementById('page_content').innerHTML = response;
+		        }
+		    });
+		}
+		</script>
+
+	{%  endblock %}

@@ -22,7 +22,7 @@ UserBundle\Entity\UserDetail:
       - NotBlank: {message: "Please provide your date Of Birth"}
       - Date: ~
     gender:
-      - NotBlank: 
+      - NotBlank: ~
       # - Choice: { callback: getGender() }
     emailId:
       - valid: ~

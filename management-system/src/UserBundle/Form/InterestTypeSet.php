@@ -23,7 +23,6 @@ class InterestTypeSet extends AbstractType
                 'attr'=> array("class"=>"interest-type")
                 ))
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

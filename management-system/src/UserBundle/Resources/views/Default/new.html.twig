@@ -1,42 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>User Management System</title>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"> </script>
-		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js">
-		</script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<style>
-			.error {
-				color: navy;
-			}
-			.tablesytle table {
-			    border-collapse: collapse;
-			    width: 100%;
-			}
-			.tablesytle th, td {
-			    padding: 8px;
-			    line-height: 2em;
-			}
-			.tablesytle tr:hover{
-			    background-color:#f5f5f5
-			}
 
-			input[type=email], input[type=text], input[type=date] {
-			   
-			    padding: 7px 30px;
-			    border: solid 1px;
-			    border-radius: 4px; 
-			    box-sizing: border-box;
-			}
-
-			
-		</style
-    </head>
-    <body>
+{% extends 'UserBundle:Default:index.html.twig' %}
+    {% block body %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"> </script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js">
+	</script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<div class="display_form">
+		{% for message in app.flashes('success') %}
+			<div class="flash-message">
+				{{ message }}
+			</div>
+		{% endfor %}
 		{{ form_start(form, {'attr': {'id': 'form_new_user'}},{'method': 'POST'}) }}
 			<table class="tablesytle" align= "center">
 			<tr>
@@ -195,17 +172,17 @@
 				</td>
 			</tr>
 			</table>
-
-		{{ form_end(form) }}
+			{{ form_row(form._token) }}
+		{{ form_end(form, {'render_rest':false}) }}
 
 		{% block javascripts %}
 			{% javascripts'@UserBundle/Resources/public/js/newuser.js' %}
 				<script src="{{ asset_url }}"> </script>
 			{% endjavascripts %}
 		{% endblock %}
+	</div>
 
 		<script type="text/javascript">
-
 			$(document).ready(function() {
 
 				$('.js-datepicker').datepicker({
@@ -217,7 +194,7 @@
 				});
 
 				$("#form_new_user").validate({
-				 debug: true,
+
 					rules: {
 						'{{ form.firstName.vars.full_name }}': {
 							required: true,
@@ -284,11 +261,7 @@
 					"graduation-type": {
 						required: true,
 					},
-
 				});
-
 		});
-
 		</script>
-	</body>
-</html>
+{% endblock %}

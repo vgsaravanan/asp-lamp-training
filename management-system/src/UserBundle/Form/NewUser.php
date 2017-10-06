@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 
 
 class NewUser extends AbstractType
@@ -35,13 +36,14 @@ class NewUser extends AbstractType
 				'class' => "UserBundle:Gender",
 				'choice_label' => "gender",
 				'multiple' => false,
-			    'expanded' => true,
+			    'expanded' => true,			    
+			    'required'=>false,
 			    'attr'=>array("class"=>"gender-type")	  
 				))
 
 			->add('bloodGroup', EntityType::class, array(
 				'class' => 'UserBundle:BloodGroup',
-				'choice_label' => 'bloodGroupType',
+				'choice_label' => 'bloodGroupType',				
 				'required' => false,
 				)
 			)
