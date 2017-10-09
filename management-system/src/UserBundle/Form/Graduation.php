@@ -12,15 +12,15 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class Graduation extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {	
+    {   
         $builder
-        	->add('graduation',EntityType::class,array(
-				'class' => "UserBundle:GraduationType",
-				'choice_label' => "type",
+            ->add('graduation',EntityType::class,array(
+                'class' => "UserBundle:GraduationType",
+                'choice_label' => "type",
                 'label' => false,
                 'attr'=> array("class"=>"graduation-type"),
                 'required' => false,
-				))
+                ))
         ;
 
     }

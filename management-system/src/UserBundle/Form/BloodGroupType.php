@@ -11,15 +11,15 @@ class bloodGroupType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    	$builder       
-			->add('bloodGroupType', EntityType::class, array(
-				'class' => 'UserBundle:BloodGroup',
-				'choice_label' => 'bloodGroupType',
-				)
-			)
-		;
-	}
-	public function configureOptions(OptionsResolver $resolver)
+        $builder       
+            ->add('bloodGroupType', EntityType::class, array(
+                'class' => 'UserBundle:BloodGroup',
+                'choice_label' => 'bloodGroupType',
+                )
+            )
+        ;
+    }
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => BloodGroup::class,

@@ -1,37 +1,37 @@
 body {
     margin: 0;
-	padding-top: 60px;
-	padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 40px;
 }
 .header,.footer {
-	width: 100%;
-	position: fixed;
-	padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    padding: 10px 0;
     padding-right: 10px;
-	color: #fff;
+    color: #fff;
 }
 .header {
-	top: 0px;
+    top: 0px;
     margin: 0 auto;
     /*height: 10%;*/
     background: aliceblue;
     height: 120px;
 }
 .footer {
-	bottom: 0;
-	height: 10%;
+    bottom: 0;
+    height: 10%;
 }
 .navigation {
-	width: 100%;
-	overflow: hidden; 	 
-	margin:0 auto;
+    width: 100%;
+    overflow: hidden;    
+    margin:0 auto;
 }
 .header img {
-	padding: 10px;  
-	width: 100px;
-	height: 100px;
-	margin-left: 20%;
-	float:left;
+    padding: 10px;  
+    width: 100px;
+    height: 100px;
+    margin-left: 20%;
+    float:left;
 
 }
 #head{
@@ -39,7 +39,7 @@ body {
 }
 
 .headerlink a,p {
-	/*float: left;*/
+    /*float: left;*/
     margin: 0 auto;
     margin-top: auto;
     color: navy;
@@ -49,7 +49,7 @@ body {
 ul.navbar {
     list-style-type: none;
     display: inline-block;
-   	top:20%; 
+    top:20%; 
     margin: auto;
     padding: 0px;
     width: 100%;
@@ -76,7 +76,7 @@ ul.navbar li a:hover:not(.active) {
     color: white;
 }
 .main {
-	margin-top:  200px;
+    margin-top:  200px;
 }
 .userDiv {
     color:darkcyan; 

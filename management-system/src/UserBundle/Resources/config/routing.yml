@@ -1,12 +1,19 @@
 new_user:
   path: /new
   defaults: { _controller: UserBundle:User:new}
+
 admin:
   path: /admin
   defaults: { _controller: UserBundle:User:admin}
+
 interest:
   path: /admin/interest
   defaults: { _controller: UserBundle:User:addInterest}
+
+graduation:
+  path: /admin/graduation
+  defaults: { _controller: UserBundle:User:addGraduation}
+
 list_user:
   path: /
   defaults: { _controller: UserBundle:User:list}
@@ -17,7 +24,6 @@ display_user:
   requirements:
     page: '\d+'
 
-    
 edit_user:
   path: /edit/{id}
   defaults: { _controller: UserBundle:User:edit}

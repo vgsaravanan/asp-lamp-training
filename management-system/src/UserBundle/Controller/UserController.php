@@ -8,8 +8,10 @@ use UserBundle\Entity\UserContact;
 use UserBundle\Entity\UserGraduation;
 use UserBundle\Entity\InterestType;
 use UserBundle\Entity\AreaOfInterest;
+use UserBundle\Entity\GraduationType;
 use UserBundle\Form\NewUser;
 use UserBundle\Form\UserInterestType;
+use UserBundle\Form\UserGraduationType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,15 +29,15 @@ class UserController extends Controller
 {
     public function newAction(Request $request)
     {
-    	$newUser = new UserDetail();
+        $newUser = new UserDetail();
         $newUser->addEmailId(new UserEmail());
         $newUser->addContactNumber(new UserContact());
         $newUser->addInterest(new InterestType());
         $newUser->addGraduationType(new UserGraduation());
 
-    	$form = $this->createForm(NewUser::class,$newUser);
-    	
-    	$form->handleRequest($request);
+        $form = $this->createForm(NewUser::class,$newUser);
+        
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();            
@@ -49,7 +51,7 @@ class UserController extends Controller
             return $this->redirectToRoute('new_user');
         }
         return $this->render('UserBundle:Default:new.html.twig',array('form' => $form->createView(),
-        	));
+            ));
     }
 
     public function listAction(Request $request)
@@ -106,7 +108,11 @@ class UserController extends Controller
             $repository = $entityManager->getRepository("UserBundle:UserDetail");
             $fetch = $form->getData();
             $entityManager->flush();
-            return new Response($fetch->getFirstName());
+            $this->addFlash(
+                'success',
+                'Changes Applied Successfully!'
+                );
+            return $this->redirectToRoute('new_user');
         }
         return $this->render("UserBundle:Default:new.html.twig", array('form'=> $form->createView(),
             ));
@@ -128,18 +134,22 @@ class UserController extends Controller
     
     public function addInterestAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('UserBundle:AreaOfInterest');
-        $interests = $repo->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository('UserBundle:AreaOfInterest');
+        $interests = $repository->findAll();
         
         $interest = new AreaOfInterest();
         $form = $this->createForm(UserInterestType::class, $interest);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $interest = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($interest);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($interest);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Changes Applied Successfully!'
+                );
             return $this->redirectToRoute('admin');
         }
         return $this->render('UserBundle:Default:addInterest.html.twig', array(
@@ -149,26 +159,29 @@ class UserController extends Controller
         
     }
     
-   /* public function addEducationAction(Request $request)
+    public function addGraduationAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('UserBundle:EducationType');
-        $educationtypes = $repo->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository('UserBundle:GraduationType');
+        $graduationType = $repository->findAll();
         
-        $education = new EducationType();
-        $form = $this->createForm(EduType::class, $education);
+        $education = new GraduationType();
+        $form = $this->createForm(UserGraduationType::class, $education);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $education = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($education);
-            $em->flush();
-            return $this->redirectToRoute('user_management_admin');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($education);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Changes Applied Successfully!'
+                );
+            return $this->redirectToRoute('admin');
         }
-        return $this->render('UserBundle:Default:addEducation.html.twig', array(
-            'educationtypes' => $educationtypes,
+        return $this->render('UserBundle:Default:addGraduation.html.twig', array(
+            'graduationType' => $graduationType,
             'form' => $form->createView(),
-        ));
-        
-    }*/
+        ));   
+    }
 }

@@ -1,29 +1,25 @@
-
-
+{% extends 'UserBundle:Default:index.html.twig' %}
 {% block body %}
+<div class="display_form">
 {{ form_start(form, { 'attr' : { 'novalidate' : 'novalidate' }}) }}
-<table>
+<table class="tablesytle" align= "center">
     <tr>
         <th>Type</th>
         <th>List</th>
         <th>Action</th>
     </tr>
-
     <tr>
         <td>
             {{ form_label(form.interest) }}
         </td>
         <td>
-{#            {{ form_widget(form.interest, { 'label' : '' }) }}#}
              {% for interestfield in form.interest %}
                     {{ form_widget(interestfield.interest) }}
             {% endfor %}
         </td>
         <td>
             <input type="button" value="Add"
-                   onclick="location.href='{{ path('list_user') }}'"
-{#            <input type="button" value="Remove">#}
-{#                   onclick="location.href='/users/edit/{{user.id}}';" >#}
+                   onclick="location.href='{{ path('interest') }}'">
         </td>
     </tr>
     <tr>
@@ -37,9 +33,10 @@
         </td>
         <td>
             <input type="button" value="Add"
-                   onclick="location.href='{{ path('list_user') }}'">                   
+                   onclick="location.href='{{ path('graduation') }}'">                   
         </td>
     </tr>
 </table>
 {{ form_end(form, {'render_rest': false}) }}
+</div>
 {% endblock %}

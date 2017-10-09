@@ -2,88 +2,99 @@
 {% block body %}
 
 <div class="display_form">
-<table class = "tablestyle" align='center'>
+<table class="tablesytle" align= "center">
 <tr>
-	<th>
-		First Name
-	</th>
-	<th>
-		Last NAME
-	</th>
-	<th>
-		BLOOD GROUP
-	</th>
-	<th>
-		GENDER
-	</th>
-	<th>
-		EMAIL
-	</th>
-	<th>
-		CONTACT NUMBER
-	</th>
-	<th>
-		AREA OF INTEREST
-	</th>
-	<th>
-		GRADUATION DETAILS
-	</th>
+    <th>
+        First Name
+    </th>
+
+    <td>
+        {{ results.getFirstName }}
+    </td>
+</tr>
+<tr>
+    <th>
+        Last NAME
+    </th>
+    <td>
+        {{ results.getLastName }}
+    </td>
+</tr>   
+<tr>
+    <th>
+        BLOOD GROUP
+    </th>
+    <td>
+        {{ results.getBloodGroup }}
+    </td>
+</tr>
+<tr>
+    <th>
+        GENDER
+    </th>
+    <td>
+        {{ results.getGender }}
+    </td>
 </tr>
 
 <tr>
-
-	<td>
-		{{ results.getFirstName }}
-	</td>
-
-	<td>
-		{{ results.getLastName }}
-	</td>
-
-	<td>
-		{{ results.getBloodGroup }}
-	</td>
-	
-	<td>
-		{{ results.getGender }}
-	</td>
-
-	
-	<td>
-		{% for items in results.getEmailId %}
-			<ul style = "list-style-type:none">
-				<li style = "display:block"> {{ items.getEmailId }} </li>
-			</ul>
-		{% endfor %}
-	</td>
-
-	<td>
-		{% for items in results.getContactNumber %}
-			<ul style = "list-style-type:none">
-				<li style = "display:block"> {{ items.getContactNumber }} </li>
-			</ul>
-		{% endfor %}
-	</td>
-
-	<td>
-		{% for items in results.getInterest %}
-			<ul style = "list-style-type:none">
-				<li style = "display:block"> {{ items.getInterest }} </li>
-			</ul>
-		{% endfor %}
-	</td>
-
-	<td>
-		{% for items in results.getGraduationType %}
-			<ul style = "list-style-type:none">
-				<li style = "display:block"> {{ items.getGraduation }} </li>
-			</ul>
-		{% endfor %}
-	</td>
-	<td>
-		<input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '{{ path('edit_user', { 'id': results.getId }) }}'">
-	</td>
+    <th>
+        EMAIL
+    </th>
+    <td>
+        {% for items in results.getEmailId %}
+            <ul style = "list-style-type:none">
+                <li style = "display:block"> {{ items.getEmailId }} </li>
+            </ul>
+        {% endfor %}
+    </td>
 </tr>
+
+<tr>
+    <th>
+        CONTACT NUMBER
+    </th>
+    <td>
+        {% for items in results.getContactNumber %}
+            <ul style = "list-style-type:none">
+                <li style = "display:block"> {{ items.getContactNumber }} </li>
+            </ul>
+        {% endfor %}
+    </td>
+</tr>
+
+<tr>
+    <th>
+            AREA OF INTEREST
+        </th>
+    <td>
+            {% for items in results.getInterest %}
+                <ul style = "list-style-type:none">
+                    <li style = "display:block"> {{ items.getInterest }} </li>
+                </ul>
+            {% endfor %}
+        </td>
+    </tr>
+
+<tr>
+    <th>
+        GRADUATION DETAILS
+    </th>
+    <td>
+        {% for items in results.getGraduationType %}
+            <ul style = "list-style-type:none">
+                <li style = "display:block"> {{ items.getGraduation }} </li>
+            </ul>
+        {% endfor %}
+    </td>
+</tr>
+
+<tr>
+    <td colspan = '2' align='center'>
+        <input type = "button" class = "edit_user" id = "edit_list" value = "Edit" onclick = "location.href = '{{ path('edit_user', { 'id': results.getId }) }}'">
+    </td>
+</tr>
+
 </table>
 </div>
 {% endblock %}

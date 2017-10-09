@@ -19,86 +19,86 @@ class NewUser extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {	
+    {   
         $builder
             ->add('firstName', TextType::class,array(
-            	'required' => false,
-            	))
-			->add('lastName', TextType::class,array('required' => false))
-			->add('dateOfBirth', DateType::class,array(
-				'widget' => "single_text",
-				'attr'=> ['class' => 'js-datepicker'],
-				'html5' => false,
-				'required' => false
-				))
+                'required' => false,
+                ))
+            ->add('lastName', TextType::class,array('required' => false))
+            ->add('dateOfBirth', DateType::class,array(
+                'widget' => "single_text",
+                'attr'=> ['class' => 'js-datepicker'],
+                'html5' => false,
+                'required' => false
+                ))
 
-			->add('gender',EntityType::class,array(
-				'class' => "UserBundle:Gender",
-				'choice_label' => "gender",
-				'multiple' => false,
-			    'expanded' => true,			    
-			    'required'=>false,
-			    'attr'=>array("class"=>"gender-type")	  
-				))
+            ->add('gender',EntityType::class,array(
+                'class' => "UserBundle:Gender",
+                'choice_label' => "gender",
+                'multiple' => false,
+                'expanded' => true,             
+                'required'=>false,
+                'attr'=>array("class"=>"gender-type")     
+                ))
 
-			->add('bloodGroup', EntityType::class, array(
-				'class' => 'UserBundle:BloodGroup',
-				'choice_label' => 'bloodGroupType',				
-				'required' => false,
-				)
-			)
+            ->add('bloodGroup', EntityType::class, array(
+                'class' => 'UserBundle:BloodGroup',
+                'choice_label' => 'bloodGroupType',             
+                'required' => false,
+                )
+            )
 
-			->add('emailId', CollectionType::class, array(
-				'entry_type' => EmailSet::class,
-				'allow_add' => true,
-				'allow_delete' => true,
-				'by_reference' => false,
-				'prototype' => true,
-				'required' => false,
-				'entry_options' => array(
-					'attr' => array(
-						'class' => 'email-box'
-						)
-					),
-				))
+            ->add('emailId', CollectionType::class, array(
+                'entry_type' => EmailSet::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'required' => false,
+                'entry_options' => array(
+                    'attr' => array(
+                        'class' => 'email-box'
+                        )
+                    ),
+                ))
 
-			->add('contactNumber', CollectionType::class, array(
-				'entry_type' => MobileNumberSet::class,
-				'allow_add' => true,
-				'allow_delete' => true,
-				'prototype' => true,
-				'by_reference' => false,
-				'required' => false,
-				'entry_options' => array(
-				 	'attr' => array('class' => 'mobile-no-box'),
-					),
-				))
+            ->add('contactNumber', CollectionType::class, array(
+                'entry_type' => MobileNumberSet::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'required' => false,
+                'entry_options' => array(
+                    'attr' => array('class' => 'mobile-no-box'),
+                    ),
+                ))
 
-			->add('interest',CollectionType::class, array(
-				'entry_type' => InterestTypeSet::class,
-				'allow_add' => true,
-				'allow_delete' => true,
-				'prototype' => true,
-				'by_reference' => false,
-				'entry_options' => array(
-					'attr' => array('class' => 'interest-box'),
-					)
-				))
+            ->add('interest',CollectionType::class, array(
+                'entry_type' => InterestTypeSet::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'entry_options' => array(
+                    'attr' => array('class' => 'interest-box'),
+                    )
+                ))
 
-			->add('graduationType',CollectionType::class, array(
-				'entry_type' => Graduation::class,
-				'allow_add' => true,
-				'allow_delete' => true,
-				'by_reference' => false,
-				'prototype' => true,
-				'required'=> false,
-				'entry_options' => array(
-					'attr' => array('class' => 'graduation-box'),
-					'required' => false,
-					)
-				))
-				->add('save', SubmitType::class,array('label'=>'submit'))
-		;	
+            ->add('graduationType',CollectionType::class, array(
+                'entry_type' => Graduation::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'required'=> false,
+                'entry_options' => array(
+                    'attr' => array('class' => 'graduation-box'),
+                    'required' => false,
+                    )
+                ))
+                ->add('save', SubmitType::class,array('label'=>'submit'))
+        ;   
     }
 
     public function configureOptions(OptionsResolver $resolver)

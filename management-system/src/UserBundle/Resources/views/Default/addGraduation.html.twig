@@ -1,14 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'UserBundle:Default:index.html.twig' %}
 {% block body %}
-<table border="2">
+<div class="display_form">
+<table class="tablesytle" align= "center">
     <tr>
         <th>Education Types</th>
         <th>Add New</th>
         <th>Action</th>                
     <tr>
         <td>
-    {% for education in educationtypes %}
-        {{ education.type }}<br/>
+    {% for graduation in graduationType %}
+        {{ graduation.type }}<br/>
     {% endfor %}
 
         {{ form_start(form) }}
@@ -17,4 +18,5 @@
         {{ form_end(form) }}
     </tr>
 </table>
+</div>
 {% endblock %}

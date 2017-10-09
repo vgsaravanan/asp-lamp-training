@@ -1,31 +1,17 @@
-
-$("#showPaginatedArea").click(function() {
-
-    var url = "http://localhost/projects/Symfony2.4/web/app_dev.php/";
-
+function changePagination(page_no, link){
+    console.log(link);
+    var url = link + '/'+ page_no;  
+    console.log(url);
     $.ajax({
         type: "POST",
-        url: url,
-        data: { "pageId" : 1 },
-        success: function(data)
-        {
-            var elem =  document.getElementById('displayResults');
-            elem.innerHTML = "";
-            elem.innerHTML = data;
-        }
-    });
-});
+        url:url,
+        data: { page : page_no },
+        success: function(response){
 
-function changePagination(pageId){
-    $.ajax({
-        type: "POST",
-        url: Routing.generate('acme_pagination_test_homepage'),
-        data: { "pageId" : pageId },
-        cache: false,
-        success: function(result){
-            var elem =  document.getElementById('displayResults');
-            elem.innerHTML = "";
-            elem.innerHTML = result;
+            var elem =  document.getElementById('page_content');
+
+           document.getElementById('page_content').innerHTML = "";
+           document.getElementById('page_content').innerHTML = response;
         }
     });
 }

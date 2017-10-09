@@ -6,16 +6,16 @@
     }
 
     function inputField()
-    {	
-    	input = document.createElement("input");
-    	input.setAttribute("type", "button");
+    { 
+      input = document.createElement("input");
+      input.setAttribute("type", "button");
       input.setAttribute("name","remove")
-    	input.setAttribute("value", "-");
-    	input.setAttribute("style", "display:inline");
+      input.setAttribute("value", "-");
+      input.setAttribute("style", "display:inline");
     }
 
- 	function addField(fieldName)
- 	{
+  function addField(fieldName)
+  {
     newLi = input = newWidget = '';
     fieldList = document.getElementById(fieldName);
     fieldCount = fieldList.children.length;
@@ -32,11 +32,11 @@
     fieldCount++;
     fieldList.appendChild(newLi);
 
- 	}
- 	function removeField(fieldName)
- 	{
+  }
+  function removeField(fieldName)
+  {
     fieldCount--;
     fieldName.parentElement.remove();
- 	}
-   	
+  }
+    
 
