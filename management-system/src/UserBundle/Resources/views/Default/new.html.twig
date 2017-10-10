@@ -13,7 +13,7 @@
             {{ message }}
         </div>
     {% endfor %}
-    {{ form_start(form, {'attr': {'id': 'form_new_user'}},{'method': 'POST'}) }}
+    {{ form_start(form, {'attr': {'id': 'form_new_user'} },{'method': 'POST'}) }}
         <table class="tablesytle" align= "center">
         <tr>
             <td>
@@ -21,11 +21,9 @@
             </td>
             <td>
                 {{ form_widget(form.firstName) }}
-                <span> 
-                    <span style = "list-style-type: none; display: inline-block;">
+                    <span class = "error_message">
                     {{ form_errors(form.firstName) }}                       
                     </span>
-                </span>
             </td>
         </tr>
         <tr>
@@ -34,7 +32,7 @@
             </td>
             <td>
                 {{ form_widget(form.lastName) }}
-                <span style = "list-style-type: none; display: inline-block;">
+                <span class = "error_message">
                     {{ form_errors(form.lastName) }} 
                 </span>
             </td>
@@ -46,7 +44,7 @@
             </td>
             <td> 
                 {{ form_widget(form.dateOfBirth) }}
-                <span style = "display: inline-block;"> 
+                <span class = "error_message"> 
                     {{ form_errors(form.dateOfBirth) }} 
                 </span> 
             </td>
@@ -59,7 +57,7 @@
                 {{ form_widget(form.gender) }} 
             </td>
             <td>
-                <span style = "display: inline-block;"> 
+                <span class = "error_message"> 
                     {{ form_errors(form.gender) }} 
                 </span>
             </td>
@@ -71,17 +69,17 @@
             <td>
                 <ul id="email-fields-list" data-prototype="{{ form_widget(form.emailId.vars.prototype)|e }}" >
                     {% for emailField in form.emailId %}
-                        <li style = 'list-style-type:none'>
+                        <li class = "list_type">
                             {{ form_widget(emailField) }}
                         </li>
-                        <span style = "display: inline-block;">
+                        <span class = "error_message">
                                 {{ form_errors(emailField) }}
                         </span>
                     {% endfor %}
                 </ul> 
             </td>
-            <td colspan = 2>  
-                <input type = "button" name = "email-field" id = "add-email-field" value = "Add" onclick = "addField('email-fields-list')" >
+            <td>  
+                <input type = "button" name = "email-field" class = "add" id = "add-email-field" value = "Add" onclick = "addField('#email-fields-list')" >
             </td>   
         </tr>
         <tr>
@@ -94,17 +92,17 @@
             <td> 
                 <ul id="mobile-fields-list" data-prototype="{{ form_widget(form.contactNumber.vars.prototype)|e }}">
                 {% for mobileField in form.contactNumber %}
-                    <li style = 'list-style-type:none'>
+                    <li class = "list_type">
                         {{ form_widget(mobileField) }}
-                        <span style = "list-style-type: none; display: inline-block;"> 
+                        <span class = "error_message"> 
                             {{ form_errors(mobileField) }} 
                         </span>
                     </li>
                 {% endfor %}
                 </ul> 
             </td>
-            <td colspan = 2> 
-                <input type = "button" name = "mobile-field" id = "add-mobileno-field" value = "Add" onclick = "addField('mobile-fields-list')">
+            <td> 
+                <input type = "button" name = "mobile-field" id = "add-mobileno-field" value = "Add" onclick = "addField('#mobile-fields-list')">
             </td>   
         </tr>
         <tr>
@@ -118,17 +116,17 @@
             <td> 
                 <ul id="interest-fields-list" data-prototype="{{ form_widget(form.interest.vars.prototype)|e }}">
                 {% for interestField in form.interest %}
-                    <li style = 'list-style-type:none'>
+                    <li class = "list_type">
                         {{ form_widget(interestField) }}
-                        <span style = "list-style-type: none; display: inline-block;"> 
+                        <span class = "error_message"> 
                             {{ form_errors(interestField) }} 
                         </span>
                     </li>
                 {% endfor %}
                 </ul> 
             </td>
-            <td colspan = 2> 
-                <input type = "button" name = "interest-field" id = "add-interest-field" value = "Add" onclick = "addField('interest-fields-list')" >
+            <td> 
+                <input type = "button" name = "interest-field" id = "add-interest-field" value = "Add" onclick = "addField('#interest-fields-list')" >
             </td>   
         </tr>
 
@@ -139,17 +137,17 @@
             <td> 
                 <ul id="graduation-fields-list" data-prototype="{{ form_widget(form.graduationType.vars.prototype)|e }}">
                 {% for graduationField in form.graduationType %}
-                    <li style = 'list-style-type:none'>
+                    <li class = "list_type">
                         {{ form_widget(graduationField) }}
-                        <span style = "list-style-type: none; display: inline-block;"> 
+                        <span class = "error_message"> 
                             {{ form_errors(graduationField) }} 
                         </span>
                     </li>
                 {% endfor %}
                 </ul> 
             </td>
-            <td colspan = 2 align='center'> 
-                <input type = "button" name = "graduation-field" id = "add-graduation-field" value = "Add" onclick = "addField('graduation-fields-list' )" >
+            <td align='center'> 
+                <input type = "button" name = "graduation-field" id = "add-graduation-field" value = "Add" onclick = "addField('#graduation-fields-list' )" >
             </td>   
         </tr>
 
@@ -159,14 +157,14 @@
             </td>
             <td> 
                 {{ form_widget(form.bloodGroup) }} 
-                <span style = "list-style-type: none; display: inline-block;"> 
+                <span class = "error_message"> 
                     {{ form_errors(form.bloodGroup) }}
                 </span> 
             </td>
         </tr>
 
         <tr>
-            <td colspan = 2 align='center'>
+            <td colspan = '2' align='center'>
                 {{ form_widget(form.save, {'label': 'Save'}) }}
             </td>
         </tr>

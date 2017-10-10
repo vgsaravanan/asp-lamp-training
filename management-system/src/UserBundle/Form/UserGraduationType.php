@@ -8,9 +8,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+* class UserGraduationType to create Graduation Fields 
+*
+*/
 
 class UserGraduationType extends AbstractType
 {
+    /**
+    * Function to build form with TextType
+    * 
+    * @param object $builder
+    *
+    * @param array $options
+    *
+    */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

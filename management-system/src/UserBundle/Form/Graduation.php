@@ -9,8 +9,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
+/**
+* class Graduation to create Graduation Fields 
+*
+*/
+ 
 class Graduation extends AbstractType
 {
+    /**
+    * Function to build form with ChoiceType
+    * 
+    * @param object $builder
+    *
+    * @param array $options
+    *
+    */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
         $builder
@@ -20,9 +34,8 @@ class Graduation extends AbstractType
                 'label' => false,
                 'attr'=> array("class"=>"graduation-type"),
                 'required' => false,
-                ))
+            ))
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

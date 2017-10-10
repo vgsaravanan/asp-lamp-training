@@ -14,10 +14,22 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 
+/**
+* class NewUser to create UserDetails 
+*
+*/
 
 class NewUser extends AbstractType
 {
 
+    /**
+    * Function to build a complete form
+    * 
+    * @param object $builder
+    *
+    * @param array $options
+    *
+    */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
         $builder
@@ -37,7 +49,7 @@ class NewUser extends AbstractType
                 'choice_label' => "gender",
                 'multiple' => false,
                 'expanded' => true,             
-                'required'=>false,
+                // 'required'=>false,
                 'attr'=>array("class"=>"gender-type")     
                 ))
 

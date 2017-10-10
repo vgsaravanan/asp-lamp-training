@@ -24,9 +24,43 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+/**
+* class UserController to control Action 
+*
+*/
 
 class UserController extends Controller
 {
+    /**
+    * Function to perform login Action
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
+     
+    public function loginAction(Request $request)
+    {   
+        $authUtils = $this->get('security.authentication_utils');
+        $error = $authUtils->getLastAuthenticationError();
+
+        $lastUsername = $authUtils->getLastUsername();
+
+        return $this->render('UserBundle:Default:login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+    }
+    /**
+    * Function to add new user 
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
+    
     public function newAction(Request $request)
     {
         $newUser = new UserDetail();
@@ -54,6 +88,13 @@ class UserController extends Controller
             ));
     }
 
+    /**
+    * Function to list all user
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function listAction(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -66,6 +107,13 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:listuser.html.twig', array('max' => $total_page,"results"=>$userlist, "current" => 1));
     }
 
+    /**
+    * Function to display users
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function displayAction(Request $request)
     {
         $page = $request->get('page');
@@ -80,6 +128,13 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:displayType.html.twig', array('results' => $userlist, "current"=> $page));
     }
 
+    /**
+    * Function to view user details
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function viewAction(Request $request)
     {
 
@@ -92,6 +147,13 @@ class UserController extends Controller
         return $this->render('UserBundle:Default:viewuser.html.twig', array('results' => $user));
     }
 
+    /**
+    * Function to Manipulate User Details
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function editAction(Request $request)
     {
         $id = $request->get('id');
@@ -118,6 +180,13 @@ class UserController extends Controller
             ));
     }   
 
+    /**
+    * Function to perform Admin action 
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
      public function adminAction(Request $request)
     {
         $user = new UserDetail();
@@ -131,7 +200,13 @@ class UserController extends Controller
         ));
     }
         
-    
+    /**
+    * Function to Manipulate InterestType
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function addInterestAction(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -159,6 +234,13 @@ class UserController extends Controller
         
     }
     
+    /**
+    * Function to Manipulate GraduationType
+    * 
+    * @param object $request
+    *
+    * @return {array} 
+    */
     public function addGraduationAction(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();

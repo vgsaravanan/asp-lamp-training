@@ -1,42 +1,71 @@
-    var newLi, input, newWidget,fieldName,fieldId, fieldList, fieldCount ;
-    function createField()
-    {
-      newLi = document.createElement('li');
-      newLi.setAttribute('style','list-style-type:none');
-    }
+var $newLi, $input, $newWidget,$fieldName,$fieldId, $fieldList, $fieldCount ;
 
-    function inputField()
-    { 
-      input = document.createElement("input");
-      input.setAttribute("type", "button");
-      input.setAttribute("name","remove")
-      input.setAttribute("value", "-");
-      input.setAttribute("style", "display:inline");
-    }
+/**
+* Function to Create new <li> Element
+* 
+* return string newLi
+*/
+function createField()
+{
+  newLi = $("<li>", {
+    class: "list_type"
+  });
+  return newLi;
+}
 
-  function addField(fieldName)
-  {
-    newLi = input = newWidget = '';
-    fieldList = document.getElementById(fieldName);
-    fieldCount = fieldList.children.length;
-    newWidget = fieldList.getAttribute('data-prototype');
-    newWidget = newWidget.replace(/__name__/g, fieldCount);
-    createField();
-    newLi.innerHTML = newWidget;
-    if(fieldCount) {
-      inputField();
-      input.setAttribute("id", fieldId);
-      input.setAttribute("onclick", "removeField(this)");
-      newLi.appendChild(input);
-    }
-    fieldCount++;
-    fieldList.appendChild(newLi);
+/**
+* Function to Create new <input> Element
+* 
+* return string input
+*/
+function inputField()
+{ 
+  input = $("<input>",{
+    type:'button', 
+    name: "remove", 
+    value: 'Remove', 
+    class: "removefield", 
+    onclick:"removeField(this)",
+    style: "display: inline" 
+    });
+  return input;
+}
 
+/**
+* Function to remove input field
+* 
+* @param string fieldName
+*
+* return {null}
+*/
+
+function removeField(fieldName)
+{
+  fieldCount--;
+  fieldName.parentElement.remove();
+}
+  
+/**
+* Function to add input field
+* 
+* @param string fieldName
+*
+* return {null}
+*/
+function addField(fieldName)
+{
+  newLi = input = newWidget = '';
+  fieldList = $(fieldName);
+  fieldCount = $(fieldList).children().length;
+  newWidget = fieldList.attr('data-prototype');
+  console.log(newWidget);
+  newWidget = newWidget.replace(/__name__/g, fieldCount);
+  if(fieldCount) {
+    input = inputField().html(input);
+    newLi = createField().html(newWidget);
+    newLi.appendTo(newWidget);
+    input.appendTo(newLi);
   }
-  function removeField(fieldName)
-  {
-    fieldCount--;
-    fieldName.parentElement.remove();
-  }
-    
-
+  newLi.appendTo(fieldList);
+  fieldCount++;
+}

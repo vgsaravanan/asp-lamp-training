@@ -6,11 +6,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+/**
+* class InterestTypeSet to create Interest Fields 
+*
+*/
 
 class InterestTypeSet extends AbstractType
 {
+
+    /**
+    * Function to build form with ChoiceType
+    * 
+    * @param object $builder
+    *
+    * @param array $options
+    *
+    */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
         

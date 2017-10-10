@@ -35,3 +35,7 @@ view_user:
   defaults: { _controller: UserBundle:User:view}
   requirements:
     id: '\d+'
+
+login:
+    path: /login
+    defaults: { _controller:  UserBundle:User:login }

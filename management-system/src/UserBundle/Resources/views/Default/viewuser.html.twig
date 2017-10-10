@@ -43,8 +43,8 @@
     </th>
     <td>
         {% for items in results.getEmailId %}
-            <ul style = "list-style-type:none">
-                <li style = "display:block"> {{ items.getEmailId }} </li>
+            <ul>
+                <li class="list_type"> {{ items.getEmailId }} </li>
             </ul>
         {% endfor %}
     </td>
@@ -56,8 +56,8 @@
     </th>
     <td>
         {% for items in results.getContactNumber %}
-            <ul style = "list-style-type:none">
-                <li style = "display:block"> {{ items.getContactNumber }} </li>
+            <ul>
+                <li class="list_type"> {{ items.getContactNumber }} </li>
             </ul>
         {% endfor %}
     </td>
@@ -69,8 +69,8 @@
         </th>
     <td>
             {% for items in results.getInterest %}
-                <ul style = "list-style-type:none">
-                    <li style = "display:block"> {{ items.getInterest }} </li>
+                <ul>
+                    <li class="list_type"> {{ items.getInterest }} </li>
                 </ul>
             {% endfor %}
         </td>
@@ -82,8 +82,8 @@
     </th>
     <td>
         {% for items in results.getGraduationType %}
-            <ul style = "list-style-type:none">
-                <li style = "display:block"> {{ items.getGraduation }} </li>
+            <ul>
+                <li class="list_type"> {{ items.getGraduation }} </li>
             </ul>
         {% endfor %}
     </td>

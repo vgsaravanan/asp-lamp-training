@@ -39,7 +39,6 @@ body {
 }
 
 .headerlink a,p {
-    /*float: left;*/
     margin: 0 auto;
     margin-top: auto;
     color: navy;
@@ -77,6 +76,7 @@ ul.navbar li a:hover:not(.active) {
 }
 .main {
     margin-top:  200px;
+    text-align: center;
 }
 .userDiv {
     color:darkcyan; 
