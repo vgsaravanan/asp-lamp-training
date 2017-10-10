@@ -1,6 +1,13 @@
-{% extends 'UserBundle:Default:index.html.twig' %}
+{% extends 'UserBundle:Default:header.html.twig' %}
 {% block body %}
 <div class="display_form">
+
+{% for message in app.flashes('success') %}
+        <div class="flash-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
 {{ form_start(form, { 'attr' : { 'novalidate' : 'novalidate' }}) }}
 <table class="tablesytle" align= "center">
     <tr>

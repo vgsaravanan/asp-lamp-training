@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}User Management System{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets '@UserBundle/Resources/public/css/*' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <div>
+            <div class="header">
+                    {% image '@UserBundle/Resources/public/image/*' %}
+                    <img src="{{ asset_url }}" alt="Management System" />
+                    {% endimage %}
+                    <h1 class="headerlink" id="head">
+                        <a href="{{ path('list_user') }}">USER MANAGEMENT SYSTEM</a>
+                        <div class="userDiv">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            Welcome {{ app.user.username }} 
+                        {% endif %}
+                        <?php
+                            echo "Welcome!"; 
+                        ?>
+                        </div>
+                    </h1>
+            </div>
+
+            <div class="navigation">
+                    <ul class="navbar">
+                        <li><a href="{{ path('list_user') }}">Home</a></li>
+                        <li><a href="{{ path('new_user') }}">New User</a></li>
+                        <li><a href="{{ path('list_user') }}">List User</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin') }}">Admin</a></li>
+                        {% endif %}
+                        <li style="float: right;"><a href="{{ path('logout') }}">Log out</a></li>   
+                     </ul>
+            </div>
+        </div>
+        <div id="block_content">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

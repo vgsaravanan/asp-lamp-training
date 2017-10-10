@@ -1,4 +1,4 @@
-{% extends 'UserBundle:Default:index.html.twig' %}
+{% extends 'UserBundle:Default:header.html.twig' %}
 {% block body %}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -13,6 +13,8 @@
             {{ message }}
         </div>
     {% endfor %}
+
+
     {{ form_start(form, {'attr': {'id': 'form_new_user'} },{'method': 'POST'}) }}
         <table class="tablesytle" align= "center">
         <tr>

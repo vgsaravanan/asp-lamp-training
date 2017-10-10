@@ -1,0 +1,22 @@
+UserBundle\Entity\Login:
+    type: entity
+    table: null
+    repositoryClass: UserBundle\Repository\LoginRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: '255'
+            unique: true
+        password:
+            type: string
+            length: '255'
+            unique: true
+        isActive:
+            type: boolean
+    lifecycleCallbacks: {  }

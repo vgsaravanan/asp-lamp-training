@@ -2,10 +2,6 @@ new_user:
   path: /new
   defaults: { _controller: UserBundle:User:new}
 
-admin:
-  path: /admin
-  defaults: { _controller: UserBundle:User:admin}
-
 interest:
   path: /admin/interest
   defaults: { _controller: UserBundle:User:addInterest}
@@ -36,6 +32,17 @@ view_user:
   requirements:
     id: '\d+'
 
+admin:
+  path: /admin
+  defaults: { _controller: UserBundle:Admin:admin}
+
 login:
-    path: /login
-    defaults: { _controller:  UserBundle:User:login }
+  path: /login
+  defaults: { _controller:  UserBundle:Security:login }
+
+login_check:
+  path: /login_check
+
+logout:
+  path: /logout
+

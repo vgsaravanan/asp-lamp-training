@@ -33,26 +33,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends Controller
 {
-    /**
-    * Function to perform login Action
-    * 
-    * @param object $request
-    *
-    * @return {array} 
-    */
-     
-    public function loginAction(Request $request)
-    {   
-        $authUtils = $this->get('security.authentication_utils');
-        $error = $authUtils->getLastAuthenticationError();
-
-        $lastUsername = $authUtils->getLastUsername();
-
-        return $this->render('UserBundle:Default:login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
-    }
+    
     /**
     * Function to add new user 
     * 
@@ -179,91 +160,4 @@ class UserController extends Controller
         return $this->render("UserBundle:Default:new.html.twig", array('form'=> $form->createView(),
             ));
     }   
-
-    /**
-    * Function to perform Admin action 
-    * 
-    * @param object $request
-    *
-    * @return {array} 
-    */
-     public function adminAction(Request $request)
-    {
-        $user = new UserDetail();
-        $user->addInterest(new InterestType());
-        $user->addGraduationType(new UserGraduation());
-        
-        $form = $this->createForm(NewUser::class, $user);
-        $form->handleRequest($request);
-        return $this->render('UserBundle:Default:admin.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-        
-    /**
-    * Function to Manipulate InterestType
-    * 
-    * @param object $request
-    *
-    * @return {array} 
-    */
-    public function addInterestAction(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository('UserBundle:AreaOfInterest');
-        $interests = $repository->findAll();
-        
-        $interest = new AreaOfInterest();
-        $form = $this->createForm(UserInterestType::class, $interest);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $interest = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($interest);
-            $entityManager->flush();
-            $this->addFlash(
-                'success',
-                'Changes Applied Successfully!'
-                );
-            return $this->redirectToRoute('admin');
-        }
-        return $this->render('UserBundle:Default:addInterest.html.twig', array(
-            'interests' => $interests,
-            'form' => $form->createView(),
-        ));
-        
-    }
-    
-    /**
-    * Function to Manipulate GraduationType
-    * 
-    * @param object $request
-    *
-    * @return {array} 
-    */
-    public function addGraduationAction(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $repository = $entityManager->getRepository('UserBundle:GraduationType');
-        $graduationType = $repository->findAll();
-        
-        $education = new GraduationType();
-        $form = $this->createForm(UserGraduationType::class, $education);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $education = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($education);
-            $entityManager->flush();
-            $this->addFlash(
-                'success',
-                'Changes Applied Successfully!'
-                );
-            return $this->redirectToRoute('admin');
-        }
-        return $this->render('UserBundle:Default:addGraduation.html.twig', array(
-            'graduationType' => $graduationType,
-            'form' => $form->createView(),
-        ));   
-    }
 }

@@ -1,42 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}User Management System{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets '@UserBundle/Resources/public/css/*' %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
+<head>
+    <title>{% block title %}User Management System{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets '@UserBundle/Resources/public/css/*' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
-{% endblock %}
-    </head>
-    <body>
-        <div>
-            <div class="header">
-                    {% image '@UserBundle/Resources/public/image/*' %}
+    {% endblock %}
+    {% image '@UserBundle/Resources/public/image/*' %}
                     <img src="{{ asset_url }}" alt="Management System" />
                     {% endimage %}
-                    <h1 class="headerlink" id="head">
-                        <a href="{{ path('list_user') }}">USER MANAGEMENT SYSTEM</a>
-                        <div class="userDiv">
-                        <?php
-                            echo "Welcome!"; 
-                        ?>
-                        </div>
-                    </h1>
-            </div>
+   <!--  <link ref = "icon" href = "index.png">
+    <script type="text/javascript" src = "/LMS/lender/js/index.js"></script>
+    <link rel="shortcut icon" href="/LMS/images/images.ico"/>
+    <link rel="stylesheet" type="text/css" href="/LMS/librarian/css/index.css"> -->
+</head>
+<body>
+<div>
+    <div class = 'top'>    
+        <div class = 'header'>
+            <h1>
+                 <a href="{{ path('login') }}">USER MANAGEMENT SYSTEM</a>
+            </h1>
+        </div>        
+    </div>
 
-            <div class="navigation">
-                    <ul class="navbar">
-                        <li><a href="{{ path('list_user') }}">Home</a></li>
-                        <li><a href="{{ path('new_user') }}">New User</a></li>
-                        <li><a href="{{ path('list_user') }}">List User</a></li>
-                        <li><a href="{{ path('admin') }}">Admin</a></li>
-                        <li style="float: right;"><a href="#">Log out</a></li>   
-                     </ul>
+    <div class = 'content'>
+        <div class = 'main'>
+            <div id = 'register'>
+                <div id="messageSection">
+                    <small>
+<?php 
+/*if (isset($_SESSION['message'])) {
+    echo '*'.$_SESSION['message'];
+    unset($_SESSION['message']); 
+}*/
+?>
+                    </small>
+                </div>
+                <form name = 'login_form' action = 'login.php' method = 'post'>
+                <table>
+                <tr>
+                    <th><div>Admin Login</div></th>
+                </tr>
+                <tr>
+                <td>
+                    <input placeholder="Email" title = "Enter valid Email-Id" type = 'email' name = 'email' id = 'email' required="true">
+                </td>
+                <div class = "loginError">
+                    <small>
+                        <?php 
+if (isset($_SESSION['errorEmail'])) { 
+    echo '*'.$_SESSION['errorEmail'];
+    unset($_SESSION['errorEmail']);
+} 
+                        ?>
+                    </small>
+                </div>
+                </tr>
+                
+                <tr>
+                <td>
+                    <input placeholder="Password" title = "Password must contain number,letters, @ and 5 to 10 characters long" type = 'password' name = 'password' id = 'password' pattern="[0-9a-zA-Z@]{5,10}" minlength="5" maxlength="10" required="true"></td>
+                <td>
+                <div class = "loginError">
+                    <small>
+                        <?php 
+if (isset($_SESSION['errorPassword'])) { 
+    echo '*'.$_SESSION['errorPassword']; 
+    unset($_SESSION['errorPassword']);
+} 
+                        ?>
+                    </small>
+                </div>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = 'submit' id = 'login' name = 'login' value = 'Login'>
+                        <input type = 'reset' id = 'reset' name = 'reset' value = 'Reset'>
+                    </td>
+                </tr>
+                </table>
+                </form>
             </div>
-        </div>
-        <div id="block_content">
-            {% block body %}{% endblock %}
-        </div>
-    </body>
+        </div>    
+    </div>        
+</div>    
+</body>
 </html>
