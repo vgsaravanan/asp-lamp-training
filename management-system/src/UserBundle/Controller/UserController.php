@@ -25,6 +25,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
 * class UserController to control Action 
@@ -55,7 +57,20 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $form->getData();            
+            $task = $form->getData();     
+            $file = $newUser->getImage();
+
+            $fileName = md5(uniqid()).".".$file->guessExtension();
+            $file->move(
+                $this->getParameter('brochures_directory'), 
+                $fileName
+                );
+            $newUser->setImage($fileName);  
+
+            /*$newUser->setImage(
+                new File($this->getParameter("brochures_directory").$newUser->getImage())
+            ); */
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);
             $em->flush();
@@ -141,6 +156,7 @@ class UserController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
         $fetch = $repository->find($id);
+
         if (!$fetch) {
             throw $this->createNotFoundException("Unable to fetch Details");
         }
@@ -150,6 +166,27 @@ class UserController extends Controller
             $entityManager = $this->getDoctrine()->getManager();
             $repository = $entityManager->getRepository("UserBundle:UserDetail");
             $fetch = $form->getData();
+         /*   $file = $user->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('brochures_directory'),
+                $fileName
+                );*/
+            // $user->setImage($fileName);  
+            $user = new UserDetail(); 
+           /* $file = $user->getImage();
+            dump($file);
+            die();    */
+            /*$user->setImage(
+                new File($this->getParameter("brochures_directory").'/'.$user->getImage())
+            );*/
+
+            $fileName = md5(uniqid()).".".$file->guessExtension();
+            $file->move(
+                $this->getParameter('brochures_directory'), 
+                $fileName
+                );
+            $newUser->setImage($fileName);  
             $entityManager->flush();
             $this->addFlash(
                 'success',

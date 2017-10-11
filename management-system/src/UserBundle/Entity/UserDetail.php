@@ -56,6 +56,21 @@ class UserDetail
      * @var \UserBundle\Entity\BloodGroup
      */
     private $bloodGroup;
+    private $image;
+
+    public function getImage()
+    {
+        /*dump($this->image);*/
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image=$image;
+        // dump($this->image);
+        // die();
+        return $this;
+    }
 
     /**
      * Constructor

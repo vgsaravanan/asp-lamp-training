@@ -43,11 +43,13 @@ security:
                 check_path: login
                 default_target_path: list_user
                 failure_path: login
+                remember_me: false
                 # always_use_default_target_path: true 
 
             logout:
                 path: /user/logout
                 target: /user
+                invalidate_session: true
         # secured_area:
         #     pattern:    ^/
         #     anonymous: ~

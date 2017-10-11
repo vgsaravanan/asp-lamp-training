@@ -41,7 +41,12 @@
             </div>
         </div>
         <div id="block_content">
-            {% block body %}{% endblock %}
+        <?php
+            echo "adadfa";
+        ?>
+            {% if app.user.username %}
+                 {% block body %}{% endblock %} 
+            {% endif %}
         </div>
     </body>
 </html>

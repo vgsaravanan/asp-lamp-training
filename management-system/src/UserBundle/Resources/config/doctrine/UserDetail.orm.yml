@@ -37,6 +37,10 @@ UserBundle\Entity\UserDetail:
             type: date
             nullable: false
             column: date_of_birth
+        image:
+            type: string
+            nullable: false
+            mimeTypes: image/jpeg
     manyToOne:
         gender:
             targetEntity: Gender

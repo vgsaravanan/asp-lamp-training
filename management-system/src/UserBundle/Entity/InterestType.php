@@ -2,10 +2,12 @@
 
 namespace UserBundle\Entity;
 
+
+
 /**
  * InterestType
  */
-class InterestType
+class InterestType 
 {
     /**
      * @var integer

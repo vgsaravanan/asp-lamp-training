@@ -6,6 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -110,6 +111,12 @@ class NewUser extends AbstractType
                     )
                 ))
                 ->add('save', SubmitType::class,array('label'=>'submit'))
+                ->add('image', FileType::class, array(
+                    'data_class' => null,
+                    'label'=> "Profile Pic",
+                    'property_path' => 'image',
+                    "required"=> false
+                    ))
         ;   
     }
 

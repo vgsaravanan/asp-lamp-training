@@ -51,6 +51,17 @@
                 </span> 
             </td>
         </tr>
+        {% if ( "{{ path('new_user') }}")  %}
+        <tr>
+            <td> 
+                <b>{{ form_label(form.image,'Profile Pic') }} </b>
+            </td>
+            <td> 
+                {{ form_widget(form.image) }} 
+               
+            </td>
+        </tr>
+        {% endif %}
         <tr>
             <td> 
                 <b>{{ form_label(form.gender, 'Gender') }}</b>
@@ -84,9 +95,7 @@
                 <input type = "button" name = "email-field" class = "add" id = "add-email-field" value = "Add" onclick = "addField('#email-fields-list')" >
             </td>   
         </tr>
-        <tr>
 
-        </tr>
         <tr>
             <td> 
                 <b>{{ form_label(form.contactNumber,'Mobile Number') }} </b>

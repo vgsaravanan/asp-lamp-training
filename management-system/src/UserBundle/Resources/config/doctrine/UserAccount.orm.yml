@@ -1,7 +1,7 @@
-UserBundle\Entity\Login:
+UserBundle\Entity\UserAccount:
     type: entity
-    table: null
-    repositoryClass: UserBundle\Repository\LoginRepository
+    table: user_account
+    repositoryClass: UserBundle\Repository\UserAccountRepository
     id:
         id:
             type: integer

@@ -5,21 +5,14 @@
 <table class="tablesytle" align= "center">
 <tr>
     <th>
-        First Name
+     <img src="{{ asset('uploads/brochures/' ~ results.image) }}" width = '70px' style = "float:right; border-radius: 50%;"  />
     </th>
-
-    <td>
+    <th> 
         {{ results.getFirstName }}
-    </td>
-</tr>
-<tr>
-    <th>
-        Last NAME
-    </th>
-    <td>
         {{ results.getLastName }}
-    </td>
-</tr>   
+    </th>
+</tr>
+
 <tr>
     <th>
         BLOOD GROUP

@@ -2,15 +2,10 @@
 
 namespace UserBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Role\RoleInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-
-
 /**
- * Login
+ * UserAccount
  */
-class Login implements UserInterface, \Serializable
+class UserAccount
 {
     /**
      * @var int
@@ -40,17 +35,35 @@ class Login implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
-        // $this->roles = array();
-        // $this->roles = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
 
-     public function getSalt()
+    public function eraseCredentials()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
 
@@ -69,7 +82,7 @@ class Login implements UserInterface, \Serializable
      *
      * @param string $username
      *
-     * @return Login
+     * @return UserAccount
      */
     public function setUsername($username)
     {
@@ -93,7 +106,7 @@ class Login implements UserInterface, \Serializable
      *
      * @param string $password
      *
-     * @return Login
+     * @return UserAccount
      */
     public function setPassword($password)
     {
@@ -117,7 +130,7 @@ class Login implements UserInterface, \Serializable
      *
      * @param boolean $isActive
      *
-     * @return Login
+     * @return UserAccount
      */
     public function setIsActive($isActive)
     {
@@ -157,36 +170,7 @@ class Login implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        /*dump($this->roles);
-         die();*/
-        return (array)$this->roles;
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);
+        return $this->roles;
     }
 }
 
