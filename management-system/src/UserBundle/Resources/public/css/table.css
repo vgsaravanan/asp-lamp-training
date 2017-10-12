@@ -1,5 +1,6 @@
 .tablesytle table {
     border-collapse: collapse;
+    overflow-x:auto;
     width: 100%;
 }
 .tablesytle th, td {

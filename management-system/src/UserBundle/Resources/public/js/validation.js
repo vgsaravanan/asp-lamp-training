@@ -11,44 +11,44 @@ $(document).ready(function() {
         $("#form_new_user").validate({
 
             rules: {
-                'new_user[firstName]': {
+                'user[firstName]': {
                 required: true,
                 maxlength: 20,
                 regex: /^[a-z A-Z]+$/ 
                 },
-                'new_user[lastName]': {
+                'user[lastName]': {
                     required: true,
                     maxlength: 20,
                     regex: /^[a-z A-Z]+$/ 
                 },
-                'new_user[gender]': {
+                'user[dateOfBirth]': {
                     required: true,
                 },
-                'new_user[dateOfBirth]': {
+                'user[gender]': {
                     required: true,
                 },
-                'new_user[bloodGroup]': {
+                'user[bloodGroup]': {
                     required: true,
                     maxlength: 12,
                 }
             },
             messages: {
 
-                '{{ form.firstName.vars.full_name }}': {
+                'user[firstName]': {
                     required: " FirstName should not be empty",
                     maxlength: " Name must not exceed 20 charachters"
                 },
-                '{{ form.lastName.vars.full_name }}': {
+                'user[lastName]': {
                     required: " LastName should not be empty",
                     maxlength: " Name must not exceed 20 charachters"
                 },
-                '{{ form.gender.vars.full_name}}': {
+                'user[gender]': {
                     required: " Please select gender",
                 },
-                '{{ form.dateOfBirth.vars.full_name}}': {
+                'user[dateOfBirth]': {
                     required: " Please provide date of birth",
                 },
-                '{{ form.bloodGroup.vars.full_name}}': {
+                'user[bloodGroup]': {
                     required : " Please select bloodgroup"
                 }
             },  
