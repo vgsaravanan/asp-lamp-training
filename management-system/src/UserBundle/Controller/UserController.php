@@ -9,21 +9,21 @@ use UserBundle\Entity\UserGraduation;
 use UserBundle\Entity\InterestType;
 use UserBundle\Entity\AreaOfInterest;
 use UserBundle\Entity\GraduationType;
-use UserBundle\Form\NewUser;
+use UserBundle\Form\UserType;
 use UserBundle\Form\UserInterestType;
 use UserBundle\Form\UserGraduationType;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+// use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+/*use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;*/
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -35,6 +35,16 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class UserController extends Controller
 {
+    private $limit;
+    private $offset;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->limit = 0;
+        $this->offset = 0;
+    }
     
     /**
     * Function to add new user 
@@ -52,15 +62,17 @@ class UserController extends Controller
         $newUser->addInterest(new InterestType());
         $newUser->addGraduationType(new UserGraduation());
 
-        $form = $this->createForm(NewUser::class,$newUser);
+        $form = $this->createForm(UserType::class,$newUser);
         
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $form->getData();     
+            $newUser = $form->getData();     
             $file = $newUser->getImage();
 
-            $fileName = md5(uniqid()).".".$file->guessExtension();
+            
+            $fileName = md5(uniqid(mt_rand(), true));
+            $fileName = $fileName.".".$file->guessExtension();
             $file->move(
                 $this->getParameter('brochures_directory'), 
                 $fileName
@@ -96,11 +108,18 @@ class UserController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
         $user = $repository->findAll();
-        $limit = 5;
-        $offset = 0;
-        $userlist = $repository->findBy(array(),array(), $limit, $offset);
-        $total_page = ceil(count($user)/$limit);
-        return $this->render('UserBundle:Default:listuser.html.twig', array('max' => $total_page,"results"=>$userlist, "current" => 1));
+        $this->limit = $this->container->getParameter('limit');
+        $userlist = $repository->findBy(
+            array(),
+            array(),
+            $this->limit,
+            $this->offset
+            );
+        $total_page = ceil(count($user)/$this->limit);
+        return $this->render('UserBundle:Default:listuser.html.twig', array('max' => $total_page,
+            "results"=>$userlist, 
+            "current" => 1
+            ));
     }
 
     /**
@@ -116,10 +135,9 @@ class UserController extends Controller
         dump($page);
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
-        $limit = 5;
-        $offset = ($page-1)*$limit;
-        dump($offset);
-        $userlist = $repository->findBy(array(),array(), $limit, $offset);
+        $this->limit = $this->container->getParameter('limit');
+        $this->offset = ($page-1)*$this->limit;
+        $userlist = $repository->findBy(array(),array(), $this->limit, $this->offset);
 
         return $this->render('UserBundle:Default:displayType.html.twig', array('results' => $userlist, "current"=> $page));
     }
@@ -155,25 +173,26 @@ class UserController extends Controller
         $id = $request->get('id');
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
-        $fetch = $repository->find($id);
+        $user = $repository->find($id);
 
-        if (!$fetch) {
+        if (!$user) {
             throw $this->createNotFoundException("Unable to fetch Details");
         }
-        $form = $this->createForm(NewUser::class, $fetch);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $repository = $entityManager->getRepository("UserBundle:UserDetail");
-            $fetch = $form->getData();
+            $user = new UserDetail();
+            $user = $form->getData();
+            $file = $user->getImage();
          /*   $file = $user->getImage();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move(
                 $this->getParameter('brochures_directory'),
                 $fileName
                 );*/
-            // $user->setImage($fileName);  
-            $user = new UserDetail(); 
+            // $user->setImage($fileName);   
            /* $file = $user->getImage();
             dump($file);
             die();    */
@@ -181,12 +200,13 @@ class UserController extends Controller
                 new File($this->getParameter("brochures_directory").'/'.$user->getImage())
             );*/
 
-            $fileName = md5(uniqid()).".".$file->guessExtension();
+            $fileName = md5(uniqid(mt_rand(), true));
+            $fileName = $fileName.".".$file->guessExtension();
             $file->move(
                 $this->getParameter('brochures_directory'), 
                 $fileName
                 );
-            $newUser->setImage($fileName);  
+            $user->setImage($fileName);  
             $entityManager->flush();
             $this->addFlash(
                 'success',
@@ -194,7 +214,8 @@ class UserController extends Controller
                 );
             return $this->redirectToRoute('new_user');
         }
-        return $this->render("UserBundle:Default:new.html.twig", array('form'=> $form->createView(),
+        return $this->render("UserBundle:Default:new.html.twig", array(
+            'form'=> $form->createView(),
             ));
     }   
 }

@@ -9,6 +9,8 @@ imports:
 parameters:
     locale: en
     brochures_directory: '%kernel.project_dir%/web/uploads/brochures'
+    limit: 5;
+    
 
 framework:
     #esi: ~

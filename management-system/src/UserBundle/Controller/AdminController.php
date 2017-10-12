@@ -9,7 +9,7 @@ use UserBundle\Entity\UserGraduation;
 use UserBundle\Entity\InterestType;
 use UserBundle\Entity\AreaOfInterest;
 use UserBundle\Entity\GraduationType;
-use UserBundle\Form\NewUser;
+use UserBundle\Form\UserType;
 use UserBundle\Form\UserInterestType;
 use UserBundle\Form\UserGraduationType;
 // use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -47,7 +47,7 @@ class AdminController extends Controller
         $user->addInterest(new InterestType());
         $user->addGraduationType(new UserGraduation());
         
-        $form = $this->createForm(NewUser::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         return $this->render('UserBundle:Default:admin.html.twig', array(
             'form' => $form->createView(),
