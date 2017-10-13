@@ -27,7 +27,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;*/
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\File\File;
 
-
 /**
 * class UserController to control Action 
 *
@@ -56,6 +55,11 @@ class UserController extends Controller
     
     public function newAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        $session = $request->getSession();
         $newUser = new UserDetail();
         $newUser->addEmailId(new UserEmail());
         $newUser->addContactNumber(new UserContact());
@@ -105,6 +109,9 @@ class UserController extends Controller
     */
     public function listAction(Request $request)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository("UserBundle:UserDetail");
         $user = $repository->findAll();
@@ -151,7 +158,9 @@ class UserController extends Controller
     */
     public function viewAction(Request $request)
     {
-
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
         $id = $request->get('id');
         $repository = $this->getDoctrine()->getRepository(UserDetail::class);
         $user = $repository->find($id);
@@ -212,7 +221,7 @@ class UserController extends Controller
                 'success',
                 'Changes Applied Successfully!'
                 );
-            return $this->redirectToRoute('new_user');
+            return $this->redirectToRoute('view_user');
         }
         return $this->render("UserBundle:Default:new.html.twig", array(
             'form'=> $form->createView(),

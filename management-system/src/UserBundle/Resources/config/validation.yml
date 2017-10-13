@@ -37,7 +37,11 @@ UserBundle\Entity\UserDetail:
       # - Choice: { callback: getBloodGroup }
     graduationType:
       - NotBlank: {message: "Please provide your graduation detail"}
-
+    image:
+      - Image:
+        # allowLandscape: false
+        # allowPortrait: false
+          mimeTypesMessage: Please upload a Image
 UserBundle\Entity\UserEmail:
   constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: emailId
@@ -58,7 +62,18 @@ UserBundle\Entity\UserContact:
           message: Please Provide valid number
       - Length:
           max: 13
-
+# UserBundle\Entity\InterestType:
+#   constraints:
+#         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: interest
+#   properties:
+#     interest:
+#       - NotBlank: {message: "Please provide your Interest"}
+UserBundle\Entity\UserGraduation:
+  constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: graduation
+  properties:
+    graduation:
+      - NotBlank: {message: "Please provide your graduation"}
 # UserBundle\Entity\InterestType:
 #   properties:
 #     interest:

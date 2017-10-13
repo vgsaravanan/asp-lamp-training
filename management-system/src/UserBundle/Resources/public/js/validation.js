@@ -88,9 +88,11 @@ $(document).ready(function() {
             },
             "interest-type": {
                 required: true,
+                unique: "interest-type"
             },
             "graduation-type": {
                 required: true,
+                unique: "graduation-type"
             },
         });
 });

@@ -4,12 +4,12 @@
 <div class="display_form">
 <table class="tablesytle" align= "center">
 <tr>
-    <th>
-     <img src="{{ asset('uploads/brochures/' ~ results.image) }}" width = '70px' style = "float:right; border-radius: 50%;"  />
-    </th>
-    <th> 
+    <th colspan="2" align = "center">
+    <img src="{{ asset('uploads/brochures/' ~ results.image) }}" width = '70px' style = "float:left; border-radius: 50%;"  />
+    <span>
         {{ results.getFirstName }}
         {{ results.getLastName }}
+    </span>
     </th>
 </tr>
 

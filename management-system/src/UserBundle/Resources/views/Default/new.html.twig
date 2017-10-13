@@ -58,7 +58,7 @@
             </td>
             <td> 
                 {{ form_widget(form.image) }} 
-               
+                {{ form_errors(form.image) }} 
             </td>
         </tr>
         {% endif %}
@@ -85,9 +85,6 @@
                         <li class = "list_type">
                             {{ form_widget(emailField) }}
                         </li>
-                        <span class = "error_message">
-                                {{ form_errors(emailField) }}
-                        </span>
                     {% endfor %}
                 </ul> 
             </td>
@@ -184,7 +181,7 @@
     {{ form_end(form, {'render_rest':false}) }}
 
     {% block javascripts %}
-        {% javascripts '@UserBundle/Resources/public/js/validation.js' '@UserBundle/Resources/public/js/addField.js' %}
+        {% javascripts '@UserBundle/Resources/public/js/addField.js' %}
             <script src="{{ asset_url }}"> </script>
         {% endjavascripts %}
     {% endblock %}
